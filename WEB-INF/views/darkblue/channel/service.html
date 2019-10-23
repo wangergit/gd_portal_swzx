@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8" content="width=device-width,initial-scale=1.0" name="viewport">
+<title>广东省电子航道图政务外网公共服务网站</title>
+<link href="${res}/favicon.ico" rel="icon" type="image/x-icon" />
+<link href="${res}/styles/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="${res}/styles/jquery.loadmask.css" rel="stylesheet" type="text/css" />
+<link href="${res}/styles/datepicker.css" rel="stylesheet" type="text/css">
+<link href="${res}/styles/structure.css" rel="stylesheet" type="text/css">
+<link href="${res}/styles/sidebar.css" rel="stylesheet" type="text/css">
+<link href="${res}/styles/message.css" rel="stylesheet" type="text/css">
+<link href="${res}/styles/icons.css" rel="stylesheet" type="text/css">
+<style>
+.service-thumb {
+	width: 150px;
+	height: 120px;
+}
+.col {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.dropdown .dropdown-menu {
+	width: 100%;
+	max-height: 240px;
+	overflow: auto;
+}
+
+#dialog_apply {
+	display: none;
+	width: 600px;
+}
+</style>
+<script type="text/javascript">
+var CONTEXT = "${site}";
+var RESOURCE = "${res}";
+</script>
+<script src="${res}/scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="${res}/scripts/jquery.loadmask.js" type="text/javascript"></script>
+<script src="${res}/scripts/draggabilly.pkgd.min.js" type="text/javascript"></script>
+<script src="${res}/scripts/bootstrap-datepicker.min.js" type="text/javascript"></script>
+<script src="${res}/scripts/structure.js" type="text/javascript"></script>
+<script src="${res}/scripts/message.js" type="text/javascript"></script>
+<script src="${res}/scripts/channel_service.js" type="text/javascript"></script>
+<script src="${site}/h.js?channel=${channel.path}&id=index"></script>
+</head>
+<body>
+[#include "../include/header.html"/]
+
+<div id="container">
+
+	<!-- 左边菜单选择-->
+	<div id="sidebar" class="server-sidebar">
+        <div class="list-group">
+[#if type ??]
+		[#if type = '1' ]
+            <a class="list-group-item active" href="${site}/service/1/index.jhtml">数据服务</a>
+		[#else]
+            <a class="list-group-item" href="${site}/service/1/index.jhtml">数据服务</a>
+		[/#if]
+		[#if type = '2' ]
+            <a class="list-group-item active" href="${site}/service/2/index.jhtml">地图服务</a>
+		[#else]
+            <a class="list-group-item" href="${site}/service/2/index.jhtml">地图服务</a>
+		[/#if]
+		[#if type = '4' ]
+            <a class="list-group-item active" href="${site}/service/4/index.jhtml">地图符号服务</a>
+		[#else]
+            <a class="list-group-item" href="${site}/service/4/index.jhtml">地图符号服务</a>
+		[/#if]
+		[#if type = '3' ]
+            <a class="list-group-item active" href="${site}/service/3/index.jhtml">文件下载服务</a>
+		[#else]
+            <a class="list-group-item" href="${site}/service/3/index.jhtml">文件下载服务</a>
+		[/#if]
+[#else]
+            <a class="list-group-item" href="${site}/service/1/index.jhtml">数据服务</a>
+            <a class="list-group-item" href="${site}/service/2/index.jhtml">地图服务</a>
+            <a class="list-group-item" href="${site}/service/4/index.jhtml">地图符号服务</a>
+            <a class="list-group-item" href="${site}/service/3/index.jhtml">文件下载服务</a>
+[/#if]
+        </div>
+    </div>
+    
+	<!-- 右边内容显示-->
+	<div id="main">
+	
+[#include "../include/breadcrumb.html"/]
+        
+        <table class="table table-bordered table-hover table-striped">
+        	<col width="40px" />
+        	<col width="170px" />
+        	<col />
+        	<col />
+        	<col width="80px" />
+        	<col width="90px" />
+        	<col width="80px" />
+        	<col width="80px" />
+        	<col />
+            <col width="80px" />
+        	<tr>
+            	<th>&nbsp;</th>
+                <th class="text-justify">服务截图</th>
+                <th class="text-justify">服务名称</th>
+                <th class="text-justify">服务接口</th>
+                <th class="text-justify" width="100">服务类型</th>
+                <th class="text-justify" width="120">注册时间</th>
+                <th class="text-justify">服务地址</th>
+                <th class="text-justify">接口说明</th>
+                <th class="text-justify">描述</th>
+                <th class="text-justify">操作</th>
+            </tr>
+[#list listInfo.data as infos]
+            <tr valign="middle">
+            	<td class="text-center">${(listInfo.page.current - 1) * listInfo.page.pageSize + infos_index + 1}</td>
+                <td class="text-center">
+	[#if infos.icon ??]
+                    <img class="img-responsive img-thumbnail service-thumb" src="http://10.0.109.54:8080/thumbnail/${infos.icon}" />
+	[#else]
+                    <img class="img-responsive img-thumbnail service-thumb" src="http://10.0.109.54:8080/thumbnail/default.png" />
+	[/#if]
+                </td>
+                <td class="text-justify">${infos.servicename}</td>
+                <td class="text-justify">${infos.servicetype.name}</td>
+	[#if infos.attr ??]
+                <td class="text-justify">${infos.attr.name}</td>
+	[#else]
+                <td>&nbsp;</td>
+	[/#if]
+                <td class="text-justify">${infos.createtime?string("yyyy-MM-dd")}</td>
+                <td class="text-breakall">
+	[#if infos.servicetype.id ='3']
+                    http://10.0.109.54:8080/gdservice/file/${infos.address}
+	[#elseif infos.servicetype.id ='4']
+                    http://10.0.109.54:8080/gdservice/file/${infos.address}
+	[#elseif infos.servicetype.id ='2']
+                    http://10.0.109.54:6080/arcgis/rest/services/${infos.address}/MapServer
+	[#else]
+                    http://10.0.109.54:8080/gdservice/query/${infos.address}
+	[/#if]
+                </td>
+                <td class="text-center"><a href="${site}/api/${infos.id}.jhtml">查看</a></td>
+                <td>${infos.remark}</td>
+                <td class="text-center"><a href="javascript:;" onClick="apply.open('${infos.id}', '${infos.servicename}')">申请使用</a></td>
+            </tr>
+[/#list]
+        </table>
+
+[#include "../include/pagination.html"/]
+        
+    </div>
+    
+</div>
+
+[#include "../include/footer.html"/]
+
+<div class="dialog" id="dialog_apply">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <button type="button" class="close" onClick="apply.cancel()" onFocus="this.blur()">&times;</button>
+        	<div class="panel-title">申请服务</div>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="form-group" id="vm_txt_name">
+                    <label class="col col-sm-3 control-label">服务名称：</label>
+                    <div class="col col-sm-8" id="apply_txt_name">
+                        <p class="form-control-static">&nbsp;</p>
+                    </div>
+                </div>
+                <div class="form-group" id="plo_txt_content">
+                    <label class="col col-sm-3 control-label">服务访问方式：</label>
+                    <div class="dropdown col col-sm-3" id="apply_cmb_type">
+                    	<div class="input-group dropdown-toggle">
+                    		<input type="text" class="form-control" placeholder="请选择" readonly />
+                            <span class="input-group-btn">
+                            	<button type="button" class="btn btn-default" onFocus="this.blur()"><span class="caret"></span></button>
+                            </span>
+                        </div>
+                        <ul class="dropdown-menu"> </ul>
+                    </div>
+                    <div class="col col-sm-5" id="loc_txt_mileage">
+                        <input type="text" class="form-control" placeholder="请输入访问地址" id="apply_txt_address" />
+                    </div>
+                    <p class="help-block col col-sm-9 col-sm-offset-3">请填写域名地址：http://www.xxx.com，或IP地址：192.168.0.1</p>
+                </div>
+                <div class="form-group">
+                    <label class="col col-sm-3 control-label">使用期限：</label>
+                    <div class="col col-sm-8">
+                        <input type="text" class="form-control date-picker" placeholder="请输入到期日期" data-date-format="yyyy-mm-dd" id="apply_dat_exprice" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer text-center">
+        	<button type="button" class="btn btn-info" onClick="apply.save()">提交</button>
+        	<button type="button" class="btn btn-default" onClick="apply.cancel()">取消</button>
+        </div>
+    </div>
+</div>
+
+<div id="mask_message"></div>
+<div class="dialog" id="dialog_message">
+    <div class="panel">
+        <div class="panel-heading">
+            <button type="button" class="close" onFocus="this.blur()">&times;</button>
+        	<div class="panel-title">&nbsp;</div>
+        </div>
+        <div class="panel-body"></div>
+        <div class="panel-footer text-center">
+        	<button type="button" class="btn">确定</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

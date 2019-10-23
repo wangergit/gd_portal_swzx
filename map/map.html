@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	
+		<meta http-equiv='Content-Security-Policy' content='block-all-mixed-content'>
+	
+  <style type="text/css">
+    html,
+    body{
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+   
+  </style>
+    <link href="js/arcgisapi/3.15/esri/css/esri.css" rel="stylesheet" />
+    <link href="js/arcgisapi/3.15/dijit/themes/claro/claro.css" rel="stylesheet" />
+    <link href="css/xnavigation.css" rel="stylesheet" />
+   <script type="text/javascript" src="js/config/HJConfig.js"></script>  
+    <script src="js/arcgisapi/3.15/init.js"></script>
+    <script src="js/support/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	var parent = window.parent;
+	if(window != parent && $.isFunction(parent.initMap)) {
+		parent.initMap(window);
+	}
+});
+</script>
+</head>
+<body onload=" HJMap.Init('viewDiv')">    
+   
+    <div id="viewDiv">
+        <div class="toolbarDiv">
+            <div title="放大" class="toolbarDiv_ZoomIn" onclick="HJNavigation.ZoomOutCmd()"></div>
+            <div title="缩小" class="toolbarDiv_ZoomOut" onclick="HJNavigation.ZoomInCmd()"></div>
+            <div title="" class="toolbarDiv_Pan">
+                <div title="左移" class="toolbarDiv_PanLeft" onclick="HJNavigation.PanLeft()"></div>
+                <div title="上移" class="toolbarDiv_PanUp" onclick="HJNavigation.PanUp()"></div>
+                <div title="右移" class="toolbarDiv_PanRight" onclick="HJNavigation.PanRight()"></div>
+                <div title="下移" class="toolbarDiv_PanDown" onclick="HJNavigation.PanDown()"></div>
+            </div>
+            <div class="toolbarDiv_Slip">
+                <div title="" class="toolbarDiv_SlipPos" ></div>
+            </div>          
+        </div>
+    
+     <div id="printButton"></div>
+       <!-- <div id="legendDiv1"></div>-->
+       <label id="mousepostion"></label>
+    </div>  
+    
+</body>
+</html>

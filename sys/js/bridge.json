@@ -1,0 +1,588 @@
+﻿{
+ "displayFieldName": "BRGCOD",
+ "fieldAliases": {
+  "OBJECTID": "OBJECTID",
+  "BRGCOD": "桥梁编号",
+  "BRGNAM": "桥梁名称",
+  "CATBRG": "桥梁类别",
+  "BRGUSE": "桥梁用途",
+  "NSPNNO": "通航孔数",
+  "BRSPNO": "桥墩数",
+  "NAVWID": "通航净宽",
+  "NAVHGT": "通航净高",
+  "BTMWID": "上底宽",
+  "SIDHGT": "侧高",
+  "HDSTHY": "斜边水平距离",
+  "DHNAVS": "设计最高通航水位",
+  "APPRNO": "航道审批文号",
+  "MANDEP": "管理单位",
+  "CONDTN": "建设状态",
+  "DELIFE": "设计使用年限",
+  "INFORM": "备注信息",
+  "SCAMIN": "最小比例尺",
+  "FEACOD": "要素代码",
+  "PARTITION": "航段编码",
+  "MEADATE": "测绘日期",
+  "SHAPE.AREA": "SHAPE.AREA",
+  "SHAPE.LEN": "SHAPE.LEN"
+ },
+ "fields": [
+  {
+   "name": "OBJECTID",
+   "type": "esriFieldTypeOID",
+   "alias": "OBJECTID"
+  },
+  {
+   "name": "BRGCOD",
+   "type": "esriFieldTypeString",
+   "alias": "桥梁编号",
+   "length": 32
+  },
+  {
+   "name": "BRGNAM",
+   "type": "esriFieldTypeString",
+   "alias": "桥梁名称",
+   "length": 64
+  },
+  {
+   "name": "CATBRG",
+   "type": "esriFieldTypeString",
+   "alias": "桥梁类别",
+   "length": 32
+  },
+  {
+   "name": "BRGUSE",
+   "type": "esriFieldTypeString",
+   "alias": "桥梁用途",
+   "length": 64
+  },
+  {
+   "name": "NSPNNO",
+   "type": "esriFieldTypeString",
+   "alias": "通航孔数",
+   "length": 32
+  },
+  {
+   "name": "BRSPNO",
+   "type": "esriFieldTypeString",
+   "alias": "桥墩数",
+   "length": 32
+  },
+  {
+   "name": "NAVWID",
+   "type": "esriFieldTypeDouble",
+   "alias": "通航净宽"
+  },
+  {
+   "name": "NAVHGT",
+   "type": "esriFieldTypeDouble",
+   "alias": "通航净高"
+  },
+  {
+   "name": "BTMWID",
+   "type": "esriFieldTypeDouble",
+   "alias": "上底宽"
+  },
+  {
+   "name": "SIDHGT",
+   "type": "esriFieldTypeDouble",
+   "alias": "侧高"
+  },
+  {
+   "name": "HDSTHY",
+   "type": "esriFieldTypeDouble",
+   "alias": "斜边水平距离"
+  },
+  {
+   "name": "DHNAVS",
+   "type": "esriFieldTypeDouble",
+   "alias": "设计最高通航水位"
+  },
+  {
+   "name": "APPRNO",
+   "type": "esriFieldTypeString",
+   "alias": "航道审批文号",
+   "length": 64
+  },
+  {
+   "name": "MANDEP",
+   "type": "esriFieldTypeString",
+   "alias": "管理单位",
+   "length": 64
+  },
+  {
+   "name": "CONDTN",
+   "type": "esriFieldTypeString",
+   "alias": "建设状态",
+   "length": 32
+  },
+  {
+   "name": "DELIFE",
+   "type": "esriFieldTypeString",
+   "alias": "设计使用年限",
+   "length": 32
+  },
+  {
+   "name": "INFORM",
+   "type": "esriFieldTypeString",
+   "alias": "备注信息",
+   "length": 100
+  },
+  {
+   "name": "SCAMIN",
+   "type": "esriFieldTypeString",
+   "alias": "最小比例尺",
+   "length": 32
+  },
+  {
+   "name": "FEACOD",
+   "type": "esriFieldTypeString",
+   "alias": "要素代码",
+   "length": 6
+  },
+  {
+   "name": "PARTITION",
+   "type": "esriFieldTypeString",
+   "alias": "航段编码",
+   "length": 10
+  },
+  {
+   "name": "MEADATE",
+   "type": "esriFieldTypeDate",
+   "alias": "测绘日期",
+   "length": 36
+  },
+  {
+   "name": "SHAPE.AREA",
+   "type": "esriFieldTypeDouble",
+   "alias": "SHAPE.AREA"
+  },
+  {
+   "name": "SHAPE.LEN",
+   "type": "esriFieldTypeDouble",
+   "alias": "SHAPE.LEN"
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "OBJECTID": 5,
+    "BRGCOD": "9",
+    "BRGNAM": "广中江高速公路潮连西江特大桥",
+    "CATBRG": "索拉桥",
+    "BRGUSE": null,
+    "NSPNNO": "0",
+    "BRSPNO": null,
+    "NAVWID": 299.30000000000001,
+    "NAVHGT": 22,
+    "BTMWID": 299.30000000000001,
+    "SIDHGT": 33,
+    "HDSTHY": null,
+    "DHNAVS": 5.5739998799999997,
+    "APPRNO": null,
+    "MANDEP": "省交通厅",
+    "CONDTN": "使用",
+    "DELIFE": null,
+    "INFORM": null,
+    "SCAMIN": "180000",
+    "FEACOD": "080101",
+    "PARTITION": "0102001",
+    "MEADATE": 1330905600000,
+    "SHAPE.AREA": 3.3255183559578998e-006,
+    "SHAPE.LEN": 0.016854764104716299
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 8,
+    "BRGCOD": "6",
+    "BRGNAM": "潮连大桥",
+    "CATBRG": null,
+    "BRGUSE": null,
+    "NSPNNO": "2",
+    "BRSPNO": "25",
+    "NAVWID": 87.799999999999997,
+    "NAVHGT": 22,
+    "BTMWID": 65,
+    "SIDHGT": 25.199999999999999,
+    "HDSTHY": null,
+    "DHNAVS": 5.0300002099999999,
+    "APPRNO": null,
+    "MANDEP": "省交通厅",
+    "CONDTN": "使用",
+    "DELIFE": null,
+    "INFORM": null,
+    "SCAMIN": "180000",
+    "FEACOD": "080101",
+    "PARTITION": "0102001",
+    "MEADATE": 1330905600000,
+    "SHAPE.AREA": 1.3107776383341401e-006,
+    "SHAPE.LEN": 0.0167904963877861
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 3,
+    "BRGCOD": "15",
+    "BRGNAM": "北街大桥",
+    "CATBRG": null,
+    "BRGUSE": null,
+    "NSPNNO": "0",
+    "BRSPNO": null,
+    "NAVWID": 87,
+    "NAVHGT": 21,
+    "BTMWID": 112,
+    "SIDHGT": 22,
+    "HDSTHY": null,
+    "DHNAVS": 0,
+    "APPRNO": null,
+    "MANDEP": "省交通厅",
+    "CONDTN": "使用",
+    "DELIFE": null,
+    "INFORM": null,
+    "SCAMIN": "180000",
+    "FEACOD": "080101",
+    "PARTITION": "0102001",
+    "MEADATE": 1330905600000,
+    "SHAPE.AREA": 3.9752152518152698e-008,
+    "SHAPE.LEN": 0.0028422955394808401
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 15,
+    "BRGCOD": "1",
+    "BRGNAM": "G325九江大桥",
+    "CATBRG": "索拉桥",
+    "BRGUSE": null,
+    "NSPNNO": "2",
+    "BRSPNO": "17",
+    "NAVWID": 149,
+    "NAVHGT": 22.900000000000002,
+    "BTMWID": 149,
+    "SIDHGT": 22.900000000000002,
+    "HDSTHY": 4.5,
+    "DHNAVS": 6.4499998099999996,
+    "APPRNO": "粤交基（84）869号",
+    "MANDEP": "省交通厅",
+    "CONDTN": "使用",
+    "DELIFE": "60",
+    "INFORM": " ",
+    "SCAMIN": "180000",
+    "FEACOD": "080101",
+    "PARTITION": "0102001",
+    "MEADATE": 1330905600000,
+    "SHAPE.AREA": 2.6626589214664703e-006,
+    "SHAPE.LEN": 0.0294218327957796
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 12,
+    "BRGCOD": "0601000000000231000609",
+    "BRGNAM": "外海大桥",
+    "CATBRG": "梁式桥",
+    "BRGUSE": null,
+    "NSPNNO": "3",
+    "BRSPNO": "24",
+    "NAVWID": 96.400000000000006,
+    "NAVHGT": 22,
+    "BTMWID": 107,
+    "SIDHGT": 27,
+    "HDSTHY": null,
+    "DHNAVS": 4.6100001299999995,
+    "APPRNO": null,
+    "MANDEP": "省交通厅",
+    "CONDTN": "使用",
+    "DELIFE": null,
+    "INFORM": null,
+    "SCAMIN": "180000",
+    "FEACOD": "080101",
+    "PARTITION": "0102001",
+    "MEADATE": 1330905600000,
+    "SHAPE.AREA": 2.1508101360967601e-006,
+    "SHAPE.LEN": 0.026649280195991901
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 10,
+    "BRGCOD": "0601000000000231000512",
+    "BRGNAM": "荷塘西江大桥",
+    "CATBRG": "梁式桥",
+    "BRGUSE": null,
+    "NSPNNO": "2",
+    "BRSPNO": "16",
+    "NAVWID": 102.5,
+    "NAVHGT": 18,
+    "BTMWID": 104,
+    "SIDHGT": 28.199999999999999,
+    "HDSTHY": null,
+    "DHNAVS": 5.1199998899999999,
+    "APPRNO": null,
+    "MANDEP": "省交通厅",
+    "CONDTN": "使用",
+    "DELIFE": null,
+    "INFORM": null,
+    "SCAMIN": "180000",
+    "FEACOD": "080101",
+    "PARTITION": "0102001",
+    "MEADATE": 1330905600000,
+    "SHAPE.AREA": 1.4526962395382999e-006,
+    "SHAPE.LEN": 0.0181696112484355
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 7,
+    "BRGCOD": "8",
+    "BRGNAM": "广中江高速公路北街水道特大桥",
+    "CATBRG": "索拉桥",
+    "BRGUSE": null,
+    "NSPNNO": "0",
+    "BRSPNO": null,
+    "NAVWID": 365.5,
+    "NAVHGT": 22,
+    "BTMWID": 333,
+    "SIDHGT": 33,
+    "HDSTHY": null,
+    "DHNAVS": 5.5739998799999997,
+    "APPRNO": null,
+    "MANDEP": "省交通厅",
+    "CONDTN": "使用",
+    "DELIFE": null,
+    "INFORM": null,
+    "SCAMIN": "180000",
+    "FEACOD": "080101",
+    "PARTITION": "0102001",
+    "MEADATE": 1330905600000,
+    "SHAPE.AREA": 4.0603243346970796e-006,
+    "SHAPE.LEN": 0.020934784049571501
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 4,
+    "BRGCOD": "4",
+    "BRGNAM": "江番高速公路大桥施工中",
+    "CATBRG": null,
+    "BRGUSE": null,
+    "NSPNNO": "0",
+    "BRSPNO": null,
+    "NAVWID": 87,
+    "NAVHGT": 21,
+    "BTMWID": 112,
+    "SIDHGT": 22,
+    "HDSTHY": null,
+    "DHNAVS": 0,
+    "APPRNO": null,
+    "MANDEP": "省交通厅",
+    "CONDTN": "建设中",
+    "DELIFE": null,
+    "INFORM": null,
+    "SCAMIN": "180000",
+    "FEACOD": "080101",
+    "PARTITION": "0102001",
+    "MEADATE": 1330905600000,
+    "SHAPE.AREA": 5.52906034102627e-006,
+    "SHAPE.LEN": 0.028954449027153103
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 14,
+    "BRGCOD": "2",
+    "BRGNAM": "九江佛开高速公路大桥",
+    "CATBRG": "梁式桥",
+    "BRGUSE": "公路桥",
+    "NSPNNO": "2",
+    "BRSPNO": "17",
+    "NAVWID": 146,
+    "NAVHGT": 22.600000000000001,
+    "BTMWID": 146,
+    "SIDHGT": 17,
+    "HDSTHY": 4.5,
+    "DHNAVS": 6.4499998099999996,
+    "APPRNO": "粤航道（91）复字183号",
+    "MANDEP": "省高速公路公司",
+    "CONDTN": "使用",
+    "DELIFE": "60",
+    "INFORM": null,
+    "SCAMIN": "180000",
+    "FEACOD": "080101",
+    "PARTITION": "0102001",
+    "MEADATE": 1330905600000,
+    "SHAPE.AREA": 6.5138982606984901e-006,
+    "SHAPE.LEN": 0.029717826077927501
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 9,
+    "BRGCOD": "0601000000000231000124",
+    "BRGNAM": "江中高速西江大桥",
+    "CATBRG": "梁式桥",
+    "BRGUSE": "公路桥",
+    "NSPNNO": "4",
+    "BRSPNO": "44",
+    "NAVWID": 107.5,
+    "NAVHGT": 22,
+    "BTMWID": 79,
+    "SIDHGT": 26.100000000000001,
+    "HDSTHY": null,
+    "DHNAVS": 4.6100001299999995,
+    "APPRNO": null,
+    "MANDEP": "省交通厅",
+    "CONDTN": "使用",
+    "DELIFE": null,
+    "INFORM": null,
+    "SCAMIN": "180000",
+    "FEACOD": "080101",
+    "PARTITION": "0102001",
+    "MEADATE": 1330905600000,
+    "SHAPE.AREA": 2.6559444687628097e-006,
+    "SHAPE.LEN": 0.021773603562501801
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 13,
+    "BRGCOD": "0601000000000231001385",
+    "BRGNAM": "江顺大桥",
+    "CATBRG": "索拉桥",
+    "BRGUSE": "公路桥",
+    "NSPNNO": "1",
+    "BRSPNO": "20",
+    "NAVWID": 67.5,
+    "NAVHGT": 22,
+    "BTMWID": 67.5,
+    "SIDHGT": 31.800000000000001,
+    "HDSTHY": null,
+    "DHNAVS": 7.2300000200000003,
+    "APPRNO": null,
+    "MANDEP": "省交通厅",
+    "CONDTN": "使用",
+    "DELIFE": null,
+    "INFORM": null,
+    "SCAMIN": "180000",
+    "FEACOD": "080101",
+    "PARTITION": "0102001",
+    "MEADATE": 1330905600000,
+    "SHAPE.AREA": 4.7273085493125094e-006,
+    "SHAPE.LEN": 0.029123412266587601
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 1,
+    "BRGCOD": "5",
+    "BRGNAM": "荷塘白藤大桥",
+    "CATBRG": null,
+    "BRGUSE": null,
+    "NSPNNO": "0",
+    "BRSPNO": null,
+    "NAVWID": 87,
+    "NAVHGT": 21,
+    "BTMWID": 112,
+    "SIDHGT": 22,
+    "HDSTHY": null,
+    "DHNAVS": 0,
+    "APPRNO": null,
+    "MANDEP": "省交通厅",
+    "CONDTN": "使用",
+    "DELIFE": null,
+    "INFORM": null,
+    "SCAMIN": "180000",
+    "FEACOD": "080101",
+    "PARTITION": "0102001",
+    "MEADATE": 1330905600000,
+    "SHAPE.AREA": 2.69998041998624e-007,
+    "SHAPE.LEN": 0.00487621587630227
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 2,
+    "BRGCOD": "10",
+    "BRGNAM": "北街大桥",
+    "CATBRG": null,
+    "BRGUSE": null,
+    "NSPNNO": "0",
+    "BRSPNO": null,
+    "NAVWID": 87,
+    "NAVHGT": 21,
+    "BTMWID": 112,
+    "SIDHGT": 22,
+    "HDSTHY": null,
+    "DHNAVS": 0,
+    "APPRNO": null,
+    "MANDEP": "省交通厅",
+    "CONDTN": "使用",
+    "DELIFE": null,
+    "INFORM": null,
+    "SCAMIN": "180000",
+    "FEACOD": "080101",
+    "PARTITION": "0102001",
+    "MEADATE": 1330905600000,
+    "SHAPE.AREA": 2.3808194461917599e-007,
+    "SHAPE.LEN": 0.0058607215846373595
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 6,
+    "BRGCOD": "11",
+    "BRGNAM": "荷塘大桥",
+    "CATBRG": null,
+    "BRGUSE": null,
+    "NSPNNO": "0",
+    "BRSPNO": null,
+    "NAVWID": 87,
+    "NAVHGT": 21,
+    "BTMWID": 112,
+    "SIDHGT": 22,
+    "HDSTHY": null,
+    "DHNAVS": 0,
+    "APPRNO": null,
+    "MANDEP": "省交通厅",
+    "CONDTN": "使用",
+    "DELIFE": null,
+    "INFORM": null,
+    "SCAMIN": "180000",
+    "FEACOD": "080101",
+    "PARTITION": "0102001",
+    "MEADATE": 1330905600000,
+    "SHAPE.AREA": 2.8764795278316697e-007,
+    "SHAPE.LEN": 0.0059806421570931202
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 11,
+    "BRGCOD": "0601000000000231001482",
+    "BRGNAM": "广珠城际铁路西江大桥",
+    "CATBRG": "索拉桥",
+    "BRGUSE": "铁路桥",
+    "NSPNNO": "2",
+    "BRSPNO": "10",
+    "NAVWID": 197.70000000000002,
+    "NAVHGT": 22,
+    "BTMWID": 145,
+    "SIDHGT": 24.300000000000001,
+    "HDSTHY": null,
+    "DHNAVS": 4.6100001299999995,
+    "APPRNO": null,
+    "MANDEP": "省交通厅",
+    "CONDTN": "使用",
+    "DELIFE": null,
+    "INFORM": null,
+    "SCAMIN": "180000",
+    "FEACOD": "080101",
+    "PARTITION": "0102001",
+    "MEADATE": 1330905600000,
+    "SHAPE.AREA": 9.1555316566808899e-007,
+    "SHAPE.LEN": 0.0173045281945516
+   }
+  }
+ ]
+}

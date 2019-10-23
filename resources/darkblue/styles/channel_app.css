@@ -1,0 +1,163 @@
+@charset "utf-8";
+/* CSS Document */
+
+.col {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.dropdown .dropdown-menu {
+	width: 100%;
+	max-height: 240px;
+	overflow: auto;
+}
+
+#command {
+	position: absolute;
+	top: 5px;
+	left: 71px;
+}
+#toolbar_main, #searchbar {
+	float: right;
+	clear: none;
+}
+#toolbar_more {
+	position: absolute;
+	top: 38px;
+	left: 605px;
+}
+
+
+#searchbar, #searchbar_form, #searchbar_result {
+	width: 300px;
+	margin: 0;
+}
+
+#searchbar_result {
+	height: 450px;
+	overflow: auto;
+}
+#sb_result_cate ul li {
+	width: 80px;
+	height: 80px;
+}
+#sb_result_cate .imgicon {
+	width: 38px;
+	height: 38px;
+}
+
+#toolbar_more, #searchbar_result, #sb_result_cate, #sb_result_result {
+	display: none;
+}
+
+.imgicon-hb {
+	background-image: url(../images/hxbz.png);
+}
+.imgicon-ql {
+	background-image: url(../images/ql.png);
+}
+.imgicon-gghd {
+	background-image: url(../images/sd.png);
+}
+.imgicon-sd {
+	background-image: url(../images/sd.png);
+}
+.imgicon-hdbm {
+	background-image: url(../images/hdbm.png);
+}
+.imgicon-ghxl {
+	background-image: url(../images/ghxl.png);
+}
+.imgicon-jkxl {
+	background-image: url(../images/jkxl.png);
+}
+.imgicon-jkgd {
+	background-image: url(../images/jkgd.png);
+}
+.imgicon-ghgd {
+	background-image: url(../images/ghgd.png);
+}
+.imgicon-sd {
+	background-image: url(../images/sd.png);
+}
+.imgicon-fmt {
+	background-image: url(../images/fmt.png);
+}
+.imgicon-gdmt {
+	background-image: url(../images/gdmt.png);
+}
+.imgicon-jymt {
+	background-image: url(../images/jymt.png);
+}
+.imgicon-cz {
+	background-image: url(../images/cz.png);
+}
+.imgicon-sjj {
+	background-image: url(../images/sjj.png);
+}
+
+
+#dialog_feature {
+	display: none;
+	left: 100px;
+	top: 80px;
+	width: 840px;
+	height: 400px;
+}
+
+.inner-panel{
+	height: 100%;
+	overflow: auto;
+}
+
+#dropdown_layer li a {
+	background-image: url(../images/uncheck.png);
+	background-position: 15px center;
+	background-repeat: no-repeat;
+	padding-left: 40px;
+}
+#dropdown_layer li.active a {
+	background-image: url(../images/checked.png);
+}
+
+#dialog_location {
+	display: none;
+	width: 400px;
+	height: 330px;
+}
+#dialog_location .panel-body {
+	overflow: visible;
+}
+#dialog_location form {
+	margin-top: 20px;
+}
+
+#dialog_viewmarks {
+	display: none;
+	width: 500px;
+	height: 350px;
+}
+#dialog_viewmarks .list-group .btn-danger {
+	border-radius: 11px;
+}
+#dialog_vm_new {
+	display: none;
+	width: 400px;
+}
+
+#dialog_plotting {
+	display: none;
+	width: 360px;
+}
+
+
+#dialog_info {
+	display: none;
+	width: 680px;
+	left: 100px;
+	top: 80px;
+}
+
+#searchResult table tr{
+	cursor:pointer;
+}

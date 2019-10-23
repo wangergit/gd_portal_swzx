@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+ 
+  <style type="text/css">
+    html,
+    body{
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+   
+  </style>
+    <link href="js/arcgisapi/3.15/esri/css/esri.css" rel="stylesheet" />
+    <link href="js/arcgisapi/3.15/dijit/themes/claro/claro.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/config/HJConfig.js"></script>  
+    <script src="js/arcgisapi/3.15/init.js"></script>
+    
+	<script type="text/javascript" >
+	    var url = "";
+	    function Init() {
+	        url = getQueryStr("mapserver");
+	     	//url="http://172.18.154.91:6080/arcgis/rest/services/cities/MapServer?token=WqHJmcU4wbdGhr4RN7RuOfpWQcMO3rQ4n_BZXLCe8WNTCrbSz_RrLP0tJZgpsNCboJhqnfNLZyflnMqx7QI6u5Y5mR3Myz6okohqq7YAON0.";
+	        require([
+			 "esri/map",
+			 "esri/layers/ArcGISDynamicMapServiceLayer",
+			 "dojo/domReady!"
+	        ], function (
+			 Map, ArcGISDynamicLayer
+			 ) {
+	            map = new Map("viewDiv");
+	            var layer = new ArcGISDynamicLayer(url);
+	            map.addLayer(layer);
+	        });
+	    }
+		
+		var LocString = String(window.document.location.href);
+		function getQueryStr(str) {
+			var rs = new RegExp("(^|)" + str + "=([^&]*)(&|$)", "gi").exec(LocString), tmp;
+			if (tmp = rs) {
+				return tmp[2];
+			}
+			// parameter cannot be found
+			return "";
+		}
+	</script>
+</head>
+<body onload=" Init()">    
+   
+    <div id="viewDiv">
+      
+    </div>  
+    
+</body>
+</html>

@@ -1,0 +1,63 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>广东省电子航道图政务外网公共服务网站</title>
+<link rel="icon" href="${res}/images/favicon.ico" type="image/x-icon"/>
+<link rel="stylesheet" type="text/css" href="${res}/css/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="${res}/css/skin.css" />
+<link rel="stylesheet" type="text/css" href="${res}/css/gdww.css" />
+<script type="text/javascript" src="${res}/js/jquery-ui.js"></script>
+<script type="text/javascript" src="${res}/js/gdww.js"></script>
+</head>
+<body>
+[#include "../include/header.html"/]
+   
+<div class="content"> 
+    <!--内容--> 
+    <div class="tl_con column">   
+
+
+        <div class="xilan"> 
+          	 <div class="breadcrumb">
+					您的位置：
+			  	<span>
+				    <a class="SkinObject" href="${site}/index.jhtml">首页</a>&nbsp;&gt;&nbsp;
+				   
+				    [#if channel.parent.id !='1' ]
+						<a class="SkinObject" href="${site}/${channel.parent.path}.jhtml">${channel.parent.name} </a>&nbsp;&gt;&nbsp;
+				    [/#if]
+				   	<a class="SkinObject" href="${site}/${channel.path}/index.jhtml"> ${channel.name} </a>
+			 	</span> 
+        	</div> 
+ 
+ 
+			<div class="minute mainxx"> 
+			      <h2> ${articleInfo.title}</h2> 
+			      <div class="line"> 
+			          <span id="source">来源：${channel.name}</span>&nbsp;&nbsp;&nbsp;&nbsp; 
+			          <span id="author">作者：${articleInfo.author} </span>&nbsp;&nbsp;&nbsp;&nbsp; 
+			          <span id="date">发布时间：${articleInfo.newsdate?string("yyyy-MM-dd")}</span>&nbsp;&nbsp;&nbsp;&nbsp; 
+			          <span id="llcs">浏览次数：<span articlecounts="yes">30</span></span>&nbsp;&nbsp;&nbsp;&nbsp; 
+			      </div> 
+			  <div class="content_xilan" id="zoom"> 
+			      ${articleInfo.content}
+			  </div> 
+			 
+			</div> 
+		</div> 
+		<script language="JavaScript">
+			function doZoom(size){
+						document.getElementById('zoom').style.fontSize=size+'px';
+				 $("#zoom").find("strong").css("font-size",size+'px');
+		
+			}
+		</script>
+ 	</div> 
+</div>     
+
+   
+[#include "../include/footer.html"/]
+
+
+</body>
+</html>

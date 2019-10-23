@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	[#include "/sys/include/meta.html"/]
+	
+	<body class="no-skin">
+		
+		 [#include "/sys/include/head.html"/]
+		
+		<div class="main-container" id="main-container">
+
+			[#include "/sys/include/menu.html"/]
+			
+			<div class="main-content">
+				<div class="main-content-inner">
+					<div class="page-content">
+						
+						[#include "/sys/include/module.html"/]
+						<div class="statistic">
+							<div class="five">
+							    <div class="item" style="margin-left:0;">
+							      <p class="eng">TODAY</p>
+							      <p class="coun timer" data-to="1" data-speed="1000" id="spanDay">0</p>
+							      <p class="chi">今日</p>
+							    </div>
+							    <div class="item">
+							      <p class="eng">THIS WEEK</p>
+							      <p class="coun timer" data-to="16" data-speed="1000" id="spanWeek">0</p>
+							      <p class="chi">本周</p>
+							    </div>
+							    <div class="item">
+							      <p class="eng">THIS MONTH</p>
+							      <p class="coun timer" data-to="13" data-speed="1000" id="spanMonth">0</p>
+							      <p class="chi">本月</p>
+							    </div>
+							    <div class="item">
+							      <p class="eng">THIS YEAR</p>
+							      <p class="coun timer" data-to="20" data-speed="1000" id="spanYear">0</p>
+							      <p class="chi">今年</p>
+							    </div>
+							    <div class="item">
+							      <p class="eng">TOTAL</p>
+							      <p class="coun timer" data-to="20" data-speed="1000" id="spanAll">0</p>
+							      <p class="chi">总访问人数</p>
+							    </div>
+							  </div>
+						</div>
+						<div class="row">
+							<!-- .col -->
+							
+							  
+						<div class="tabbable">
+											<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab22222">
+												<li class="">
+													<a data-toggle="tab" href="#customTable" aria-expanded="true">区间报表</a>
+												</li>
+											</ul>
+
+											<div class="tab-content">
+												<div id="customTable" class="tab-pane active" >
+													<div class="search-group">
+															<label class="no-padding-right" for="start-date">开始时间</label>
+															<span class="input-icon input-icon-right"> <input
+																type="text" id="start-date" class="date-picker"
+																name="begin" data-date-format="yyyy-mm-dd"> <i
+																class="ace-icon fa fa-calendar blue"></i>
+															</span>
+															<label class="no-padding-right" for="end-date">结束时间</label> <span
+															class="input-icon input-icon-right"> <input
+															type="text" id="end-date" class="date-picker" name="end"
+															data-date-format="yyyy-mm-dd"> <i
+															class="ace-icon fa fa-calendar blue"></i>
+														</span>
+														<button type="button" class="btn btn-purple btn-sm" id="queryBtn">
+														<span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+														查询
+														</button>
+													</div>
+													<div id="container1"></div>
+												</div>
+											</div>
+						</div>	  
+							　<!-- /.col -->
+						</div><!-- /.row -->
+						
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+
+			[#include "/sys/include/footscript.html"/]
+		</div><!-- /.main-container -->
+		
+	</body>
+<link rel="stylesheet" type="text/css" href="${site}/sys/css/statistic.css"/>
+<script type="text/javascript" src="${site}/assets/js/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="${site}/assets/js/date-time/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="${site}/sys/js/access-memberstatistics.js"></script>
+</html>

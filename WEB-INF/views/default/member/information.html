@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>电子航道图政务服务平台</title>
+	<link rel="icon" href="${res}/images/favicon.ico" type="image/x-icon"/>
+	<link type="text/css" rel="stylesheet" href="${site}/assets/css/common.css" />
+	<link type="text/css" rel="stylesheet" href="${site}/assets/css/style.css" />
+	<link type="text/css" rel="stylesheet" href="${site}/assets/css/css.css" />
+	<link href="${site}/assets/css/jquery.loadmask.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="${site}/assets/css/font-awesome.css" />
+	<script src="${site}/assets/js/jquery.js"></script>
+	<script src="${site}/assets/js/bootstrap.min.js"></script>
+	<script src="${site}/assets/js/artDialog/artDialog.min.js"></script>
+	<script src="${site}/assets/js/common.js"></script>
+	<script src="${res}/js/member.js"></script>
+	<script src="${site}/assets/js/dataTables/jquery.dataTables.js"></script>
+	<script src="${site}/assets/js/dataTables/jquery.dataTables.bootstrap.js"></script>
+	<script src="${site}/assets/js/dataTables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+	<script src="${site}/assets/js/dataTables/extensions/ColVis/js/dataTables.colVis.min.js"></script>
+	<script src="${site}/assets/js/jquery/jquery.validate.js"></script>
+	<script src="${site}/assets/js/jquery/jquery.formFill.js"></script>
+	<script src="${site}/assets/js/jquery/jquery-form.js"></script>
+	<script src="${site}/assets/js/jquery/jquery.maskedinput.js"></script>
+	<script src="${site}/assets/js/artDialog/artDialog.min.js"></script>
+	<script src="${site}/assets/js/plugin/spin.js"></script>
+	<script src="${site}/assets/js/plugin/bootbox.js"></script>
+	<script src="${site}/assets/js/jquery/jquery.gritter.js"></script>
+	<script src="${site}/assets/js/jquery/jquery.mask.js"></script>
+	<script src="${site}/assets/js/jquery/jquery.loadmask.js"></script>
+	<script src="${site}/assets/js/bootstrap.min.js"></script>
+	<script src="${site}/assets/js/ace-elements.min.js"></script>
+	<script src="${site}/assets/js/ace.min.js"></script>
+	<script src="${site}/assets/js/jquery/jquery.loadmask.js"></script>
+    <script src="${site}/assets/js/jquery/jquery.mask.js"></script>
+
+	<link rel="stylesheet" href="${site}/assets/css/bootstrap.css" />
+	<!-- ace styles -->
+	<link rel="stylesheet" href="${site}/assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+	<style type="text/css">
+	div.ellip p{
+	width:80px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	white-space:nowrap;
+	margin: 0;
+	}
+	</style>
+</head>
+
+<body style="background:url(${site}/assets/images/bg_body.jpg) no-repeat scroll center 0 #EAF1F6;">
+<div class="headerBox">
+  <div class="header w960 clear">
+    <div class="header_left">电子航道图政务服务平台</div>
+    <div class="header_right">
+	          <ul>	            
+			<li><img src="${site}/assets/images/home.png" /><a href="${site}/index.jhtml">返回首页</a></li>
+            <li><img src="${site}/assets/images/exit.png" /><a href="${site}/logout.do">注销</a></li>
+	          </ul>  
+	        </div>
+	    </div>
+	    <ul class="nav cf">
+	       <li class="cur"><a href="${site}/member/index.jspx">基本资料</a></li>
+      	   <li><a href="${site}/member/information.jspx">我的服务</a></li>
+           <li><a href="${site}/member/security.jspx">安全设置</a></li>
+	    </ul>
+	</div>
+	<!--------- container ------------------------------------------------------------------------------------------------------------------------------------>    
+	<div id="container">
+		<ul id="myTab" class="nav nav-tabs">
+			   <li class="active"><a href="#service" data-toggle="tab">
+			      我的服务</a>
+			   </li>
+			   <li><a href="#history" data-toggle="tab" >历史记录</a></li>
+		</ul>
+      	<div class="wrap-1 clearfix tab-content "> 
+           <div id="service" class="sec-log clearfix tab-pane fade active in">           
+               <table class="table table-striped table-bordered" id="applicationTable" width="100%" ></table>
+           </div>
+	       <div id="history" class="sec-log clearfix tab-pane fade">        
+	           <table class="table table-striped table-bordered" id="historyTable" width="100%" ></table>
+	       </div>
+	    </div>
+	    
+	    
+	   
+	   <div id="model-form" class="modal" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="blue bigger">申请详细</h4>
+						</div>
+                      <div id="info-div" >   
+                        <div class="widget-box transparent" id="webuser-form">
+							<div class="widget-header">
+                                           <div class="widget-toolbar no-border" style="float: left;">
+										<ul class="nav nav-tabs" id="myTab2">
+											<li class="active">
+												<a data-toggle="tab" href="#baseinfo2" id="service-tab">服务</a>
+											</li>
+
+											<li>
+												<a data-toggle="tab" href="#configinfo2">申请信息</a>
+											</li>
+										</ul>
+									</div>
+							</div>
+						 <div class="widget-body">
+						    <form class="form-horizontal" id="info">
+								<div class="widget-main padding-12 no-padding-left no-padding-right">
+									<div class="tab-content padding-4">
+										<div id="baseinfo2" class="tab-pane in active">															
+											<div class="scrollable" data-size="500">									
+									     	<input type="hidden" name="id" id="id2" />
+										
+										<div class="form-group">
+											<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="servicename">服务名称:</label>
+
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													<input type="text" name="servicename"  readonly class="col-xs-12 col-sm-8"/>
+												</div>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="address">服务地址:</label>
+
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													<input type="text" name="address"  readonly class="col-xs-12 col-sm-8"/>
+												</div>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="createtime">注册时间:</label>
+
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													<input type="text" name="createtime"  readonly class="col-xs-12 col-sm-8"/>
+												</div>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="remark">描述:</label>
+
+											<div class="col-xs-12 col-sm-9">
+												<textarea class="col-xs-12 col-sm-8" name="remark"></textarea>
+											</div>
+										</div>
+										
+								</div>
+								</div>
+								<div id="configinfo2" class="tab-pane">
+									<div class="form-group">
+											<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="applicant">申请人:</label>
+
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													<input type="text" name="applicant"  readonly class="col-xs-12 col-sm-8"/>
+												</div>
+											</div>
+									</div>
+									<div class="form-group">
+											<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="applicantime">申请时间:</label>
+
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													<input type="text" name="applicantime"  readonly class="col-xs-12 col-sm-8"/>
+												</div>
+											</div>
+									</div>
+									<div class="form-group">
+											<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="status">状态:</label>
+
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													<input type="text" name="status"  readonly class="col-xs-12 col-sm-8"/>
+												</div>
+											</div>
+									</div>
+									
+								  <div id="audit-div">
+								   <div class="form-group">
+											<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="auditor">服务使用密钥:</label>
+
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													<input type="text" name="key"  readonly class="col-xs-12 col-sm-8"/>
+												</div>
+											</div>
+									</div>
+									<div class="form-group">
+											<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="auditor">审核人:</label>
+
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													<input type="text" name="checkuser"  readonly class="col-xs-12 col-sm-8"/>
+												</div>
+											</div>
+									</div>
+									<div class="form-group">
+											<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="auditime">审核时间:</label>
+
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													<input type="text" name="auditime"  readonly class="col-xs-12 col-sm-8"/>
+												</div>
+											</div>
+									</div>
+									
+									<div class="form-group">
+											<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="opinion">审核意见:</label>
+
+											<div class="col-xs-12 col-sm-9">
+												<textarea class="col-xs-12 col-sm-8" name="opinion"></textarea>
+											</div>
+									</div>
+								  </div>
+								</div>
+							</form>
+						</div>
+						</div>
+
+						<div class="modal-footer">
+							<button class="btn btn-sm" data-dismiss="modal">
+								<i class="ace-icon fa fa-times"></i>
+								取消
+							</button>
+						</div>
+					  </div>
+					</div>
+				</div>
+			</div><!-- PAGE CONTENT ENDS -->
+	   
+	    
+	    
+	</div>
+	<!--------- end container -------------------------------------------------------------------------------------------------------------------------------->    
+	<!--------- footer --------------------------------------------------------------------------------------------------------------------------------------->    
+	<div id="footer">
+	    <p>Copyright © 2016-2017 广东省航道事务中心 </p>
+	</div>
+	<!--------- end footer ----------------------------------------------------------------------------------------------------------------------------------->    
+</body>
+</html>

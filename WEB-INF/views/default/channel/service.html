@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>电子航道图政务服务平台</title>
+<link rel="stylesheet" type="text/css" href="${res}/css/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="${res}/css/skin.css" />
+<link rel="stylesheet" type="text/css" href="${res}/css/gdww.css" />
+<!-- <link rel="stylesheet" href="../assets/css/bootstrap.css" / -->
+<!-- <script type="text/javascript" src="${res}/js/jquery-ui.js"></script> -->
+<!-- <script type="text/javascript" src="${res}/js/gdww.js"></script> -->
+<script src="${site}/assets/js/jquery.js"></script>
+<script src="${site}/assets/js/jquery/jquery.validate.js"></script>
+<script src="${site}/assets/js/bootstrap.min.js"></script>
+<script src="${site}/assets/js/artDialog/artDialog.min.js"></script>
+<script src="${site}/assets/js/common.js"></script>
+<link href="${site}/assets/css/jquery.loadmask.css" rel="stylesheet" type="text/css">
+<script src="${res}/js/service.js"></script>
+<script src="${res}/js/page.js"></script>
+<script src="${site}/assets/js/jquery/jquery.loadmask.js"></script>
+<script src="${site}/assets/js/jquery/jquery.mask.js"></script>
+<script type="text/javascript" src="${site}/assets/js/date-time/bootstrap-datepicker.js"></script>
+<link rel="stylesheet" href="${site}/assets/css/datepicker.css" />
+<style type="text/css">     
+    .mask {       
+            position: absolute; top: 0px; filter: alpha(opacity=60); background-color: #777;     
+            z-index: 1002; left: 0px;     
+            opacity:0.5; -moz-opacity:0.5;     
+        }     
+   .Absolute-Center
+ {
+  
+  position: absolute;
+  display: none;
+  left: 30%;
+  z-index: 10000;
+}
+</style>    
+<script>
+var user = null;
+var contextPath ='${site}';
+[#if user ??]
+	var user = '${user.username}';
+[/#if]
+ function showMask(){     
+    
+ }  
+ //隐藏遮罩层  
+ function hideMask(){     
+       
+    
+ }  
+ </script>
+</head>
+<body>
+<div id="mask" class="mask"></div>    
+[#include "../include/header.html"/]
+ 
+	<!--  -->
+	<div class="modal-dialog modal fade Absolute-Center"  id="myModal"   role="document">
+		    <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close closeWindow" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">申请服务</h4>
+                </div>
+                <div class="modal-body">
+                    <ul class="serviceBox">
+                        <li class="clearfix"><label>服务名称：</label><font id="servicename"></font>
+                        	<input id="fid" type="hidden" value=""/>
+                        </li>
+                        <li class="clearfix">
+                            <label>服务访问方式：</label>
+                            <div class="dataBox">
+                                <select class="form-control" id="client">
+                                    <option value="referer">服务器地址</option>
+                                    <option value="ip">IP</option>
+<!--                                     <option value="requestip">请求IP</option> -->
+                                </select>
+                                <input class="form-control" id="referer" placeholder="http://www.xxx.com or 192.168.0.1 " type="text ">
+                            </div>
+                        </li>
+                        <li class="clearfix"><label>使用期限：</label>
+                        <input  style="z-index:1000;position:relative;" 
+												type="text"    class="date-picker form-control"
+												name="begin" id="applydate" data-date-format="yyyy-mm-dd"/>
+                        </li>
+                    </ul>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default closeWindow" style="height:35px" data-dismiss="modal">取消</button>
+		        <button type="button" class="btn btn-primary" style="height:35px" onclick="save()">提交申请</button>
+		      </div>
+		    </div>
+ </div>
+	
+   <!--内容--> 
+   <div class="l_second clearfix"> 
+        <div class="l_second_left fl column">
+            <div class="nav_second">
+                <div class="nav_name" >服务接口</div>
+                <ul class="nav_ul">
+	                [#if type ??]
+	                    [#if type ='1'  ]
+	                        <li class="active"><a class="yia" href="${site}/service/1/index.jhtml"><span>数据服务</span></a></li>
+	                    [#else]
+	                        <li><a class="yia" href="${site}/service/1/index.jhtml"><span>数据服务</span></a></li>
+	                    [/#if] 
+	                    [#if type ='2'  ]  
+	                        <li class="active"><a class="yia" href="${site}/service/2/index.jhtml"><span>地图服务</span></a></li>
+	                    [#else]
+	                        <li><a class="yia" href="${site}/service/2/index.jhtml"><span>地图服务</span></a></li>
+	                    [/#if]
+	                    [#if type ='4' ]
+	                        <li class="active"><a class="yia" href="${site}/service/4/index.jhtml"><span>地图符号服务</span></a></li>
+	                    [#else]
+	                        <li><a class="yia" href="${site}/service/4/index.jhtml"><span>地图符号服务</span></a></li>
+	                    [/#if]
+	                    [#if type ='3'  ]
+	                        <li class="active"><a class="yia" href="${site}/service/3/index.jhtml"><span>文件下载服务</span></a></li>
+	                    [#else]
+	                        <li><a class="yia" href="${site}/service/3/index.jhtml"><span>文件下载服务</span></a></li>
+	                    [/#if]
+	                [#else]
+	                    <li><a class="yia" href="${site}/service/1/index.jhtml"><span>数据服务</span></a></li>
+	                    <li><a class="yia" href="${site}/service/2/index.jhtml"><span>地图服务</span></a></li>
+	                    <li><a class="yia" href="${site}/service/4/index.jhtml"><span>地图符号服务</span></a></li>
+	                    <li><a class="yia" href="${site}/service/3/index.jhtml"><span>文件下载服务</span></a></li>
+	                [/#if]
+                </ul>
+            </div>
+        </div> 
+        <div class="l_second_right fr column">
+            <div class="mod_list portlet"> 
+                <div class="mod_list_tit">  ${channel.name}  
+		 </div> 
+                    <div id="ContentPane">
+                        <ul class="interface">
+                        
+                        
+                        [#list listInfo.data as infos]
+                        	<li class="clearfix">
+                            	<div class="imgBox">
+                            	[#if infos.icon ??]
+                            		<img src="http://10.0.109.54:8080/thumbnail/${infos.icon}"/>
+                            	[#else]
+                            		<img src="http://10.0.109.54:8080/thumbnail/default.png"/>
+                            	[/#if]
+                            	</div>
+                                <div class="txtBox">
+                                	<span><a href="javascript:void(0)" style="cursor: default;text-decoration: none;" target="_blank">${infos.servicename}</a></span>
+                                    <span><label>服务接口：</label>${infos.servicetype.name}</span>
+                                    [#if infos.attr ??]
+                                    	<span><label>服务类型：</label>${infos.attr.name}</span>
+                                    [#else]
+                                    	<span><label>服务类型：</label></span>
+                                	[/#if]
+                                    <span><label>服务注册时间：</label>${infos.createtime?string("yyyy-MM-dd")} </span>
+                                    <span><label>服务地址：</label>
+                                    
+                                    [#if infos.servicetype.id ='3'  ]
+                                    	http://10.0.109.54:8080/gdservice/file/${infos.address}
+                                    [#elseif infos.servicetype.id ='4']
+                                       http://10.0.109.54:8080/gdservice/file/${infos.address}
+                                    [#elseif infos.servicetype.id ='2']
+                                    	http://10.0.109.54:6080/arcgis/rest/services/${infos.address}/MapServer
+                                    [#else]
+                                       http://10.0.109.54:8080/gdservice/query/${infos.address}
+                                    [/#if]
+                                    </span>
+                                    <span><label>服务接口说明：</label><a target="_blank" href="${site}/api/${infos.id}.jhtml" style="font-size: 14px;color: blue;">点击查看</a></span>
+                                    <span><label>描述：</label>${infos.remark}</span>
+                                    <span class="btnBox"><button class="btn btn-primary btn-lg" onclick="opendiv('${infos.id}','${infos.servicename}');">申请使用</button></span>
+                                </div>
+                            </li>
+                        [/#list]    
+                            
+                            
+                        </ul>                        
+                        
+                        <div class="page clearfix">
+						<div class="i_m_bd">
+						    [#if listInfo.page.total>0]
+							    [#if listInfo.page.current>1]
+							    	[#if type ??]
+										<a class="lm_a" href="${site}/${channelPath}/${type}/${pageName}_${listInfo.page.current-1}.jhtml">&lt;&nbsp;&nbsp;上一页</a> 
+							    	[#else]
+										<a class="lm_a" href="${site}/${channelPath}/${pageName}_${listInfo.page.current-1}.jhtml">&lt;&nbsp;&nbsp;上一页</a> 
+							    	[/#if]
+								[/#if]
+								[#list listInfo.page.begin..listInfo.page.end as t]
+									 	 [#if listInfo.page.current==t]
+									 	 	<span>&nbsp;&nbsp;</span>
+											<font class="NormalRed">${t}</font>
+										 [#else]
+										 	<span style="width: 5px; display: inline-block;"></span> 
+									    	[#if type ??]
+												<a	class="pagingNormal" href="${site}/${channelPath}/${type}/${pageName}_${t}.jhtml">${t}</a> 
+									    	[#else]
+												<a	class="pagingNormal" href="${site}/${channelPath}/${pageName}_${t}.jhtml">${t}</a> 
+									    	[/#if]
+									 	 [/#if]
+								[/#list]
+								 
+								<span	style="width: 5px; display: inline-block;"></span>
+								 [#if listInfo.page.pageCount > listInfo.page.current]
+							    	[#if type ??]
+										<a class="lm_a" href="${site}/${channelPath}/${type}/${pageName}_${listInfo.page.current+1}.jhtml">下一页&nbsp;&nbsp;&gt;</a> 
+							    	[#else]
+										<a class="lm_a" href="${site}/${channelPath}/${pageName}_${listInfo.page.current+1}.jhtml">下一页&nbsp;&nbsp;&gt;</a> 
+							    	[/#if]
+								[/#if]
+							[#else]
+								<span>&nbsp;&nbsp;</span>
+								<font class="NormalRed">暂无任何信息.</font>
+							[/#if]
+						</div>
+					</div>
+					</div> 
+                </div>
+			</div> 
+        </div>
+   
+   
+   
+[#include "../include/footer.html"/]
+
+
+<!----------  弹出层 --------------->
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	[#include "/sys/include/meta.html"/]
+	
+	<body class="no-skin">
+		
+		[#include "/sys/include/head.html"/]
+		
+		<div class="main-container" id="main-container">
+
+				[#include "/sys/include/menu.html"/]
+			
+			<div class="main-content">
+				<div class="main-content-inner">
+					<div class="page-content">
+						
+						[#include "/sys/include/module.html"/]
+						<div class="row">
+							<!-- .col -->
+							<div class="col-xs-12 col-sm-12">
+								<div>
+									<p>
+										<a href="javascript:openSave()" role="button" class="btn btn-sm btn-success"> 添加角色 </a>
+									</p>
+								</div>
+								<div class="table-header">
+									角色列表
+								</div>
+								<table class="table table-striped table-bordered" id="roleTable" width="100%">
+                        		</table>
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+						
+						
+						
+						<div id="model-form" class="modal" tabindex="-1">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="blue bigger" id="form-title">添加角色</h4>
+									</div>
+
+									<div class="modal-body">
+										<div class="row">
+											<div class="col-xs-12">
+												<form class="form-horizontal" id="saveForm" method="get">
+													
+													<input type="hidden" name="id" id="id" />
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="rolename">角色名称:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<input type="text" name="rolename" id="rolename" class="col-xs-12 col-sm-8" />
+																
+															</div>
+														</div>
+													</div>
+													
+													<div class="space-2"></div>
+
+													
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="remark">备注:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="input-group">
+																<textarea rows="" cols="" id="remark" name="remark" style="width: 280px" ></textarea>
+															</div>
+														</div>
+													</div>
+
+												</form>
+											</div>
+										</div>
+									</div>
+
+								 <div class="modal-footer">
+										<div class="modal-footer">
+										<button class="btn btn-sm"  data-dismiss="modal">
+											<i class="ace-icon fa fa-times"></i>
+											取消
+										</button>
+
+										<button id="savebtn" class="btn btn-sm btn-primary"  onclick="saveRole()">
+											<i class="ace-icon fa fa-check"></i>
+											保存
+										</button>
+										
+										<button id="updatebtn" class="btn btn-sm btn-primary"  onclick="updateRole()">
+											<i class="ace-icon fa fa-check"></i>
+											修改
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+                        </div>
+                        
+                        
+                        <div id="configuration" class="modal" tabindex="-1">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="blue bigger">给角色分配资源</h4>
+									</div>
+                    
+									<div class="modal-body">
+										<div class="row">
+										        <div class=	"col-xs-6 col-sm-2"></div>
+												<div class=	"col-xs-6 col-sm-6">
+								                    <div class="widget-box widget-color-blue2">
+								                      	<div class="widget-header">
+									                     	<h4 class="widget-title lighter smaller">分配资源</h4>
+								                    	</div>
+
+									                 <div class="widget-body " >
+									                    <input type="hidden" name="roleid" id="roleid" />
+									                 	<div id="widget-tree" class="widget-main padding-8" >
+										             	 <ul id="resourceTree" class="ztree " ></ul>
+										               </div>
+									                </div>
+								                 </div>
+							                </div>
+							    		</div>
+									</div>
+
+								 <div class="modal-footer">
+									<button class="btn btn-sm"  data-dismiss="modal">
+										<i class="ace-icon fa fa-times"></i>
+										取消
+									</button>
+
+									<button id="save" class="btn btn-sm btn-primary"  onclick="saveConfiguration()">
+										<i class="ace-icon fa fa-check"></i>
+										保存
+									</button>
+								</div>
+							</div>
+						</div>
+                        </div>
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+
+			[#include "/sys/include/footscript.html"/]
+		</div><!-- /.main-container -->
+		
+	</body>
+	<link rel="stylesheet" type="text/css" href="${site}/assets/js/zTree/css/zTreeStyle/zTreeStyle.css"/>
+ 	<script type="text/javascript" src="${site}/assets/js/zTree/js/jquery.ztree.core-3.5.js"></script>
+ 	<script type="text/javascript" src="${site}/assets/js/zTree/js/jquery.ztree.excheck-3.5.js"></script>
+	<script type="text/javascript" src="${site}/assets/js/fuelux/fuelux.tree.js"></script>
+	<script type="text/javascript" src="${site}/sys/js/role.js"></script>
+</html>

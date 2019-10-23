@@ -1,0 +1,243 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	overflow: hidden;
+}
+table,table tr th,table tr td{
+	border : 1px solid #dddddd;
+}
+.dialog {
+	position: absolute;
+	height: auto;
+	left: 200px;
+	top: 200px;
+	border-radius: 5px;
+	box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+.dialog-fix .panel-body {
+	overflow: auto;
+}
+
+.dialog .panel {
+	margin: 0px;
+	border-radius: 6px;
+	max-height: 450px;
+	overflow-y: auto;
+}
+.dialog .panel .panel-heading {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+.dialog .panel .panel-footer {
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+
+#header, #container, #footer {
+	margin: 0px;
+}
+#header .navbar-brand {
+	display: block;
+	background-image: url(../images/head_logo.png);
+	background-position: left center;
+	background-repeat: no-repeat;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	width: 360px;
+	height: 60px;
+	color: transparent;
+}
+
+#container {
+	position: relative;
+	overflow: hidden;
+}
+
+.feature-title {
+	width: 100px;
+    display: inline-block;
+}
+
+.feature_btn {
+	width: 80px;
+    display: inline-block;
+}
+
+#feature_pagination a.btn-info {
+    padding: 1px 12px;
+}
+
+/* 头部样式 */
+.navbar .container-fluid .searchnavbar {
+    padding-top: 7px;
+}
+.navbar-static-top{
+	background-color: #24659B;
+}
+.navbar-static-top .nav.navbar-nav.navbar-right li{
+	padding-top: 12px;
+}
+.navbar-static-top .nav.navbar-nav.navbar-right li>a{
+	padding:0;
+	display: block;
+	height: 34px;
+	line-height: 34px;
+	text-align: center;
+	color:#fff;
+	font-size: 16px;
+	border:1px solid transparent;
+	border-radius: 4px;
+	margin-left: 34px;
+	padding:0 15px;
+	font-weight: bolder;
+}
+.navbar-default .navbar-nav>.active>a,.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover{
+	border: 1px solid #4F9ADA!important;
+	background-color: #24659B!important;
+	color: #fff;
+}
+.navbar-static-top .navbar-form{
+	margin: 13px 0;
+	padding-right: 0;
+}
+.navbar-static-top .btn{
+	line-height: 1;
+}
+.navbar-static-top .navbar-form .btn-primary{
+	background-color: #24659B;
+	border:1px solid transparent;
+	padding:8px 8px 3px 8px;
+}
+.navbar-static-top .navbar-form .btn-login{
+	padding:8px 8px 5px 8px;
+}
+.navbar-static-top .navbar-form .btn-login .imgicon-profile{
+	margin:0 8px -3px 0;
+}
+.navbar-static-top .navbar-form .btn-login .caret{
+	margin-left: 8px;
+}
+/* 下拉框 */
+.dropdown-menu{
+	min-width: 130px;
+	background-color: #fff;
+	border-radius: 0;
+	padding:0;
+}
+.header-dropdown{
+	text-align: center;
+	background-color: #24659B;
+}
+.dropdown-menu li a{
+	display: block;
+	height:40px;
+	line-height: 40px;
+	font-size: 14px;
+	letter-spacing: 0.28px;
+	padding:0 20px;
+	color:#000;
+}
+.header-dropdown li a{
+	color:#fff;
+}
+.dropdown-menu li a:hover{
+	background-color: #4F9ADA;
+	color:#fff;
+}
+.dropdown-menu .divider{
+	height:0;
+	margin:0;
+}
+/* 综合应用悬浮菜单 */
+#searchbar,.btn-group,.btn-group-vertical{
+	box-shadow: 2px 2px 2px 2px rgba(0,0,0,.075); 
+}
+#searchbar .btn,#container .btn-group-vertical .btn,.btn-group .btn{
+	line-height: 1;
+	padding: 7px 12px;
+	border-radius: 0;
+}
+#container .btn-group-vertical,.btn-group{
+	border: 1px solid #ccc;
+}
+#container .btn-group-vertical .btn-default,.btn-group .btn-default{
+	border:0 none;
+}
+#searchbar .form-control{
+	border-left:0 none;
+	border-right:0 none;
+	box-shadow:none;
+}
+#searchbar #sb_btn_search{
+	border-left:0 none;
+}
+/* 搜索栏弹框列表每行的宽度 */
+#searchbar a.list-group-item,#searchbar button.list-group-item{
+	height:42px!important;
+	box-sizing: border-box!important;
+}
+/* 文字超出换行 */
+#searchbar_result .list-inline .text-center .btn-link{
+	padding:0;
+	width:60px;
+	height:56px;
+	white-space: pre-wrap;
+}
+#searchbar_result .list-inline>li{
+	padding:0;
+}
+/* 表格样式 */
+#main .table{
+	width: calc(100% - 10px);
+	max-width: calc(100% - 10px);
+	margin-bottom: 10px;
+}
+#main .table tbody th{
+	background-image: linear-gradient(-180deg, #FFFFFF 0%, #F2F2F2 100%);
+	font-weight: 100;
+}
+#main .table tr:nth-child(2n+1) {
+    color: #000000;
+    background-color: #F5F5F5;
+}
+#main .table tr:nth-child(2n) {
+    color: #000000;
+    background-color: #ffffff;
+}
+#main .table>tbody>tr>td,#main .table>tbody>tr>th,
+#main .table>tfoot>tr>td,#main .table>tfoot>tr>th,
+#main .table>thead>tr>td,#main .table>thead>tr>th{
+	padding: 5px 8px;
+	vertical-align: middle;
+}
+.navbar{
+	margin-bottom: 20px;
+}
+.pagination{
+	margin:10px;
+}
+.breadcrumb{
+	margin-bottom:10px;
+	background-color: #CBEBFF;
+}
+.breadcrumb>.active{
+	color:#000;
+}
+/* 底部版权 */
+.navbar-fixed-bottom .container-fluid .navbar-text{
+	width:100%;
+	text-align: center;
+}
+
+/* app（搜索结果弹框）样式 */
+.panel.panel-default .pagination-sm>li>a{
+	padding:0 5px;
+	margin-top: 5px;
+}
+.list-group-item-info{
+	color:#fff;
+	background-color: #63B1FF;
+	margin-right: 8px;
+}

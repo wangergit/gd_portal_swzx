@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+[#include "/sys/include/meta.html"/]
+<body class="no-skin">
+
+	[#include "/sys/include/head.html"/]
+
+	<div class="main-container" id="main-container">
+
+		[#include "/sys/include/menu.html"/]
+
+		<div class="main-content">
+			<div class="main-content-inner">
+				<div class="page-content">
+
+					[#include "/sys/include/module.html"/]
+
+					<div class="page-header">
+						<h1 class="lighter green">修改密码</h1>
+					</div>
+					<!-- /.page-header -->
+
+					<div class="row">
+						<div class="col-xs-12">
+							<!-- PAGE CONTENT BEGINS -->
+							<form class="form-horizontal" id="sample-form">
+								<!-- #section:elements.form.input-state -->
+								<div class="form-group">
+									<label for="username"
+										class="col-xs-12 col-sm-3 control-label no-padding-right">用户名</label>
+
+									<div class="col-xs-12 col-sm-5">
+										<input type="text" class="width-100" name="username"
+											id="username" value="[#if user_admin ??]${user_admin.loginName}[/#if]"
+											readonly="readonly" />
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="username"
+										class="col-xs-12 col-sm-3 control-label no-padding-right">原密码</label>
+									<div class="col-xs-12 col-sm-5">
+										<input type="password" class="width-100" name="oldpassword"
+											id="oldpassword" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="username"
+										class="col-xs-12 col-sm-3 control-label no-padding-right">新密码</label>
+									<div class="col-xs-12 col-sm-5">
+										<input type="password" class="width-100" name="password"
+											id="password" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="username"
+										class="col-xs-12 col-sm-3 control-label no-padding-right">确认新密码</label>
+									<div class="col-xs-12 col-sm-5">
+										<input type="password" class="width-100" name="querypassword"
+											id="querypassword" />
+									</div>
+								</div>
+							</form>
+
+						</div>
+					</div>
+					<hr />
+					<div>
+						<!-- #section:plugins/fuelux.wizard.buttons -->
+						<div class="col-md-offset-9 col-md-3">
+							<button type="button" class="btn btn-primary btn-white"
+								onclick="updateuser();">
+								<span class="bigger-110">修改</span>
+							</button>
+						</div>
+						<!-- /section:plugins/fuelux.wizard.buttons -->
+					</div>
+
+				</div>
+				<!-- /.page-content -->
+			</div>
+		</div>
+		<!-- /.main-content -->
+		[#include "/sys/include/footscript.html"/]
+	</div>
+	<!-- /.main-container -->
+<script type="text/javascript">
+    function updateuser() {
+        var username = $("#username").val();
+        var oldPassword = $("#oldpassword").val();
+        var password = $("#password").val();
+        var querypassword = $("#querypassword").val();
+
+        //添加新的
+        let a = new RegExp('^(?![a-zA-Z]+$)(?![A-Z0-9]+$)(?![A-Z\W_!@#$%^&*`~()-+=]+$)(?![a-z0-9]+$)(?![a-z\W_!@#$%^&*`~()-+=]+$)(?![0-9\W_!@#$%^&*`~()-+=]+$)[a-zA-Z0-9\W_!@#$%^&*`~()-+=]{8,30}$');
+				if(!a.test(password)) {
+					bootbox.alert("&nbsp;&nbsp密码格式不正确，请使用大写字母、小写字母、数字、特殊字符，三个以上组合，长度8位以上！");
+					return;
+				}
+
+        if (oldPassword === "" || oldPassword == null || oldPassword === "undefined") {
+            bootbox.alert("原密码为空，请重新输入");
+            return;
+        }
+
+        if (querypassword === password && password != null && password !== "" && password !== "undefined") {
+            bootbox.confirm("确认修改", function(result) {
+                if (result) {
+                    $.post(contextpath + "/system/user/updateUserPassword.do",
+                            {
+                                "username" : username,
+                                "oldPassword" : oldPassword,
+                                "password" : password
+                            }, function(json) {
+                                bootbox.alert(json.message);
+                                if (json.message == "修改成功") {
+                                    $("#oldpassword").val("");
+                                    $("#password").val("");
+                                    $("#querypassword").val("");
+                                }
+                            });
+                }
+            });
+        } else {
+            bootbox.alert("两输入新密码不一致或密码为空，请重新输入");
+        }
+    }
+</script>
+</body>
+</html>

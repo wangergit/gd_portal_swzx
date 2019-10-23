@@ -1,0 +1,76 @@
+@charset "utf-8";
+/* CSS Document */
+.imgicon {
+	background-position: center center;
+	background-repeat: no-repeat;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+}
+
+.imgicon-config {
+	background-image: url(../icons/config.png);
+}
+.imgicon-logout {
+	background-image: url(../icons/logout.png);
+}
+.imgicon-profile {
+	background-image: url(../icons/profile.png);
+}
+
+.imgicon-search {
+	background-image: url(../icons/search.png);
+}
+
+.imgicon-info {
+	background-image: url(../icons/info.png);
+}
+.imgicon-editor {
+	background-image: url(../icons/editor.png);
+}
+.imgicon-layer {
+	background-image: url(../icons/layer.png);
+}
+.imgicon-zoomin {
+	background-image: url(../icons/zoomin.png);
+}
+.imgicon-zoomout {
+	background-image: url(../icons/zoomout.png);
+}
+.imgicon-measure {
+	background-image: url(../icons/measure.png);
+}
+.imgicon-plotting {
+	background-image: url(../icons/plotting.png);
+}
+.imgicon-more {
+	background-image: url(../icons/more.png);
+}
+.imgicon-more2 {
+	background-image: url(../icons/more2.png);
+}
+.imgicon-full {
+	background-image: url(../icons/full.png);
+}
+.imgicon-prev {
+	background-image: url(../icons/prev.png);
+}
+.imgicon-next {
+	background-image: url(../icons/next.png);
+}
+.imgicon-roam {
+	background-image: url(../icons/roam.png);
+}
+.imgicon-locate {
+	background-image: url(../icons/locate.png);
+}
+.imgicon-view {
+	background-image: url(../icons/view.png);
+}
+.imgicon-export {
+	background-image: url(../icons/picture.png);
+}
+.imgicon-print {
+	background-image: url(../icons/print.png);
+}

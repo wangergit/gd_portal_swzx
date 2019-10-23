@@ -1,0 +1,239 @@
+{
+	"qb": {
+		"name": "全部",
+		"layerids": [3,
+		3,	
+		16,
+		17,
+		30,
+		25,
+		25,		
+		28,
+		27,
+		35,
+		37],
+		"searchFields": ["航标名称",
+		"航标名称",
+		"船闸名称",
+		"水位观测站名称",
+		"桥梁名称",
+		"架空线缆名称",
+		"架空管道名称",		
+		"过河管道名称",
+		"过河线缆名称",
+		"浮码头名称",
+		"固定码头名称"]		
+	},
+	"hb": {
+		"name": "航标",
+		"form": "#form_beacon",
+		"infowindows": "#infoModal-table",
+		"layerids": [3],
+		"searchFields": ["航标名称"],
+		"fkey": "LATNAM",
+		"showAttr": {
+			"LATNAM": "航标名称",
+			"LOCTON": "设置位置",
+			"LATBNK": "岸别",
+			"LATSHP": "形状",
+			"LATCOL": "颜色",
+			"INFORM": "备注信息"
+		}
+	},
+	"gghd": {
+		"name": "公共航道",
+		"form": "#form_beacon",
+		"infowindows": "#infoModal-table",
+		"layerids": [34],
+		"searchFields": ["航段名称"],
+		"fkey": "PWWNAM",
+		"showAttr": {
+			"PWWNAM": "航段名称",
+			"STRPNT": "航段起点",
+			"ENDPNT": "航段终点",
+			"PWWLEN": "航段里程",
+			"SQTECG": "现状技术等级",
+			"DPTECG": "发展规划技术等级",
+			"MANDEP": "航段管理部门",
+			"MNTDEP": "维护单位",
+			"INFORM": "备注信息"
+		}
+	},
+	"hdbm": {
+		"name": "航道部门",
+		"form": "#form_beacon",
+		"infowindows": "#infoModal-table",
+		"layerids": [43],
+		"searchFields": ["航道管理机构名称"],
+		"fkey": "WADNAM",
+		"showAttr": {
+			"WADNAM": "航道管理机构名称",
+			"CATWAD": "航道管理机构类型",
+			"INFORM": "备注信息"
+		}
+	},
+	"cz": {
+		"name": "船闸",
+		"form": "#form_shiplock",
+		"infowindows": "#infoModal-table",
+		"layerids": [16],
+		"searchFields": ["船闸名称"],
+		"fkey": "LOKNAM",
+		"showAttr": {
+			"LOKNAM": "船闸名称",
+			"LOKLVL": "船闸级别",
+			"HORLEN": "有效长度",
+			"HORWID": "有效宽度",
+			"LTMDEP": "船闸门槛最小水深",
+			"MANDEP": "管理部门",
+			"INFORM": "备注信息"
+		}
+	},
+	"sjj": {
+		"name": "水位观测站名称",
+		"form": "#form_shiplock",
+		"infowindows": "#infoModal-table",
+		"layerids": [17],
+		"searchFields": ["水位观测站名称"],
+		"fkey": "WSLNAM",
+		"showAttr": {
+			"WSLNAM": "升船机名称",
+			"CATWSL": "升船机类型",
+			"MANDEP": "管理部门",
+			"INFORM": "备注信息"
+		}
+	},
+	"ql": {
+		"name": "桥梁",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [30],
+		"searchFields": ["桥梁名称"],
+		"fkey": "BRGNAM",
+		"showAttr": {
+			"BRGNAM": "桥梁名称",
+			"CATBRG": "桥梁类别",
+			"NAVWID": "通航净宽",
+			"NAVHGT": "通航净高",
+			"MANDEP": "管理单位",
+			"BRGCOD": "桥梁编号",
+			"INFORM": "备注信息"
+		}
+	},
+	"jkxl": {
+		"name": "架空线缆",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [25],
+		"searchFields": ["架空线缆名称"],
+		"fkey": "COVNAM",
+		"showAttr": {
+			"COVNAM": "架空线缆名称",
+			"CATCBL": "线缆类别",
+			"MINHSG": "最低弧垂高度",
+			"MANDEP": "管理单位",
+			"INFORM": "备注信息"
+		}
+	},
+	"jkgd": {
+		"name": "架空管道",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [25],
+		"searchFields": ["架空线缆名称"],
+		"fkey": "COVNAM",
+		"showAttr": {
+			"PODNAM": "架空线缆名称",
+			"CATPIP": "管道类别",
+			"TSTDEP": "最低弧垂高度",
+			"MANDEP": "管理单位",
+			"INFORM": "备注信息"
+		}
+	},
+	"sd": {
+		"name": "索道 ",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [67],
+		"searchFields": ["索道名称"],
+		"fkey": "CAWNAM",
+		"showAttr": {
+			"CAWNAM": "索道名称",
+			"MANDEP": "管理单位",
+			"INFORM": "备注信息"
+		}
+	},
+	"ghgd": {
+		"name": "过河管道",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [28],
+		"searchFields": ["过河管道名称"],
+		"fkey": "PSBNAM",
+		"showAttr": {
+			"CATPIP": "架空线缆名称",
+			"CATCBL": "管道类别",
+			"MANDEP": "管理单位",
+			"INFORM": "备注信息"
+		}
+	},
+	"ghxl": {
+		"name": "过河线缆",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [27],
+		"searchFields": ["过河线缆名称"],
+		"fkey": "CSBNAM",
+		"showAttr": {
+			"CSBNAM": "过河线缆名称",
+			"CATCAB": "线缆类别",
+			"TSTDEP": "最低弧垂高度",
+			"MANDEP": "管理单位",
+			"INFORM": "备注信息"
+		}
+	},
+	"fmt": {
+		"name": "浮码头",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [35],
+		"searchFields": ["浮码头名称"],
+		"fkey": "PTNNAM",
+		"showAttr": {
+			"PTNNAM": "浮码头名称",
+			"BNKWTW": "岸别 ",
+			"MANDEP": "管理单位",
+			"INFORM": "备注信息"
+		}
+	},
+	"gdmt": {
+		"name": "固定码头",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [37],
+		"searchFields": ["固定码头名称"],
+		"fkey": "TRMNAM",
+		"showAttr": {
+			"TRMNAM": "固定码头名称",
+			"CATTRM": "固定码头类型 ",
+			"BNKWTW": "岸别",
+			"USETRM": "固定码头用途",
+			"MANDEP": "管理单位",
+			"INFORM": "备注信息"
+		}
+	},
+	"jymt": {
+		"name": "简易固定码头",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [72],
+		"searchFields": ["简易固定码头名称"],
+		"fkey": "STMNAM",
+		"showAttr": {
+			"STMNAM": "简易固定码头名称",
+			"BNKWTW": "岸别 ",
+			"MANDEP": "管理单位",
+			"INFORM": "备注信息"
+		}
+	}
+}

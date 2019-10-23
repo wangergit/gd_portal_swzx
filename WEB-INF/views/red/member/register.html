@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7, IE=9">
+<title>广东支持保障系统公共服务平台</title>
+<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"/>
+<link type="text/css" rel="stylesheet" href="assets/css/common.css" />
+<link type="text/css" rel="stylesheet" href="assets/css/style.css" />
+<link href="assets/css/css.css" rel="stylesheet" type="text/css">
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/jquery/jquery.validate.js"></script>
+<script src="${res}/js/register.js"></script>
+<script src="assets/js/common.js"></script>
+<style type="text/css">
+#register .txt-tips {
+	display: inline;
+	position: relative;
+}
+#register .txt-tips .txt-tips-message {
+	word-break: keep-all;
+	white-space: nowrap;
+	position: absolute;
+}
+</style>
+</head>
+
+<body style="background:url(assets/images/bg_body.jpg) no-repeat scroll center 0 #EAF1F6;">
+<div id="wrapper">
+<!--<div id="top"></div>-->
+<!--------- header ------------------------------------------------------------------------------------------------------------------------------------->    
+<div class="headerBox">
+  <div class="header w960 clear">
+    <div class="header_left">广东省电子航道图政务外网公共服务网站</div>
+    <div class="header_right">
+      <ul>
+        <li><img src="assets/images/home.png" /><a href="index.jhtml">返回首页</a></li>
+        <li><img src="assets/images/dl.png" /><a href="login.jhtml">用户登录</a></li>
+      </ul>  
+    </div>
+  </div>
+</div>
+<!--------- end header ----------------------------------------------------------------------------------------------------------------------------------->    
+<!--------- container ------------------------------------------------------------------------------------------------------------------------------------>    
+<div id="log_content">
+
+
+    <div class="log-reg-box clearfix" >
+        <div class="main-1">
+            <div class="log-reg-title"><h2>用户注册</h2><span>已有账号？<a href="login.jhtml">立即登录</a></span></div>	
+            <form   id="register">	
+            <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tb-1">			
+   		    <tbody>
+            <tr>
+                <th><span class="requied_symbol">*</span>登录账号：</th>
+                <td>
+                  <input type="text" class="ip-1 w100" value="" id="username" name="username" onblur="usernameCheck()" autocomplete="off" maxlength="32" tabindex="1" >
+                  <span class="txt-tips tips-error ">
+                    <span class="ico ico-7"></span>
+                    <span class="txt-tips-message" id="username_tip"></span>
+                  </span>
+                </td>
+            </tr>
+			<tr>
+                <th><span class="requied_symbol">*</span>登陆密码：</th>
+                <td>
+                  <input type="password" class="ip-1 w150" id="pwdOnce" name="password" onblur="passwordCheck()" maxlength="18" id="pwdOnce"  autocomplete="off" tabindex="2">
+                  <span class="txt-tips tips-error">
+                    <span class="ico ico-7"></span>
+                    <span class="txt-tips-message" id="pwdOnce_tip">8-18个字符，请使用大写字母、小写字母、数字、特殊字符，三个以上组合，长度8位以上！</span>
+                  </span>
+                </td>
+            </tr>
+			<tr>
+                <th><span class="requied_symbol">*</span>确认密码：</th>
+                <td>
+                  <input type="password" class="ip-1 w150"  id="pwdTwo" maxlength="18" id="pwdTwice" onblur="passworkConfirm()" autocomplete="off" maxlength="18" tabindex="3">
+                  <span class="txt-tips tips-error">
+                    <span class="ico ico-7"></span>
+                    <span class="txt-tips-message" id="pwdTwo_tip"></span>
+                  </span>
+                </td>
+            </tr>
+            <tr>
+                <th><span class="requied_symbol">*</span>真实姓名：</th>
+                <td>
+                  <input type="text" class="ip-1 w100" value="" id="realname" name="realname" onblur="nameCheck()" autocomplete="off" maxlength="32" tabindex="4">
+                  <span class="txt-tips tips-error" id="realname_text">
+                    <span class="ico ico-7"></span>
+                    <span class="txt-tips-message" id="realname_tip"></span>
+                  </span>
+                </td>
+            </tr>
+
+			
+            <tr>
+                <th><span class="requied_symbol">*</span>用户类型：</th>
+                <td><input type="radio" name="sex" value="1" />个人&nbsp;&nbsp;&nbsp;<input type="radio" name="sex" checked="checked" value="0" />单位</p></td>
+            </tr>
+            <tr>
+                <th><span class="requied_symbol">*</span>工作单位：</th>
+                <td>
+                <!--
+                	<select class="ip-1 w150" name="company">
+					<option value="广东省航道事务中心">广东省航道事务中心</option>
+					<option value="广东省测绘中心">广东省测绘中心</option>
+					</select>
+                -->
+                    <input type="text" class="ip-1 w150" value="" name="company" id="company" onblur="companyCheck()" autocomplete="off" value="广东省航道事务中心" tabindex="5">
+                  <span class="txt-tips tips-error">
+                    <span class="ico ico-7"></span>
+                    <span class="txt-tips-message" id="company_tip"></span>
+                  </span>
+                </td>
+            </tr>
+            <tr>
+                <th><span class="requied_symbol">*</span>联系电话：</th>
+                <td>
+                  <input type="text" class="ip-1 w150" value="" name="phone"  id="phone" onblur="phoneCheck()" autocomplete="off" tabindex="6">
+                  <span class="txt-tips tips-error">
+                    <span class="ico ico-7"></span>
+                    <span class="txt-tips-message" id="phone_tip"></span>
+                  </span>
+                </td>
+            </tr>
+            <tr>
+                <th><span class="requied_symbol">*</span>电子邮箱：</th>
+                <td>
+                  <input type="text" class="ip-1 w220" value="" name="email"  id="email" onblur="emailCheck()" autocomplete="off" tabindex="7">
+                  <span class="txt-tips tips-error">
+                    <span class="ico ico-7"></span>
+                    <span class="txt-tips-message" id="email_tip"></span>
+                  </span>
+                </td>
+            </tr>
+            <tr>
+                <th><span class="requied_symbol">*</span>安全问题：</th>
+                <td>
+                  <input type="text" class="ip-1 w220" value="" name="question"  id="question" onblur="questionCheck()" autocomplete="off" tabindex="8">
+                  <span class="txt-tips tips-error">
+                    <span class="ico ico-7"></span>
+                    <span class="txt-tips-message" id="question_tip"></span>
+                  </span>
+                </td>
+            </tr>
+            <tr>
+                <th><span class="requied_symbol">*</span>安全问题答案：</th>
+                <td>
+                  <input type="text" class="ip-1 w220" value="" name="answer"  id="answer" onblur="answerCheck()" autocomplete="off" tabindex="9">
+                  <span class="txt-tips tips-error">
+                    <span class="ico ico-7"></span>
+                    <span class="txt-tips-message" id="answer_tip"></span>
+                  </span>
+                </td>
+            </tr>
+			<tr>
+			    <th><span class="requied_symbol">*</span>验证码：</th>
+				<td>
+                  <input type="text" class="ip-1 w100" value="" id="verifCode" name="vcode" onblur="verifyCheck()" tabindex="10"  maxlength="4">
+                  <img id="vimage"  title="点击刷新验证码" class="verif_code_img" onclick="changeimage();"  style="height:30px; " src="Kaptcha.jpg"/>
+                  <span style="color:#999; font-family: SimSun;">
+                    看不清？
+                    <span id="changeVerifCodeImg" class="change_verif_code_img" onclick="changeimage()">换一张</span>
+                  </span>
+                  <span class="txt-tips tips-error">
+                    <span class="ico ico-7"></span>
+                    <span class="txt-tips-message" id="verify_tip"></span>
+                  </span>
+                </td>
+			</tr>
+            <tr>
+                <th></th>
+                <td><a href="javascript:saveUser();" class="red32" id="step1Submit">确认信息并保存</a></td>
+            </tr>
+            </tbody>
+        </table>
+        </form>        
+        </div>
+        <div class="log-reg-right2"><img src="assets/images/shop.jpg" /></div>
+    </div>
+</div>
+<!--------- end container -------------------------------------------------------------------------------------------------------------------------------->    
+<!--------- footer --------------------------------------------------------------------------------------------------------------------------------------->    
+<div id="footer">
+    <p>Copyright © 2016-2017 广东省航道事务中心 </p>
+</div>
+<!--------- end footer ----------------------------------------------------------------------------------------------------------------------------------->    
+</div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7, IE=9">
+<title>电子航道图政务服务平台</title>
+<link rel="icon" href="${res}/images/favicon.ico" type="image/x-icon"/>
+<link href="assets/css/css.css" rel="stylesheet" type="text/css">
+<link href="assets/css/index.css" rel="stylesheet" type="text/css" />
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/zzsc.js"></script>
+<style type="text/css">
+.topright ul li a{color: #FFF0F5;}
+</style>
+</head>
+<body class="bj_con">
+<div class="top">
+
+    <div class="logoBox"><span class="logo"><img src="assets/images/logo.png" /></span>电子航道图政务服务平台</div>
+    <div class="toprightSatnav">
+		<ul>
+			[#if user ??]
+				<li><a href="${site}/member/information.jspx">我的服务</a></li>
+				<li><a href="${site}/member/index.jspx"><img src="assets/images/dl1.png" />${user.username}</a></li>
+				<li><a href="${site}/logout.do"><img src="assets/images/zc1.png" />注销</a></li> 
+			[#else]
+				<li><a href="login.jhtml"><img src="assets/images/dl1.png" />用户登录</a></li>
+				<li><a href="register.jhtml"><img src="assets/images/zc1.png" />快速注册</a></li> 
+			[/#if]
+			<li><a href="syslogin.jspx"><img src="assets/images/ht1.png" />后台登录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="content" >
+    <div class="box">
+        <div class="t_news">
+            <ul class="news_li">
+            [#list articles as ar]
+ 				<li><a href="${site}/${ar.channel.path}/${ar.id}.jhtml" target="_blank">${ar.title} <span class="guide_time">[${ar.newsdate?string("yyyy-MM-dd")}]</span></a></li>
+            [/#list]
+            </ul>
+            <ul class="swap"></ul>
+        </div>
+    </div>
+	<ul class="gnShop">
+		 [#list channelList as c]
+		 	[#if c.id != '3']
+		 		[#if c.ico ?? & c.path ?? & c.name?? ]
+			 		<li><a class="${c.ico}" href="${c.path}">${c.name}</a></li>
+			 	[/#if]	
+			[/#if]
+		 [/#list]
+    </ul>
+</div>
+<script type="text/javascript">
+ function getViewSize() {
+	return {
+		"w": window['innerWidth'] || document.documentElement.clientWidth,
+		"h": window['innerHeight'] || document.documentElement.clientHeight
+	}
+}
+function setContainerSize() {
+	size = getViewSize();
+    $(".map").width(size["w"]);
+	var offheight = 97;
+	
+	$("iframe,.map,.icon,.left,.have").height(size["h"]-offheight);
+    if(size["w"]<1024){
+	$('html,body,.map').width(1024);
+    $('html,body').css('overflowX','auto');
+	}
+	else{
+	$('html,body,.map').width(size["w"]);
+    $('html,body').css('overflowX','hidden');
+
+	}
+}
+ setContainerSize();
+ window.onresize=setContainerSize;
+ $('.icon p').toggle(function(){
+  $('.left').hide();
+  $('.icon').addClass("icon2");
+  $('.mapsh').addClass("mapsh2");
+  $('#div_iframe').css("width","100%");
+},
+function(){
+  $('.left').show();
+  $('.icon').removeClass("icon2");
+  $('.mapsh').removeClass("mapsh2");
+}
+)
+
+</script>
+<script src="${site}/h.js?channel=index&id=index"></script>
+</body>
+</html>

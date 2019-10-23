@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>广东支持保障系统公共服务平台</title>
+<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"/>
+<link type="text/css" rel="stylesheet" href="${site}/assets/css/common.css" />
+<link type="text/css" rel="stylesheet" href="${site}/assets/css/style.css" />
+<link type="text/css" rel="stylesheet" href="${site}/assets/css/css.css" />
+<link href="${site}/assets/css/jquery.loadmask.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="${site}/assets/css/font-awesome.css" />
+<script src="${site}/assets/js/jquery.js"></script>
+<script src="${site}/assets/js/jquery/jquery.formFill.js"></script>
+<script src="${site}/assets/js/artDialog/artDialog.min.js"></script>
+<script src="${site}/assets/js/common.js"></script>
+<script src="${site}/assets/js/jquery/jquery.loadmask.js"></script>
+<script src="${site}/assets/js/jquery/jquery.mask.js"></script>
+<link rel="shortcut icon" href="../web/images/favicon.ico">
+<style>
+.loadmask-msg div i{
+    cursor: wait;
+    font-size: 32px;
+}
+</style>
+</head>
+<script type="text/javascript">
+   var userid ='${user.id}';
+   $(function(){	
+		$.post('../system/webuser/getUser.do',{"id":userid},function(json){
+			$('#updateForm').fill(json);	
+		})
+		
+	});
+</script>
+<script src="${res}/js/member-security.js"></script>
+<body style="background:url(${site}/assets/images/bg_body.jpg) no-repeat scroll center 0 #EAF1F6;">
+<div class="headerBox">
+  <div class="header w960 clear">
+    <div class="header_left">广东省电子航道图政务外网公共服务网站</div>
+    <div class="header_right">
+          <ul>            
+            <li><img src="${site}/assets/images/home.png" /><a href="${site}/index.jhtml">返回首页</a></li>
+            <li><img src="${site}/assets/images/exit.png" /><a href="${site}/logout.do">注销</a></li>
+          </ul>  
+        </div>
+    </div>
+    <ul class="nav cf">
+      <li class="cur"><a href="${site}/member/index.jspx">基本资料</a></li>
+      <li><a href="${site}/member/information.jspx">我的服务</a></li>
+      <li><a href="${site}/member/security.jspx">安全设置</a></li>
+    </ul>
+</div>
+<!--------- end header ----------------------------------------------------------------------------------------------------------------------------------->    
+<!--------- container ------------------------------------------------------------------------------------------------------------------------------------>    
+
+
+<div id="container" class="">
+
+    <div class="wrap-1 clearfix">
+        <div class="main-1">
+        <div class="log-reg-title"><h2>修改个人基本信息</h2></div>
+            <form   id="updateForm">	
+              <input type="hidden" name="id" id="id" >
+            <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tb-1 table">			
+   		    <tbody>
+            <tr>
+                <th><span class="requied_symbol">*</span>登录账号：</th>
+                <td><input type="text" class="ip-1 w100" value="" id="username" name="username" onblur="usernameCheck()" autocomplete="off" maxlength="32" tabindex="1" disabled="disabled"></td>
+            </tr>
+            <tr>
+                <th><span class="requied_symbol">*</span>真实姓名：</th>
+                <td><input type="text" class="ip-1 w100" value="" id="realname" name="realname" onblur="nameCheck()" autocomplete="off" maxlength="32" tabindex="4">
+                    <span class="txt-tips tips-error" style="display: inline;" id="realname_text">
+                          <span class="ico ico-7"></span><span id="realname_tip">请输入您的真实姓名</span>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th><span class="requied_symbol">*</span>工作单位：</th>
+                <td><input type="text" class="ip-1 w170" value="" name="company"  id="company" onblur="companyCheck()" readonly="readonly" autocomplete="off" tabindex="5"><span class="txt-tips tips-error" style="display: inline;" ><span class="ico ico-7"></span><span id="company_tip">请填写正确的工作单位名称</span></span></td>
+            </tr>
+            <tr>
+                <th><span class="requied_symbol">*</span>联系电话：</th>
+                <td><input type="text" class="ip-1 w150" value="" name="phone"  id="phone" onblur="phoneCheck()" autocomplete="off" tabindex="6"><span class="txt-tips tips-error" style="display: inline;" id="realname_text"><span class="ico ico-7"></span><span id="phone_tip"> 请填写正确的通讯号码</span></span></td>
+            </tr>
+            <tr>
+                <th><span class="requied_symbol">*</span>电子邮箱：</th>
+                <td><input type="text" class="ip-1 w170" value="" name="email"  id="email" onblur="emailCheck()" autocomplete="off" tabindex="7"><span class="txt-tips tips-error" style="display: inline;" id="realname_text"><span class="ico ico-7"></span><span id="email_tip">请填写正确的邮箱地址</span></span></td>
+            </tr>
+            <tr>
+                <th></th>
+                <td><a href="javascript:updateUser();" class="red32" id="step1Submit">修改信息并保存</a></td>
+            </tr>
+            </tbody>
+        </table>
+        </form>        
+        </div>
+        <div class="log-reg-right2"><img src="${site}/assets/images/shop.jpg" /></div>
+    </div>
+</div>
+<!--------- end container -------------------------------------------------------------------------------------------------------------------------------->    
+<!--------- footer --------------------------------------------------------------------------------------------------------------------------------------->    
+<div id="footer">
+    <p>Copyright © 2016-2017 广东省航道事务中心 </p>
+</div>
+<!--------- end footer ----------------------------------------------------------------------------------------------------------------------------------->    
+</body>
+</html>
+
+

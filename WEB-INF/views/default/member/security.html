@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>广东支持保障系统公共服务平台</title>
+<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"/>
+<link type="text/css" rel="stylesheet" href="${site}/assets/css/common.css" />
+<link type="text/css" rel="stylesheet" href="${site}/assets/css/style.css" />
+<link type="text/css" rel="stylesheet" href="${site}/assets/css/css.css" />
+<script src="${site}/assets/js/jquery.js"></script>
+<link rel="shortcut icon" href="../web/images/favicon.ico">
+</head>
+<script type="text/javascript">
+var userid ='${user.id}';
+</script>
+<script src="${res}/js/member-security.js"></script>
+<body style="background:url(${site}/assets/images/bg_body.jpg) no-repeat scroll center 0 #EAF1F6;">
+<div class="headerBox">
+  <div class="header w960 clear">
+    <div class="header_left">广东省电子航道图政务外网公共服务网站</div>
+    <div class="header_right">
+          <ul>            
+			<li><img src="${site}/assets/images/home.png" /><a href="${site}/index.jhtml">返回首页</a></li>
+            <li><img src="${site}/assets/images/exit.png" /><a href="${site}/logout.do">注销</a></li>
+          </ul>  
+        </div>
+    </div>
+    <ul class="nav cf">
+      <li class="cur"><a href="${site}/member/index.jspx">基本资料</a></li>
+      <li><a href="${site}/member/information.jspx">我的服务</a></li>
+      <li><a href="${site}/member/security.jspx">安全设置</a></li>
+    </ul>
+</div>
+<!--------- end header ----------------------------------------------------------------------------------------------------------------------------------->    
+<!--------- container ------------------------------------------------------------------------------------------------------------------------------------>    
+
+
+<div id="container" class="">
+
+    <div class="wrap-1 clearfix">
+
+    	<div class="main-1">
+            <div class="tbox-5">
+                <img class="pic" alt="" src="${site}/assets/images/i_pwd.png">
+                <div class="cont">
+                    <p>定期修改密码，有助于保护您的帐号安全与个人隐私 </p>
+                </div>
+            </div>
+
+            <div style="margin-left:65px;">
+               <form id="passwordForm">
+                    <table cellspacing="0" cellpadding="0" border="0" class="tb-1 table">
+                        <tbody><tr>
+                            <th>原密码：</th>
+                            <td><input type="password" class="ip-1 w100" id="oldpwd"  onblur="oldpwdCheck()" autocomplete="off"><span class="txt-tips tips-error" style="display: inline;" id="realname_text"><span class="ico ico-7"></span><span id="oldpwd_tip">请输入原密码</span></span></td>
+                        </tr>
+                        <tr>
+                            <th>新密码：</th>
+                            <td><input type="password" class="ip-1 w100" id="pwdOnce" onblur="passwordCheck()" autocomplete="off"><span class="txt-tips tips-error" style="display: inline;" id="realname_text"><span class="ico ico-7"></span><span id="pwdOnce_tip"> 6-18个字符，请使用字母加数字的组合</span></span></td>
+                        </tr>
+                        <tr>
+                            <th>确认新密码：</th>
+                            <td><input type="password" class="ip-1 w100" id="pwdTwo" onblur="passworkConfirm()" autocomplete="off"><span class="txt-tips tips-error" style="display: inline;" id="realname_text"><span class="ico ico-7"></span><span id="pwdTwo_tip">请确认新密码</span></span></td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><a href="javascript:updatePassword();" class="red32" id="step1Submit">保存</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+               </form>
+            </div>
+        </div>
+        <div class="log-reg-right2"><img src="${site}/assets/images/shop.jpg" /></div>
+    </div>
+</div>
+<!--------- end container -------------------------------------------------------------------------------------------------------------------------------->    
+<!--------- footer --------------------------------------------------------------------------------------------------------------------------------------->    
+<div id="footer">
+    <p>Copyright © 2016-2017 广东省航道事务中心 </p>
+</div>
+<!--------- end footer ----------------------------------------------------------------------------------------------------------------------------------->    
+</div>
+</body>
+</html>

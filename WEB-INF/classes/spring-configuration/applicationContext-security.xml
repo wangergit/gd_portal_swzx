@@ -1,0 +1,148 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+xmlns:beans="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security.xsd">
+<!-- 访问控制 -->
+<http auto-config="false" use-expressions="true" authentication-manager-ref="myAuthentication"  >
+
+	<csrf disabled="true"/>
+	<intercept-url pattern="/xpadmin/**" access="hasRole('ROLE_USER')"/>
+ 	<intercept-url pattern="/manage/**" access="hasRole('ROLE_USER')"/>
+	<intercept-url pattern="/index.jsp" access="hasRole('ROLE_USER')"/>
+	<intercept-url pattern="/container.jspx" access="hasRole('ROLE_USER')"/>
+	<intercept-url pattern="/system/**" access="hasRole('ROLE_USER')"/>
+	<!-- 打开拦截 -->
+<!-- 	<intercept-url pattern="/**" access="hasRole('ROLE_ANONYMOUS')"/>  -->
+  	<headers>
+  		<frame-options policy="SAMEORIGIN"/>
+  	</headers>
+	<!-- 默认的登录检查url地址，也就是 login-processing-url参数的值是"/j_spring_security_check" -->
+	
+	<!-- logout url地址的链接可以放在页面的任何地方，点击以后就退出了 -->
+	<form-login login-page="/syslogin.jspx" 
+	username-parameter="j_dlm" password-parameter="j_yhmm" login-processing-url="/j_spring_security_check"
+	authentication-failure-handler-ref="failureHandler"   authentication-success-handler-ref="successHandler" authentication-failure-url="/syslogin.jspx?login_error=true" default-target-url="/xpadmin/index.jspx"/>
+	 
+	<!-- logout url地址的链接可以放在页面的任何地方，点击以后就退出了 -->
+	<logout invalidate-session="true" logout-url="/j_spring_security_logout" logout-success-url="/xpadmin/index.jspx"/>
+	 
+	 
+	<!-- token-validity-seconds:指定remember-me cookie生效的秒数周期。 默认它会在14日内生效。这里设置成30 -->
+	<!--remember-me key="cjhdj" token-validity-seconds="2592000"/-->
+    
+    <!-- 注销过滤器 -->
+    <custom-filter before="LOGOUT_FILTER" ref="logoutFilter"/>
+    
+	<!-- 登录过滤器 -->
+	<custom-filter before="FORM_LOGIN_FILTER" ref="loginFilter" />
+    
+ 	
+<!-- 	<session-management session-authentication-strategy-ref="sas"  invalid-session-url="/login.jsp"/> -->
+	<session-management>
+		<concurrency-control expired-url="/syslogin.jspx" max-sessions="1" error-if-maximum-exceeded="true" />
+	</session-management>
+	<!-- 用户登陆可存在的session管理 -->
+	<!-- 单用户登录配置开始   error-if-maximum-exceeded=true 异地无法登录  error-if-maximum-exceeded=false 强迫下线上次登录的客户端-->
+    <!-- <session-management>
+    	<concurrency-control  error-if-maximum-exceeded="true" max-sessions="1" expired-url="/401.html"  />
+    </session-management> -->
+     <!-- 单用户登录配置结束  -->
+ 
+</http>
+
+	<global-method-security pre-post-annotations="enabled"></global-method-security>
+	<!--<security:authentication-manager id="myAuthentication">
+	<security:authentication-provider   user-service-ref="wjUserDetailsService">
+ 		<security:password-encoder hash="md5">
+ 			<security:salt-source user-property="username"/>
+ 		</security:password-encoder>
+ 	</security:authentication-provider>
+	
+	</security:authentication-manager> -->
+	<beans:bean id="wjUserDetailsService" class="com.ienc.common.login.security.WjUserDetailsServiceImpl" autowire="byName">
+	</beans:bean>
+
+	<authentication-manager alias="myAuthentication">
+	    <authentication-provider  ref="authenticationProvider" >
+	    </authentication-provider>
+	  
+	</authentication-manager>	
+
+	<beans:bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">  
+        <beans:constructor-arg>  
+            <beans:list>  
+                <filter-chain pattern="/**" filters="" />  
+            </beans:list>  
+        </beans:constructor-arg>  
+    </beans:bean>  
+
+	<beans:bean id="authenticationProvider" class="com.ienc.common.login.security.MyDaoAuthenticationProvider">
+	    <beans:property name="userDetailsService" ref="wjUserDetailsService" />
+	    <beans:property name="hideUserNotFoundExceptions" value="false" />
+	    <beans:property name="passwordEncoder" ref="passwordEncoder"></beans:property>
+<!-- 	    <beans:property name="saltSource" ref="reflectionSaltSource"></beans:property> -->
+	</beans:bean>
+	<beans:bean id="reflectionSaltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource">
+		<beans:property name="userPropertyToUse" value="username"></beans:property>
+	</beans:bean>
+
+	<!-- 验证后台用户  -->
+	<beans:bean id="loginFilter" class="com.ienc.common.login.security.MyUsernamePasswordAuthenticationFilter">
+		<beans:property name="authenticationManager" ref="myAuthentication" />
+		<beans:property name="sessionAuthenticationStrategy" ref="sas" />
+		<beans:property name="authenticationFailureHandler" ref="failureHandler"/>
+	    <beans:property name="authenticationSuccessHandler" ref="successHandler"/>
+	    <beans:property name="filterProcessesUrl" value="/j_spring_security_check"/>
+	</beans:bean>
+	<beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder">
+	</beans:bean>
+	<beans:bean id="failureHandler" class="com.ienc.common.login.security.MyAuthenticationFailureHandler">
+        <beans:property name="defaultFailureUrl" value="/syslogin.jspx?error=true" />
+        <beans:property name="securityLoginProcess" ref="securityLoginProcess" />
+        <beans:property name="securityLoginRecordIp" ref="securityLoginRecordIp" />
+	</beans:bean>
+	<beans:bean id="successHandler" class="com.ienc.common.login.security.MyAuthenticationSuccessHandler">
+        <beans:property name="alwaysUseDefaultTargetUrl" value="true"/>
+        <beans:property name="defaultTargetUrl" value="/xpadmin/index.jspx"/>
+        <beans:property name="securityLoginProcess" ref="securityLoginProcess" />
+        <beans:property name="securityLoginRecordIp" ref="securityLoginRecordIp" />
+        <beans:property name="resourceDAO" ref="resourceDAO" />
+        <beans:property name="sessionManage" ref="sessionManage" />
+	</beans:bean>
+	<!-- 注销过滤器，完成前台用户注销时的定向功能 -->
+    <beans:bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+        <beans:constructor-arg value="/syslogin.jspx" />
+        <beans:constructor-arg>
+            <beans:list>
+                <beans:bean class="com.ienc.common.login.security.MySecurityContextLogoutHandler" />
+            </beans:list>
+        </beans:constructor-arg>
+        <beans:property name="filterProcessesUrl" value="/logout" />
+    </beans:bean>
+    <!-- 登录处理注入 -->
+    <beans:bean id="securityLoginProcess" class="com.ienc.common.login.security.SecurityLoginProcess">
+    </beans:bean>
+    <!-- 登录IP记录 -->
+    <beans:bean id="securityLoginRecordIp" class="com.ienc.common.login.security.SecurityLoginRecordIp">
+    </beans:bean>
+    
+    <beans:bean id="concurrencyFilter" class="org.springframework.security.web.session.ConcurrentSessionFilter">
+<!-- 		<beans:property name="sessionRegistry" ref="sessionRegistry" /> -->
+<!-- 		<beans:property name="expiredUrl" value="/index.html" /> -->
+			<beans:constructor-arg ref="sessionRegistry"></beans:constructor-arg>
+	</beans:bean>
+    
+    <beans:bean id="sas" class="org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy">
+		<beans:constructor-arg name="sessionRegistry" ref="sessionRegistry" />
+<!-- 		<beans:property name="maximumSessions" value="1" /> -->
+	</beans:bean>
+	
+	<beans:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />
+	
+	<beans:bean id="sessionManage" class="com.ienc.common.login.security.SessionManageFilter" >
+		<beans:property name="sessionRegistry" ref="sessionRegistry" />
+	</beans:bean>
+</beans:beans>

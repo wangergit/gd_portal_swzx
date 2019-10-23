@@ -1,0 +1,108 @@
+<script type="text/javascript">
+ 
+function getSystime() {
+	var now = new Date();
+	var hour = now.getHours();
+	var minutes = now.getMinutes();
+	var seconds = now.getSeconds();
+	if (hour < 10)
+		hour = '0' + hour;
+	if (minutes < 10)
+		minutes = '0' + minutes;
+	if (seconds < 10)
+		seconds = '0' + seconds;
+	var ele = document.getElementById("div_systime");
+	//alert(ele);
+	ele.innerHTML=
+			(now.getYear() + 1900 + "年" + (now.getMonth() + 1) + "月"
+					+ now.getDate() + "日  " + hour + ":" + minutes + ":"
+					+ seconds + " 星期" + '日一二三四五六'.charAt(new Date().getDay()));
+};
+setInterval('getSystime()', 1000);
+</script>
+<div class="head">
+	<div class="headcon">
+		<div class="headcl" id="div_systime"></div>
+		<div class="headcr">
+			<ul>
+				[#if user ??]
+                    <li><a href="${site}/member/information.jspx">我的服务</a></li>
+					<li class="login"><a href="${site}/member/index.jspx">${user.username}</a></li>
+					<li class="registered"><a href="${site}/logout.do">注销</a></li>
+					
+				[#else]
+					<li class="login"><a href="${site}/login.jhtml">用户登录</a></li>
+					<li class="registered"><a href="${site}/register.jhtml">快速注册</a></li>
+				[/#if]
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="logo"> 
+      <div class="logoleft column"><a href="#"></a>广东省电子航道图政务外网公共服务网站</div>
+</div>
+ <div class="meun clearfix">
+		<div class="nav-menu menu_cen nav">
+			<div class="menu">
+ 
+			    [#list channelList as c]
+			       	<div class="stmenu fl navli">
+					<h3 class="yiji">
+						<a class="xialaguang checked" href="${c.path}"><span>${c.name}</span></a>
+					</h3>
+					<div class="mapsubull">
+						<ul class="children mapsubul">
+						[#if c.children ??]
+						   [#list c.children as c1]
+						   <li class="erji"><a href="${c1.path}" target="_parent">${c1.name}</a></li>
+						   [/#list]
+					   [/#if]
+						</ul>
+					</div>
+					</div>
+			     [/#list]
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			$(".nav-menu .navli:last h3").css("background", "none");
+			$('.nav-menu .menu > .stmenu').hover(function() {
+				if ($(this).find('.mapsubull ul li').length == 0) {
+					$(this).find('.mapsubull').hide();
+				} else {
+					$(this).find('.mapsubull').css('display', 'block');
+				}
+				$(this).find('.xialaguang').addClass('navhover');
+			}, function() {
+				$('.mapsubull').css('display', 'none');
+				$('.xialaguang').removeClass('navhover');
+
+			});
+			
+			function webSearch(){
+				
+				
+				
+			}
+		</script>
+
+	</div>
+	
+	<div class="breadcrumb">
+		您的位置：
+		   <span>
+		    <a class="SkinObject" href="${site}/index.jhtml">首页</a>&nbsp;&gt;&nbsp;
+		   
+		    [#if channel.parent?? && channel.parent.id !='1' ]
+				<a class="SkinObject" href="${site}/${channel.parent.path}/index.jhtml">${channel.parent.name} </a>&nbsp;&gt;&nbsp;
+		    [/#if]
+		   <a class="SkinObject" href="${site}/${channel.path}/index.jhtml"> ${channel.name} </a>
+		 </span> 
+			
+		<!-- <div class="seach clearfix">
+			<input id="q" name="q" onblur="if (value ==''){value='请输入您要搜索的内容'}"
+				onfocus="if (value =='请输入您要搜索的内容'){value =''}" type="text"
+				value="请输入您要搜索的内容" />
+			<button name="button" type="button" value=""></button>
+		</div> -->
+	</div>

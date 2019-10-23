@@ -1,0 +1,16 @@
+
+<div class="rxd_footer">
+	<div class="footer_botm clearfix">
+		<!-- <p class="foot14">
+			<a target="_blank" href="#">版权声明</a> | <a target="_blank" href="#">联系我们</a>
+			| <a target="_blank" href="#">网站地图</a>
+		</p> -->
+		<p>Copyright © 2016-2017 广东省航道事务中心</p>
+		<p></p>
+	</div>
+</div>
+[#if articleInfo ??]
+<script src="${site}/h.js?channel=${channel.path}&id=${articleInfo.id}"></script>
+[#else]
+<script src="${site}/h.js?channel=${channel.path}&id=index"></script>
+[/#if]

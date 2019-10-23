@@ -1,0 +1,396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	[#include "/sys/include/meta.html"/]
+	
+	<body class="no-skin">
+		
+		[#include "/sys/include/head.html"/]
+		
+		<div class="main-container" id="main-container">
+
+			[#include "/sys/include/menu.html"/]
+			
+			<div class="main-content">
+				<div class="main-content-inner">
+					<div class="page-content">
+						
+						[#include "/sys/include/module.html"/]
+						<div class="row">
+							<!-- .col -->
+							<div class="col-xs-12 col-sm-12">
+							<div class="search-form">
+								<div class="search-from-group" style="width: 75%;">
+									<div>
+										<p>
+											<a href="#" role="button" onclick="openSave()"
+												class="btn btn-sm btn-success" > 注册用户 </a>
+										</p>
+									</div>
+								</div>
+								<div class="right search-from-group" style="width: 25%;">
+									<form id="searchform">
+										<div class="input-group search-group">
+											<input type="text" name="searchinfo" id="searchbtn"
+												class="form-control search-query" placeholder="输入用户名查询">
+											<span class="input-group-btn">
+												<button type="button" id="searchBtn"
+													class="btn btn-purple btn-sm">
+													<span
+														class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+													查询
+												</button>
+											</span>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="table-header">
+									用户列表
+								</div>
+								<table class="table table-striped table-bordered" id="userTable" width="100%">
+                        		</table>
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+						
+					<div id="model-form" class="modal" tabindex="-1">
+						<div class="modal-dialog">
+							 <div class="modal-content">  
+								  <div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+								       <h4 id="form-title" class="blue bigger"></h4>
+								</div>
+								<div class="widget-box transparent" id="webuser-info">
+										<div class="widget-header">
+                                              <div class="widget-toolbar no-border" style="float: left;">
+													<ul class="nav nav-tabs" id="myTab2">
+														<li class="active">
+															<a data-toggle="tab" href="#baseinfo">用户基本信息</a>
+														</li>
+			
+														<li>
+															<a data-toggle="tab" href="#configinfo">个人说明</a>
+														</li>
+													</ul>
+												</div>
+										</div>
+								<div class="widget-body">
+									<form class="form-horizontal" id="saveForm">
+											<div class="widget-main padding-12 no-padding-left no-padding-right">
+												<div class="tab-content padding-4">
+													<div id="baseinfo" class="tab-pane in active">															
+														<div class="scrollable" data-size="500">
+												
+													<input type="hidden" name="id" id="id" />
+													
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="password">用户名:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<input type="text" name="username"  id="username" onblur="check()"  class="col-xs-12 col-sm-8"/>
+																<label class=" control-label " id="nameTip" style="color: red;" hidden>该用户名已注册</label>
+															</div>
+														</div>
+													</div>
+													
+													<div class="form-group" id="div_psw" >
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="password">密码:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<input type="password" name="password" id="password" class="col-xs-12 col-sm-8"  onchange="validatePassword('save')" />
+																<label class=" control-label " id="warningSP" style="color: red;text-align:left;" hidden>8-18个字符，请使用大写字母、小写字母、数字、特殊字符，三个以上组合，长度8位以上！</label>
+															</div>
+														</div>
+													</div>
+													
+													<div class="form-group" id="div_cpsw">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="cpsw">	确认密码:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<input type="password" id="cpsw" onblur="pscheck()" class="col-xs-12 col-sm-8" />
+																<label class=" control-label " id="pswTip" style="color: red;" hidden>两次输入密码不一致</label>
+															</div>
+														</div>
+													</div>
+
+													<div class="space-2"></div>
+
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="realname">真实姓名:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<input type="text" name="realname" id="realname" class="col-xs-12 col-sm-8" />
+															</div>
+														</div>
+													</div>
+												<div class="space-2"></div>
+
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="phone">手机号码:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<input type="text" name="phone" id="phone" onblur="telephone()" class="col-xs-12 col-sm-8" />
+																<label class=" control-label " id="phoneTip" style="color: red;" hidden>请输入正确的通讯号码</label>
+															</div>
+														</div>
+													</div>
+													<div class="space-2"></div>
+
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="company">工作单位:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<input type="text" name="company" id="company" class="col-xs-12 col-sm-8" />
+															</div>
+														</div>
+													</div>
+													
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="address">通讯地址:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<input type="text" name="address" id="address" class="col-xs-12 col-sm-8" />
+															</div>
+														</div>
+													</div>
+													<!-- <div class="form-group" id="div_tryCount">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="tryCount">登陆错误次数:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<input type="text" name="tryCount" id="tryCount" class="col-xs-12 col-sm-8" />
+															</div>
+														</div>
+													</div>
+												 	<div class="form-group" id="div_lastTime">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="lastTime">最后登录时间:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<input type="text"  id="lastTime" name="lastTime" class="col-xs-12 col-sm-8" />
+															</div>
+														</div>
+													</div> -->
+													<div class="form-group" id="div_lockDate">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="lockDate">启用时间:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<input type="text"  id="lockDate" name="lockDate" class="col-xs-12 col-sm-8" />
+															</div>
+														</div>
+													</div>  
+												</div>
+											</div>
+											<div id="configinfo" class="tab-pane">
+												<div class="scrollable" data-size="500">
+													 <div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="note">个人说明:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="input-group">
+																<textarea rows="" cols="" name="note" id="note" style="width: 280px" ></textarea>
+															</div>
+														</div>
+													</div> 
+												</div>
+											</div>
+												</div>
+											</div>
+										</form>
+									</div>
+									</div>
+										
+
+									<div class="modal-footer">
+										<button class="btn btn-sm" data-dismiss="modal">
+											<i class="ace-icon fa fa-times"></i>
+											取消
+										</button>
+
+										<button class="btn btn-sm btn-primary" id="savebtn" onclick="saveUser()">
+											<i class="ace-icon fa fa-check"></i>
+											保存
+										</button>
+									</div>
+								</div>
+						</div><!-- PAGE CONTENT ENDS -->
+						</div>
+						</div>
+						</div>
+						<div id="user-form" class="modal" tabindex="-1">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="blue bigger">修改用户</h4>
+									</div>
+                                
+                                <div class="widget-box transparent" id="webuser-form">
+										<div class="widget-header">
+                                              <div class="widget-toolbar no-border" style="float: left;">
+													<ul class="nav nav-tabs" id="myTab2">
+														<li class="active">
+															<a data-toggle="tab" href="#baseinfo2">用户基本信息</a>
+														</li>
+			
+														<li>
+															<a data-toggle="tab" href="#configinfo2">个人说明</a>
+														</li>
+													</ul>
+												</div>
+										</div>
+									 <div class="widget-body">
+									    <form class="form-horizontal" id="updateForm">
+											<div class="widget-main padding-12 no-padding-left no-padding-right">
+												<div class="tab-content padding-4">
+													<div id="baseinfo2" class="tab-pane in active">															
+														<div class="scrollable" data-size="500">									
+												     	<input type="hidden" name="id" id="id2" />
+													
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="password">用户名:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<input type="text" name="username" id="username2" onblur="ucheck()" readonly="readonly" class="col-xs-12 col-sm-8"/>
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-3 control-label no-padding-right" for="modifypsw">密码: </label>
+				
+														<div class="col-sm-9">
+															<input  type="text" class="col-xs-10 col-sm-5" name="password" id="modifypsw"  disabled="true" onchange="validatePassword('update')"/>
+															<span class="help-inline col-xs-12 col-sm-7">
+																<label class="middle">
+																	<input class="ace" type="checkbox" id="id-disable-check" />
+																	<span class="lbl">修改密码</span>
+																</label>
+															</span>
+															<label class=" control-label " id="warningUP" style="color: red;" hidden>8-18个字符，请使用大写字母、小写字母、数字、特殊字符，三个以上组合，长度8位以上！</label>
+														</div>
+													</div>
+													
+													<div id="mds" class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="modifypsw2">确认密码:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<input type="password"  id="modifypsw2" onblur="mpscheck()" class="col-xs-12 col-sm-8" />
+																<label class=" control-label " id="upswTip" style="color: red;" hidden>两次输入密码不一致</label>
+															</div>
+														</div>
+													</div>
+
+													<div class="space-2"></div>
+
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="realname2">真实姓名:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<input type="text" name="realname" id="realname2" class="col-xs-12 col-sm-8" />
+															</div>
+														</div>
+													</div>													
+													<div class="space-2"></div>
+
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="phone2">手机号码:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<input type="text" name="phone" id="phone2" onblur="utelephone()" class="col-xs-12 col-sm-8" />
+																<label class=" control-label " id="uphoneTip" style="color: red;" hidden>请输入正确的通讯号码</label>
+															</div>
+														</div>
+													</div>
+													<div class="space-2"></div>
+
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="company2">工作单位:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<input type="text" name="company" id="company2" class="col-xs-12 col-sm-8" />
+															</div>
+														</div>
+													</div>
+													
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="address2">通讯地址:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<input type="text" name="address" id="address2" class="col-xs-12 col-sm-8" />
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="address2">编辑要素:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<select id="featuerEdit" name="featureedit">
+																    <option value="" >不可编辑</option>
+																    <option value="1">可编辑</option>
+																</select>
+															</div>
+														</div>
+													</div>
+											</div>
+											</div>
+											<div id="configinfo2" class="tab-pane">
+												<div class="scrollable" data-size="500">
+													 <div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="note">个人说明:</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="input-group">
+																<textarea rows="" cols="" name="note" id="note" style="width: 280px" ></textarea>
+															</div>
+														</div>
+													</div> 
+												</div>
+											</div>
+												</div>
+											</div>
+										</form>
+									</div>
+									</div>
+
+									<div class="modal-footer">
+										<button class="btn btn-sm" data-dismiss="modal">
+											<i class="ace-icon fa fa-times"></i>
+											取消
+										</button>
+
+										<button class="btn btn-sm btn-primary" onclick="updateUser()">
+											<i class="ace-icon fa fa-check"></i>
+											修改
+										</button>
+									</div>
+								</div>
+							</div>
+						</div><!-- PAGE CONTENT ENDS -->
+						
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+
+			[#include "/sys/include/footscript.html"/]
+		</div><!-- /.main-container -->
+		
+	</body>
+	<link rel="stylesheet" type="text/css" href="${site}/assets/js/zTree/css/zTreeStyle/zTreeStyle.css"/>
+ 	<script type="text/javascript" src="${site}/assets/js/zTree/js/jquery.ztree.core-3.5.js"></script>
+	<script type="text/javascript" src="${site}/assets/js/fuelux/fuelux.tree.js"></script>
+	<script type="text/javascript" src="${site}/sys/js/portal.js"></script>
+</html>

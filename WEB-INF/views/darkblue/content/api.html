@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8" content="width=device-width,initial-scale=1.0" name="viewport">
+<title>广东省电子航道图政务外网公共服务网站</title>
+<link href="${res}/favicon.ico" rel="icon" type="image/x-icon" />
+<link href="${res}/styles/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="${res}/styles/structure.css" rel="stylesheet" type="text/css">
+<link href="${res}/styles/sidebar.css" rel="stylesheet" type="text/css">
+<link href="${res}/styles/icons.css" rel="stylesheet" type="text/css">
+<script src="${res}/scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="${res}/scripts/draggabilly.pkgd.min.js" type="text/javascript"></script>
+<script src="${res}/scripts/structure.js" type="text/javascript"></script>
+<script src="${site}/h.js?channel=${channel.path}&id=index"></script>
+</head>
+<body>
+[#include "../include/header.html"/]
+
+<div id="container">
+
+	<!-- 左边菜单选择-->
+	<div id="sidebar" class="api-sidebar">
+        <div class="list-group">
+            <a class="list-group-item" href="${site}/service/1/index.jhtml">数据服务</a>
+            <a class="list-group-item" href="${site}/service/2/index.jhtml">地图服务</a>
+            <a class="list-group-item" href="${site}/service/4/index.jhtml">地图符号服务</a>
+            <a class="list-group-item" href="${site}/service/3/index.jhtml">文件下载服务</a>
+        </div>
+	</div>
+    
+	<!-- 右边内容显示-->
+	<div id="main">
+	
+		<ol class="breadcrumb">
+			<li><a href="${site}/index.jhtml">首页</a></li>
+[#if channel.parent?? && channel.parent.id !='1' ]
+		    <li><a href="${site}/${channel.parent.path}/index.jhtml">${channel.parent.name}</a></li>
+[/#if]
+		    <li><a href="${site}/${channel.path}/index.jhtml">${channel.name}</a></li>
+		    <li class="active">服务接口说明</li>
+		</ol>
+				
+		<div class="text-justify paragraph">
+[#if api ??]
+			${api.description}
+[#else]
+			暂无服务使用介绍
+[/#if]
+		</div>
+        
+    </div>
+    
+</div>
+
+[#include "../include/footer.html"/]
+</body>
+</html>

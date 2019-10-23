@@ -1,0 +1,7 @@
+.statistic{padding:24px 30px;}
+.statistic .five{overflow:hidden; width:100%;}
+.statistic .five .item{float:left; height:120px; min-width:160px; _width:160px; box-sizing:border-box; border:1px solid #dcf0ff; border-radius:3px; -moz-border-radius:3px; -o-border-radius:3px; -webkit-border-radius:3px; text-align:center; margin-left:30px;}
+.statistic .five .item .eng{padding-top:10px; line-height:1; font-size:12px; color:#55a5de; font-family:Arial, Helvetica, sans-serif;}
+.statistic .five .item .coun{padding-top:7px; line-height:36px; font-size:36px; color:#808080; font-family:Arial, Helvetica, sans-serif;}
+.statistic .five .item .chi{padding-top:2px; font-size:16px; color:#808080;}
+.statistic .five .item p{margin-top:0;}

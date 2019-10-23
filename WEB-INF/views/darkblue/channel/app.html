@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8" content="width=device-width,initial-scale=1.0" name="viewport">
+<title>电子航道图政务服务平台</title>
+<link href="${res}/favicon.ico" rel="icon" type="image/x-icon" />
+<link href="${res}/styles/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="${res}/styles/jquery.loadmask.css" rel="stylesheet" type="text/css" />
+<link href="${res}/styles/structure.css" rel="stylesheet" type="text/css">
+<link href="${res}/styles/message.css" rel="stylesheet" type="text/css">
+<link href="${res}/styles/icons.css" rel="stylesheet" type="text/css">
+<link href="${res}/styles/channel_app.css" rel="stylesheet" type="text/css">
+<script src="${res}/scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="${res}/scripts/bootstrap.min.js"></script>
+<script src="${res}/scripts/bootstrap-paginator.js"></script>
+<script src="${res}/scripts/jquery.loadmask.js" type="text/javascript"></script>
+<script src="${res}/scripts/draggabilly.pkgd.min.js" type="text/javascript"></script>
+<script src="${res}/scripts/structure.js" type="text/javascript"></script>
+<script type="text/javascript">
+var CONTEXT = "${site}";
+var RESOURCE = "${res}";
+var map = {};
+
+function initMap(frame) {
+	if($.isWindow(frame)) {
+		map.frame = frame;
+		map.layer.init();
+		map.plotting.init();
+	}
+}
+</script>
+<script src="${res}/scripts/message.js" type="text/javascript"></script>
+<script src="${res}/scripts/app/search.js" type="text/javascript"></script>
+<script src="${res}/scripts/app/element.js" type="text/javascript"></script>
+<script src="${res}/data/FeatureAttrs.js" type="text/javascript"></script>
+<script src="${res}/scripts/app/location.js" type="text/javascript"></script>
+<script src="${res}/scripts/app/views.js" type="text/javascript"></script>
+<script src="${res}/scripts/app/plotting.js" type="text/javascript"></script>
+<script src="${res}/scripts/app/more.js" type="text/javascript"></script>
+<script src="${site}/h.js?channel=index&id=index"></script>
+</head>
+<body>
+[#include "../include/header.html"/]
+
+<div id="container">
+	<iframe scrolling="auto" title="电子航道图" id="wmstmap" name="wmstmap" src="../map/map.html" style="width:100%;height:100%;" frameborder="0"></iframe>
+    
+    <div id="command">
+        <div class="btn-group" id="toolbar_main">
+            <button type="button" class="btn btn-default" onFocus="this.blur()" title="搜索" id="tools_info"><span class="imgicon imgicon-info"></span></button>
+[#if user ?? ]
+	[#if user.featureedit ?? ]
+            <button type="button" class="btn btn-default" onFocus="this.blur()" title="要素编辑" id="tools_editor"><span class="imgicon imgicon-editor"></span></button>
+	[/#if]
+[/#if]
+            <button type="button" class="btn btn-default" onFocus="this.blur()" title="图层" id="tools_layer"><span class="imgicon imgicon-layer"></span></button>
+            <button type="button" class="btn btn-default" onFocus="this.blur()" title="放大" id="tools_zoomin"><span class="imgicon imgicon-zoomin"></span></button>
+            <button type="button" class="btn btn-default" onFocus="this.blur()" title="缩小" id="tools_zoomout"><span class="imgicon imgicon-zoomout"></span></button>
+            <button type="button" class="btn btn-default" onFocus="this.blur()" title="测量" id="tools_measure"><span class="imgicon imgicon-measure"></span></button>
+            <button type="button" class="btn btn-default" onFocus="this.blur()" title="标绘" id="tools_plotting"><span class="imgicon imgicon-plotting"></span></button>
+            <button type="button" class="btn btn-default" onFocus="this.blur()" title="更多" id="tools_more"><span class="imgicon imgicon-more2"></span></button>
+        </div>
+    
+        <div id="searchbar">
+    	
+                <div id="searchbar_form">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" onFocus="this.blur()" id="sb_btn_more"><span class="imgicon imgicon-more"></span></button>
+                        </span>
+                        <input type="text" class="form-control" placeholder="请输入搜索内容" id="sb_txt_search" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" onFocus="this.blur()" id="sb_btn_search"><span class="imgicon imgicon-search"></span></button>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default" id="searchbar_result">
+                    <div class="panel-body" id="sb_result_cate">
+                        <ul class="list-inline"></ul>
+                    </div>
+                    <div class="panel-body" id="sb_result_result">
+                        <ol class="breadcrumb">
+                            <li><a href="javasript:;" onClick="map.search.select(-1)">分类</a></li>
+                            <li id="sb_lal_cate">&nbsp;</li>
+                            <li class="active">搜索结果</li>
+                        </ol>
+                        
+                        <ul class="list-group" id="sb_lst_result"></ul>
+                
+                        <nav class="navbar navbar-default">
+                            <p class="navbar-text" id="sb_lab_total"></p>
+                            <ul class="nav navbar-nav pagination pagination-sm" id="sb_pag_result"></ul>
+                        </nav>
+                    </div>
+                </div>
+        
+        </div>
+    </div>
+    
+    
+    <div class="btn-group-vertical" id="toolbar_more">
+        <button type="button" class="btn btn-default" onFocus="this.blur()" title="全局视图" id="tools_full"><span class="imgicon imgicon-full"></span></button>
+        <button type="button" class="btn btn-default" onFocus="this.blur()" title="后退" id="tools_prev"><span class="imgicon imgicon-prev"></span></button>
+        <button type="button" class="btn btn-default" onFocus="this.blur()" title="前进" id="tools_next"><span class="imgicon imgicon-next"></span></button>
+        <button type="button" class="btn btn-default" onFocus="this.blur()" title="漫游" id="tools_roam"><span class="imgicon imgicon-roam"></span></button>
+        <button type="button" class="btn btn-default" onFocus="this.blur()" title="定位" id="tools_locate"><span class="imgicon imgicon-locate"></span></button>
+[#if user ?? ]
+        <button type="button" class="btn btn-default" onFocus="this.blur()" title="视图标签" id="tools_view"><span class="imgicon imgicon-view"></span></button>
+[/#if]
+        <button type="button" class="btn btn-default" onFocus="this.blur()" title="导出图片" id="tools_export"><span class="imgicon imgicon-export"></span></button>
+        <button type="button" class="btn btn-default" onFocus="this.blur()" title="打印" id="tools_print"><span class="imgicon imgicon-print"></span></button>
+    </div>
+    
+</div>
+
+[#include "../include/footer.html"/]
+
+<ul class="dropdown-menu" id="dropdown_layer"></ul>
+
+<ul class="dropdown-menu" id="dropdown_measure">
+	<li><a href="javasript:;" onClick="map.measure.length()">测距</a></li>
+	<li><a href="javasript:;" onClick="map.measure.area()">测面</a></li>
+	<li><a href="javasript:;" onClick="map.measure.clear()">清除</a></li>
+</ul>
+
+<ul class="dropdown-menu" id="dropdown_plotting">
+	<li><a href="javasript:;" onClick="map.plotting.show.all()">显示公共标绘</a></li>
+[#if user ?? ]
+	<li><a href="javasript:;" onClick="map.plotting.show.self()">显示我的标绘</a></li>
+	<li><a href="javasript:;" onClick="map.plotting.new.point()">添加标绘点</a></li>
+	<li><a href="javasript:;" onClick="map.plotting.new.line()">添加标绘线</a></li>
+	<li><a href="javasript:;" onClick="map.plotting.new.area()">添加标绘面</a></li>
+	<li><a href="javasript:;" onClick="map.plotting.new.circle()">添加标绘圆</a></li>
+	<li><a href="javasript:;" onClick="map.plotting.new.square()">添加标绘矩形</a></li>
+[/#if]
+	<li><a href="javasript:;" onClick="map.plotting.clear()">清除标绘</a></li>
+</ul>
+
+<div class="dialog" id="dialog_info">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <button type="button" class="close" onFocus="this.blur()">&times;</button>
+        	<div class="panel-title">详细信息</div>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal"></dl>
+        </div>
+    </div>
+</div>
+
+<div class="dialog dialog-fix" id="dialog_feature">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <button type="button" class="close" onClick="map.element.closeEditor()" onFocus="this.blur()">&times;</button>
+        	<div>
+        		<div class="panel-title feature-title">编辑要素</div>
+        		<div class="feature_btn">
+        			<form id="feature_pagination">
+	                   	<a class="btn btn-info disabled" href="javasript:;" id="feature_btn_prev">&lt;</a>
+	                    <a class="btn btn-info disabled" href="javasript:;" id="feature_btn_next">&gt;</a>
+	               	</form>
+        		</div>
+        	</div>
+        </div>
+        <div class="panel-body">
+        	<div class="col-sm-6 inner-panel">
+        		<form class="form-horizontal" id="feature_detial">
+            	</form>
+        	</div>
+        	<div class="col-sm-6 inner-panel">
+        		<nav class="navbar navbar-default">
+            		<div class="container-fluid">
+            			<div class="searchnavbar">
+			                <div class="col-sm-6"><input type="text" id="searchName" class="form-control" class="input"/></div>
+			                <div class="col-sm-4"><select id="searchType" class="form-control">
+			                   <option value="1">公共航道</option>
+			                   <option value="2">专用航道</option>
+			                   <option value="3">船闸航道</option>
+			                   <option value="4">船闸</option>
+			                   <option value="5">升船机</option>
+			                   <option value="6">固定码头</option>
+			                   <option value="7">浮码头</option>
+			                   <option value="8">航标</option>
+			                   <option value="9">航道部门</option>
+			                   <option value="10">桥梁</option>
+			                   <option value="11">通航孔</option>
+			                   <option value="12">浅滩</option>
+			                   <option value="13">架空管道</option>
+			                   <option value="14">架空线缆</option>
+			                   <option value="15">渡槽</option>
+			                   <option value="16">过河管道 </option>
+			                   <option value="17">过河线缆</option>
+			                   <option value="18">视频观测点</option>
+			                   <option value="19">水位观测站</option>
+			                   <option value="20">整治坝</option>
+			                   <option value="21">泊位</option>
+			                   <option value="22">栈桥</option>
+			                   <option value="23">浮船坞</option>
+			                   <option value="24">干船坞</option>
+			                   <option value="25">临河船厂</option>
+			                   <option value="26">取(排)水口</option>
+			                   <option value="27">抽(排)水口</option>
+			                   <option value="28">拦水坝</option>
+			                   <option value="29">水闸</option>
+			                   <option value="30">沉船</option>
+			                   <option value="31">礁石</option>
+			                   <option value="32">沉树</option>
+			                   <option value="33">鱼栅</option>
+			                   <option value="34">险恶地段</option>
+			                   <option value="35">碍锚地</option>
+			                </select>
+							<!-- <a id="searchBth" href="javascript:FeatureTool.search()" class="blue28" >搜索</a> -->
+	<!-- 	                	<form class="navbar-form navbar-right" id="feature_pagination"> -->
+	<!-- 	                    	<a class="btn btn-info disabled" href="javasript:;" id="feature_btn_prev">&lt;</a> -->
+	<!-- 	                        <a class="btn btn-info disabled" href="javasript:;" id="feature_btn_next">&gt;</a> -->
+	<!-- 	                    </form> -->
+						</div>
+		                <button type="button" class="btn btn-info" onClick="map.element.searchFeature()">搜索</button>
+		            </div>
+                </div>
+            </nav>
+            <div id="searchList" style="display: none">
+	            <div id="searchResult">
+	            </div>
+	            <ul class="pagination pagination-sm" id="searchPagination">
+				</ul>
+			</div>
+        	</div>
+        	
+        </div>
+        <div class="panel-footer text-center">
+        	<button type="button" class="btn btn-info" onClick="map.element.saveEditor()">保存</button>
+        	<button type="button" class="btn btn-default" onClick="map.element.closeEditor()">取消</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="dialog dialog-fix" id="dialog_location">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <button type="button" class="close" onClick="map.location.close()" onFocus="this.blur()">&times;</button>
+        	<div class="panel-title">地图定位</div>
+        </div>
+        <div class="panel-body">
+            <ul class="nav nav-tabs">
+                <li id="loc_tab_mileage"><a href="javasript:;">里程定位</a></li>
+                <li id="loc_tab_position"><a href="javasript:;">坐标定位</a></li>
+            </ul>
+            <form class="form-horizontal" id="loc_panel_mileage">
+                <div class="form-group">
+                    <label class="col col-sm-3 control-label">选择航道：</label>
+                    <div class="dropdown col col-sm-8" id="loc_cmb_waterway">
+                        <div class="input-group dropdown-toggle">
+                            <input type="text" class="form-control" placeholder="请选择航道" readonly />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default"><span class="caret"></span></button>
+                            </span>
+                        </div>
+                        <ul class="dropdown-menu"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col col-sm-3 control-label">选择航段：</label>
+                    <div class="dropdown col col-sm-8" id="loc_cmb_channel">
+                        <div class="input-group dropdown-toggle">
+                            <input type="text" class="form-control" placeholder="请选择航段" readonly />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default"><span class="caret"></span></button>
+                            </span>
+                        </div>
+                        <ul class="dropdown-menu"> </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col col-sm-3 control-label">里程值：</label>
+                    <div class="input-group col col-sm-8" id="loc_txt_mileage">
+                        <input type="text" class="form-control" placeholder="请输入里程值" />
+                        <span class="input-group-addon">公里</span>
+                    </div>
+                </div>
+            </form>
+            <form class="form-horizontal" id="loc_panel_position">
+                <div class="form-group">
+                    <label class="col col-sm-3 control-label" for="loc_txt_x">定位经度：</label>
+                    <div class="input-group col col-sm-8" id="loc_txt_x">
+                        <input type="text" class="form-control" placeholder="请输入定位经度" />
+                        <span class="input-group-addon">&deg;（度）</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col col-sm-3 control-label" for="loc_txt_y">定位纬度：</label>
+                    <div class="input-group col col-sm-8" id="loc_txt_y">
+                        <input type="text" class="form-control" placeholder="请输入定位纬度" />
+                        <span class="input-group-addon">&deg;（度）</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer text-center">
+        	<button type="button" class="btn btn-info" onClick="map.location.locate()">定位</button>
+        	<button type="button" class="btn btn-default" onClick="map.location.close()">取消</button>
+        </div>
+    </div>
+</div>
+
+<div class="dialog dialog-fix" id="dialog_viewmarks">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <button type="button" class="close" onClick="map.views.close()" onFocus="this.blur()">&times;</button>
+        	<div class="panel-title">视图标签</div>
+        </div>
+        <div class="panel-body">
+        	<ul class="list-group">
+            	<li class="list-group-item">
+                	<a href="javasript:;" class="list-group-item-heading">Dapibus ac facilisis in</a>
+                    <a href="javasript:;" class="btn btn-danger btn-xs pull-right">&mdash;</a>
+                </li>
+            	<li class="list-group-item">
+                	<a href="javasript:;" class="list-group-item-heading">Dapibus ac facilisis in</a>
+                    <a href="javasript:;" class="btn btn-danger btn-xs pull-right">&mdash;</a>
+                </li>
+            	<li class="list-group-item">
+                	<a href="javasript:;" class="list-group-item-heading">Dapibus ac facilisis in</a>
+                    <a href="javasript:;" class="btn btn-danger btn-xs pull-right">&mdash;</a>
+                </li>
+            </ul>
+        </div>
+        <div class="panel-footer text-center">
+        	<button type="button" class="btn btn-info" onClick="map.views.add()">新建</button>
+        	<button type="button" class="btn btn-default" onClick="map.views.close()">取消</button>
+        </div>
+    </div>
+</div>
+
+<div class="dialog" id="dialog_vm_new">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <button type="button" class="close" onClick="map.views.cancel()" onFocus="this.blur()">&times;</button>
+        	<div class="panel-title">新建视图标签</div>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="form-group" id="vm_txt_name">
+                    <label class="col col-sm-3 control-label">标签名称：</label>
+                    <div class="col col-sm-8" id="loc_panel_position">
+                        <input type="text" class="form-control" placeholder="请输入标签名称" maxlength="20" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer text-center">
+        	<button type="button" class="btn btn-info" onClick="map.views.save()">保存</button>
+        	<button type="button" class="btn btn-default" onClick="map.views.cancel()">取消</button>
+        </div>
+    </div>
+</div>
+
+<div class="dialog" id="dialog_plotting">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <button type="button" class="close" onClick="map.plotting.new.cancel()" onFocus="this.blur()">&times;</button>
+        	<div class="panel-title">标绘</div>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="form-group" id="vm_txt_name">
+                    <label class="col col-sm-3 control-label">标 题：</label>
+                    <div class="col col-sm-8" id="plo_txt_name">
+                        <input type="text" class="form-control" placeholder="请输入标题" maxlength="20" />
+                    </div>
+                </div>
+                <div class="form-group" id="plo_txt_content">
+                    <label class="col col-sm-3 control-label">内 容：</label>
+                    <div class="col col-sm-8" id="loc_panel_position">
+                    	<textarea class="form-control" placeholder="请输入内容" rows="4" maxlength="300"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer text-center">
+        	<button type="button" class="btn btn-info" onClick="map.plotting.new.save()">保存</button>
+        	<button type="button" class="btn btn-default" onClick="map.plotting.new.cancel()">取消</button>
+        </div>
+    </div>
+</div>
+
+<div id="mask_message"></div>
+<div class="dialog" id="dialog_message">
+    <div class="panel">
+        <div class="panel-heading">
+            <button type="button" class="close" onFocus="this.blur()">&times;</button>
+        	<div class="panel-title"></div>
+        </div>
+        <div class="panel-body">
+        </div>
+        <div class="panel-footer text-center">
+        	<button type="button" class="btn">确定</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

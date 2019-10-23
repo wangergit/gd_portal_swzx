@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7, IE=9">
+<title>广东省电子航道图政务外网公共服务网站</title>
+<link rel="shortcut icon" href="${res}/images/favicon.ico"/>
+<link type="text/css" rel="stylesheet" href="../assets/css/common.css" />
+<link type="text/css" rel="stylesheet" href="../assets/css/style.css" />
+<link href="../assets/css/inner.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="../assets/css/font-awesome.css" />
+<link href="../assets/css/css.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="../assets/css/bootstrap.css" />
+	<script>
+	var contextPath = '${site}';
+	</script>
+<script src="../assets/js/jquery.js"></script>
+<script src="../assets/js/jquery/jquery.validate.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/artDialog/artDialog.min.js"></script>
+<script src="../assets/js/common.js"></script>
+<link href="../assets/css/jquery.loadmask.css" rel="stylesheet" type="text/css">
+<script src="../public/service/js/service.js"></script>
+<script src="../public/service/js/page.js"></script>
+<script src="../assets/js/jquery/jquery.loadmask.js"></script>
+<script src="../assets/js/jquery/jquery.mask.js"></script>
+<style>
+.loadmask-msg div i{
+    cursor: wait;
+    font-size: 32px;
+}
+</style>
+</head>
+
+<body>
+[#if user ??]
+<script type="text/javascript">
+   var user ='';
+</script>
+[#else]
+<script type="text/javascript">
+   var user ='-1';
+</script>
+
+[/#if]
+<div class="headerBox">
+  <div class="header w960 clear">
+    <div class="header_left">广东省电子航道图政务外网公共服务网站</div>
+    <div class="header_right">
+      <ul>         
+             	  [#if user ??]
+					 <li><img src="../assets/images/dl1.png" /><a href="${site}/member/index.jspx">${user.username}</a></li>
+                     <li><img src="../assets/images/zc1.png" /><a href="${site}/logout.do">注销</a></li>
+				[#else]
+					 <li><img src="../assets/images/dl1.png" /><a href="login.jhtml">用户登录</a></li>
+          			 <li><img src="../assets/images/zc1.png" /><a href="register.jhtml">快速注册</a></li>
+				[/#if]
+      </ul>  
+    </div>
+  </div>
+    <div class="nav cf">
+        <ul>
+            <li><a href="../index.jsp">网站首页</a></li>
+            <li><a href="../public/news/news.jsp">公告信息</a></li>
+            <li><a href="../public/service/service.jsp">服务资源</a></li>
+            <li><a href="../comprehensive/index.jsp">综合应用</a></li>
+        </ul>
+        <div class="search_service">
+            <span class="topSearch">
+                <input type="hidden" value="hb" name="f">
+                <input type="text" class="topSearchTxt" name="world" id="txt_serach" value="请输入搜索内容" onfocus="if(value==defaultValue){value='';this.style.color='#000'}" onblur="if(!value){value=defaultValue;this.style.color='#999'}" style="color: rgb(153, 153, 153);" id="findtaskvalue">
+                <input type="button" value="" class="topSearchBtn"  id="btn_search" >
+            </span>
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="main clear">
+<div class="left">
+    <div class="left_list">
+        <div class="infoTil"><h3>服务分类</h3></div>
+        <div class="infoCon">
+            <ul>
+                <li><a href="javascript:chooseType(0,this);" class="service-type-choose" target="_blank" title="#">全部</a></li>
+                <li><a href="javascript:chooseType(1,this);" class="service-type-choose" fordata="1" target="_blank" title="#">数据服务</a></li>
+                <li><a href="javascript:chooseType(2,this);" class="service-type-choose" fordata="2" target="_blank" title="#">地图服务</a></li>
+                <li><a href="javascript:chooseType(4,this);" class="service-type-choose" fordata="4" target="_blank" title="#">地图符号服务</a></li>
+                <li><a href="javascript:chooseType(3,this);" class="service-type-choose" fordata="3"  target="_blank" title="#">文件下载服务</a></li>
+           </ul>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="right">
+
+
+<div class="breadcrumb-bar">
+  <div class="site"><img class="li"src="../assets/images/in_home.png" />您现在的位置：<a href="../index.jsp">首页</a> > <a href="../public/service/service.jsp">服务资源</a>
+
+  </div>
+  </div>
+ <div class="content clear">
+    <div class="inner-cont">
+      <ul class="interface" id="service_page">    
+      </ul>
+      <div id="dcms_pager" >
+      <div  id="div_gridTools" ></div>
+	</div>
+</div>
+
+    </div>
+    
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">申请服务</h4>
+		      </div>
+		      <div class="modal-body">
+		           <div class="form-group" style="height:50px;padding-top:20px; font-size:18px;;">
+						<div class="col-xs-12 col-sm-2"></div>
+						<input id="fid" type="hidden" value=""/>
+	
+						<div class="col-xs-12 col-sm-10">
+							<div class="clearfix">
+								<label style="font-weight: lighter">服务名称：</label>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="form-group" style="height:10px">
+						<div class="col-xs-12 col-sm-3"></div>
+
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<label id="name" style="font-size:15px"></label>
+							</div>
+						</div>
+					</div>
+					<div id="div_maprequest">
+						<div class="form-group" style="height:50px;padding-top:20px; font-size:18px;;">
+							<div class="col-xs-12 col-sm-2"></div>
+								<input id="fid" type="hidden" value=""/>
+
+								<div class="col-xs-12 col-sm-10">
+									<div class="clearfix">
+										<label style="font-weight: lighter">使用类型：</label>
+									</div>
+								</div>
+						</div>
+						<div class="form-group" style="height:10px">
+							<div class="col-xs-12 col-sm-3"></div>
+							<div class="col-xs-12 col-sm-9">
+								<div class="clearfix">
+								<select class="form-control"  id="client"   id="form-field-select-1">
+										<option value="referer">服务器地址</option>
+										<option value="ip">客户端IP</option>
+										<option value="requestip">请求IP</option>
+								</select>
+								<input type="text "  class="form-control"  id="referer"  placeholder="http://www.xxx.com or 192.168.0.1 "  />
+								</div>
+							</div>
+						</div>
+					</div>
+		      
+			         <div class="form-group" style="height:50px;padding-top:20px; font-size:18px;;">
+						<div class="col-xs-12 col-sm-2"></div>
+	
+						<div class="col-xs-12 col-sm-10">
+							<div class="clearfix">
+								<label style="font-weight: lighter">使用期限：</label>
+							</div>
+						</div>
+					</div>
+					
+					
+					<div class="form-group" style="height:50px">
+						<div class="col-xs-12 col-sm-3"></div>
+	
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								 <span class="input-icon input-icon-right"> <input  style="z-index:1000;position:relative;" 
+												type="text"   class="date-picker"
+												name="begin" id="applydate" data-date-format="yyyy-mm-dd"> <i
+												class="ace-icon fa fa-calendar blue"></i>
+								</span>
+							</div>
+						</div>
+					</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default"  style="height:35px" data-dismiss="modal">取消</button>
+		        <button type="button" class="btn btn-primary" style="height:35px" onclick="save()">提交申请</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+
+</div>
+
+   
+  </div>
+
+
+<div class="footer1"><span style="FONT-FAMILY: 宋体, SimSun">Copyright © 2016-2017 广东省航道事务中心 </span></div>
+<script type="text/javascript" src="../assets/js/date-time/bootstrap-datepicker.js"></script>
+
+</body>
+</html>

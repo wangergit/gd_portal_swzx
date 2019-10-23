@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+[#include "/sys/include/meta.html"/]
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body class="no-skin">
+
+	[#include "/sys/include/head.html"/]
+
+	<div class="main-container" id="main-container">
+
+		[#include "/sys/include/menu.html"/]
+
+		<div class="main-content">
+			<div class="main-content-inner">
+				<div class="page-content">
+
+					[#include "/sys/include/module.html"/]
+					<div class="row">
+						<!-- .col -->
+						<div class="col-xs-6 col-sm-3 left">
+							<div class="widget-box widget-color-blue2">
+								<div class="widget-header">
+									<h4 class="widget-title lighter smaller">模板列表</h4>
+									<button id="loading-btn" type="button" class="ace-icon fa fa-refresh" data-loading-text="Loading..."></button>
+								</div>
+
+								<div class="widget-body">
+									<div class="widget-main padding-8">
+										<ul id="newscolumnTree" class="ztree"></ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /.col -->
+						<div class="col-xs-6 col-sm-9">
+							<div class="table-header">模板编辑</div>
+							<form method="post" action="" id="jvForm"
+								class="formDefStyle" novalidate="novalidate">
+								<table width="100%" class="pn-ftable" cellpadding="2"
+									cellspacing="1" border="0">
+									<tbody>
+										<tr>
+										<td width="15%" class="pn-flabel pn-flabel-h">
+											 路径:
+												<span class="pn-frequired" id="span_filepath">\default\</span>
+										</td>
+										<td width="15%" class="pn-flabel pn-flabel-h">
+											<span
+												class="pn-frequired"></span> </td>
+											<td colspan="1" width="35%" class="pn-fcontent"><input
+												type="text" maxlength="100" id="filename" name="filename" class="required"
+												size="30"> </td>
+												<td colspan="4" class="pn-fbutton">
+												<input type="hidden"
+												name="filepath" id="filepath" value="\default\"> <input
+													type="button"  id="btn_submit" value="提交" class="submit"><input
+														type="reset" value="重置" class="cancel"></td>
+										</tr>
+										<tr>
+											<td colspan="5" class="pn-fbutton"><textarea id="source"
+													wrap="off" name="source"
+													style="width: 100%; height: 540px; color: #1a1a1a; font-size: 14px;"
+													maxlength="1232896"></textarea></td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row -->
+
+					<!-- PAGE CONTENT ENDS -->
+
+				</div>
+				<!-- /.page-content -->
+			</div>
+		</div>
+		<!-- /.main-content -->
+
+		[#include "/sys/include/footscript.html"/]
+	</div>
+	<!-- /.main-container -->
+
+</body>
+<link rel="stylesheet" type="text/css"
+	href="${site}/assets/js/zTree/css/zTreeStyle/zTreeStyle.css" />
+<script type="text/javascript"
+	src="${site}/assets/js/zTree/js/jquery.ztree.core-3.5.js"></script>
+<script type="text/javascript" src="${site}/sys/js/template.js"></script>
+</html>

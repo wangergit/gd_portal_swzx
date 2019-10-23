@@ -1,0 +1,36 @@
+<nav class="navbar navbar-default">
+	<p class="navbar-text">共${listInfo.page.total}条数据</p>
+[#if listInfo.page.total > 0]
+	<ul class="nav navbar-nav navbar-right pagination">
+	[#if listInfo.page.current > 1]
+		[#if type ??]
+    	<li><a href="${site}/${channelPath}/${type}/${pageName}_${listInfo.page.current-1}.jhtml">上一页</a></li>
+		[#else]
+    	<li><a href="${site}/${channelPath}/${pageName}_${listInfo.page.current-1}.jhtml">上一页</a></li>
+		[/#if]
+	[#else]
+    	<li class="disabled"><a href="javasript:;">上一页</a></li>
+	[/#if]
+	[#list listInfo.page.begin..listInfo.page.end as t]
+		[#if listInfo.page.current==t]
+    	<li class="active"><a href="javasript:;">${t}</a></li>
+		[#else]
+			[#if type ??]
+    	<li><a href="${site}/${channelPath}/${type}/${pageName}_${t}.jhtml">${t}</a></li>
+			[#else]
+    	<li><a href="${site}/${channelPath}/${pageName}_${t}.jhtml">${t}</a></li>
+			[/#if]
+		[/#if]
+	[/#list]
+	[#if listInfo.page.pageCount > listInfo.page.current]
+		[#if type ??]
+    	<li><a href="${site}/${channelPath}/${type}/${pageName}_${listInfo.page.current+1}.jhtml">下一页</a></li>
+		[#else]
+    	<li><a href="${site}/${channelPath}/${pageName}_${listInfo.page.current+1}.jhtml">下一页</a></li>
+		[/#if]
+	[#else]
+    	<li class="disabled"><a href="javasript:;">下一页</a></li>
+	[/#if]
+    </ul>
+[/#if]
+</nav>

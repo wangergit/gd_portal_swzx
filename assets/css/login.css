@@ -1,0 +1,32 @@
+.login { background:#60b3f7 url(../images/bg.gif) repeat-x;overflow-x:hidden; }
+.login .wrapper { width:1000px;margin:0 auto;background:url(../images/loginbg.png) center top;width:725px;height:552px; }
+.login .wrapper .logincontent { padding:100px 0 0; }
+.login .wrapper .logincontent .logintitle img { display:block;width:578px;margin:0 auto; }
+.login .wrapper .logincontent .loginbox { width:602px;height:196px;background:url(../images/loginboxbg.png) no-repeat;margin:50px auto;padding:20px 0 0 16px;  }
+.login .wrapper .logincontent .loginbox .logincon { width:526px;height:139px;background:url(../images/loginconbg.png) no-repeat;border-radius:5px;padding:40px 0 0 60px; }
+.login .wrapper .logincontent .loginbox .logincon .lefttext { width:370px;float:left; }
+.login .wrapper .logincontent .loginbox .logincon .lefttext .inputitem { font-size:14px;font-weight:normal;font-family:'微软雅黑';color:#004594;margin:0 0 25px 0; }
+.login .wrapper .logincontent .loginbox .logincon .lefttext .inputitem .ti1 { width:60px;display:inline-block;text-align:right;padding:0 6px 0 0; }
+.login .wrapper .logincontent .loginbox .logincon .lefttext .inputitem input { width:258px;height:30px;border:1px solid #7bb9ff;border-radius:3px;padding:0 0 0 5px; }
+.login .wrapper .logincontent .loginbox .logincon .rightbtn { width:85px;float:left;margin:8px 0 0; }
+.login .wrapper .logincontent .loginbox .logincon .rightbtn a { display:block;width:85px;height:75px;line-height:75px;color:#fff;text-align:center;background:url(../images/loginbtn.gif) no-repeat;cursor:pointer;text-decoration:none; }
+.login .footer { width:100%;font-size:14px;color:#fff;position:absolute;bottom:30px; }
+.login .footer p { text-align:center; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

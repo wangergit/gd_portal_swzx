@@ -1,0 +1,28 @@
+<!-- 头部 -->
+<nav class="navbar navbar-default navbar-static-top" id="header">
+	<div class="container-fluid">
+    	<div class="navbar-header">
+        	<a class="navbar-brand">航道业务管理平台</a>
+        </div>
+        
+        <form class="navbar-form navbar-right">
+			<a class="btn btn-primary" href="../syslogin.jspx"><span class="imgicon imgicon-config"></span></a>
+[#if user ??]
+            <button type="button" class="btn btn-primary btn-login" id="profile_btn"><span class="imgicon imgicon-profile"></span>${user.username}<span class="caret"></span></button>
+[#else]
+            <a class="btn btn-primary" href="${site}/login.jhtml">用户登录</a>
+[/#if]
+        </form>
+        
+        <ul class="nav navbar-nav navbar-right">
+[#list channelList as c]
+	[#if c.id == channel.id ]
+        	<li class="active"><a href="javasript:;">${c.name}</a></li>
+	[#else]
+            <li><a href="${c.path}">${c.name}</a></li>
+	[/#if]
+[/#list]
+        </ul>
+        
+    </div>
+</nav>

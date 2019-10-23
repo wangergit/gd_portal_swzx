@@ -1,0 +1,532 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>电子航道图政务服务平台</title>
+<link rel="icon" href="${res}/images/favicon.ico" type="image/x-icon"/>
+<link href="${res}/css/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+#addPlottingModal table {
+	border-collapse: separate !important;
+	border-spacing: 3px !important;
+}
+#addPlottingModal input[type="text"], #addPlottingModal textarea {
+	width: 220px;
+}
+#addPlottingModal input[type="button"] {
+	padding-top: 3px;
+	padding-left: 8px;
+	padding-bottom: 3px;
+	border: 1px solid #666666;
+	padding-right: 8px;
+}
+</style>
+<link type="text/css" rel="stylesheet" href="../assets/css/jquery.loadmask.css"/>
+<script type="text/javascript" src="${res}/js/jquery.min.js"></script>
+<script type="text/javascript" src="${res}/js/nicescroll.js"></script>
+<script type="text/javascript" src="${res}/js/jquery-ui.js"></script>
+<script type="text/javascript" src="../assets/js/jquery/jquery.loadmask.js"></script>
+<script type="text/javascript">
+var jsPath = "${res}";
+</script>
+<!-- 
+-->
+<script type="text/javascript" src="${res}/js/jquery-ht.js"></script>
+<script type="text/javascript" src="${res}/js/app.js"></script>
+<script type="text/javascript" src="${res}/js/FeatureAttrs.js"></script>
+<script type="text/javascript" src="${res}/js/jquery.cookie.js"></script>
+<script type="text/javascript">
+$(function(){	
+	$(".nav li a").click(function(){
+		$(".nav li a.selected").removeClass("selected")
+		$(this).addClass("selected");
+	})	
+})	
+var resPath = '${res}';
+var contextPath ='${site}'
+</script>
+</head>
+<body>
+
+<div class="wrap">
+
+    <div id="Header">
+    
+        <div class="topleft"><a href="#"></a>电子航道图政务服务平台</div>
+        
+        <div class="topright">
+          <ul>
+          
+          
+            [#if user ??]
+				<li class="login"><a href="${site}/member/index.jspx">${user.username}</a></li>
+				<li class="registered"><a href="${site}/logout.do">注销</a></li>
+				
+			[#else]
+				<li class="login"><a href="${site}/login.jhtml">用户登录</a></li>
+				<li class="registered"><a href="${site}/register.jhtml">快速注册</a></li>
+			[/#if]
+           
+          </ul>  
+        </div>
+    </div>
+    <div id="Main">
+        <div class="place clearfix">
+            <div class="menu">
+  				[#list channelList as c]
+			       	<div class="stmenu fl navli">
+					<h3 class="yiji">
+						<a class="xialaguang checked" href="${c.path}"><span>${c.name}</span></a>
+					</h3>
+					<div class="mapsubull">
+						<ul class="children mapsubul">
+						[#if c.children ??]
+						   [#list c.children as c1]
+						   <li class="erji"><a href="${c1.path}" target="_parent">${c1.name}</a></li>
+						   [/#list]
+					   [/#if]
+						</ul>
+					</div>
+					</div>
+			     [/#list]    
+            </div>
+         
+<script type="text/javascript"> $(".place .navli:last h3").css("background","none");
+$('.place .menu > .stmenu').hover(function(){
+  if( $(this).find('.mapsubull ul li').length==0)
+{
+ $(this).find('.mapsubull').hide();
+}else{
+  $(this).find('.mapsubull').css('display', 'block');}
+  $(this).find('.xialaguang').addClass('navhover');
+}, function() {
+  $('.mapsubull').css('display', 'none');
+  $('.xialaguang').removeClass('navhover');
+ 
+});
+
+</script>
+            
+            <ul class="ribbon" id="jq_topmenu">
+                [#if user ?? ]
+                    [#if user.featureedit ?? ]
+	                <li><a href="#" onclick="TopMenu.editFeature()"><img src="${res}/images/editfeature.png" title="要素编辑"  /></a></li>
+	                [/#if]
+	            [/#if]
+                <li>
+                  <a href="#" onclick="TopMenu.search()">
+                     <img src="${res}/images/1.png" title="搜索" />
+                 </a>
+                </li>
+                <li><a href="#" onclick="TopMenu.zoomFull()"><img src="${res}/images/all.png" title="全局视图"  /></a></li>
+                <li><a href="#" onclick="TopMenu.zoomPrev()"><img src="${res}/images/p.png" title="后退"  /></a></li>
+                <li><a href="#" onclick="TopMenu.zoomNext()"><img src="${res}/images/n.png" title="前进"  /></a></li>
+                <li><a href="#" onclick="TopMenu.zoomIn()"><img src="${res}/images/2.png" title="放大"  /></a></li>
+                <li><a href="#" onclick="TopMenu.zoomOut()"><img src="${res}/images/3.png" title="缩小" /></a></li>
+                <li><a href="#" onclick="TopMenu.roam()"><img src="${res}/images/4.png"  title="漫游"/></a></li>
+                <li><a href="#" onclick="TopMenu.mileage()"><img src="${res}/images/10.png"  title="定位"/></a></li>
+                [#if user ??]
+                <li><a href="#" onclick="TopMenu.bookMark()"><img width="20px" height="20px" src="${res}/images/i_bookmark3.png"  title="视图标签"/></a></li>
+                [/#if]
+                <li><a href="#" onclick="TopMenu.export()"><img src="${res}/images/5.png" title="导出图片" /></a></li>
+                <li><a href="#" onclick="TopMenu.print()"><img src="${res}/images/6.png"  title="打印"/></a></li>
+                <li class="cd"><a href="#"><img src="${res}/images/7.png"  title="测量"/></a>
+                   <div class="jq_hidebox w50">                       
+                        <span><a href="#" onclick="TopMenu.Measure.length()">测距</a></span>
+                        <span><a href="#" onclick="TopMenu.Measure.area()">测面</a></span>
+                        <span><a href="#" onclick="TopMenu.Measure.clear()">清除</a></span>
+                    </div>
+                </li>
+                <li class="cd"><a href="#"><img src="${res}/images/8.png" title="标绘"/></a>
+                     <div class="jq_hidebox w100">
+                        <span><a href="#" onclick="TopMenu.Plotting.showAll()">显示公共标绘</a></span> 
+                [#if user ??]
+                        <span><a href="#" onclick="TopMenu.Plotting.showSelf()">显示我的标绘</a></span> 
+                        <span><a href="#" onclick="TopMenu.Plotting.addPoint()">添加标绘点</a></span>
+                        <span><a href="#" onclick="TopMenu.Plotting.addLine()">添加标绘线</a></span>
+                        <span><a href="#" onclick="TopMenu.Plotting.addArea()">添加标绘面</a></span>
+                        <span><a href="#" onclick="TopMenu.Plotting.addCircle()">添加标绘圆</a></span>
+                        <span><a href="#" onclick="TopMenu.Plotting.addSquare()">添加标绘矩形</a></span>
+                [/#if]
+                        <span><a href="#" onclick="TopMenu.Plotting.clear()">清除标绘</a></span> 
+                    </div>
+                </li>
+                <li class="cd"><a href="#"><img src="${res}/images/9.png" title="图层"/></a>                
+                    <div id="layers" class="jq_hidebox w150 leftTxt" style="display: none;">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    
+        <div class="leftNav" id="mian_leftNav">
+        	<div class="seach clearfix"><input id="q" name="q" onblur="if (value ==''){value='请输入搜索的内容'}" onfocus="if (value =='请输入搜索的内容'){value =''}" type="text" value="请输入搜索的内容" />
+                <div class="jsSelect" id="Select">
+                  <ul>
+					<li class="s">全部</li>
+					<li>全部</li>
+					<li>航标</li>
+					<li>桥梁</li>
+					<li>公共航道</li>
+					<li>航道部门</li>
+					<li>过河线缆</li>
+					<li>架空线缆</li>
+					<li>架空管道</li>
+					<li>过河管道</li>
+					<li>索道</li>
+					<li>浮码头</li>
+					<li>固定码头</li>
+					<li>简易固定码头</li>
+					<li>船闸</li>
+					<li>升船机</li>
+                  </ul>
+                </div>
+            <button name="button" type="button" id="btn_search" value=""></button>
+            
+            </div>
+			<div id="leftCon">
+            
+         	</div>
+            
+        </div>
+    
+    
+        <div class="rightMap"> 
+<!--             <div id="FullScreen" title="展开左栏" onclick="setting()"  class="InlineNone"></div> -->
+              <div id="div_iframe" class="mainindex">
+            	<iframe width="100%" height="100%"   frameborder="0"  title="电子航道图"   id="wmstmap" name="wmstmap" src="../map/map.html"></iframe>
+            
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".DetailBtn").click(function(){
+  $(".tip").fadeIn(200);
+  });
+  
+  $(".tiptop a").click(function(){
+  $(".tip").fadeOut(200);
+});
+
+  $(".sure").click(function(){
+  $(".tip").fadeOut(100);
+});
+
+  $(".cancel").click(function(){
+  $(".tip").fadeOut(100);
+});
+
+});
+</script>
+    
+</div>
+
+<script type="text/javascript">
+$('#div_iframe').css("width",($(document).width()-273)+"px");
+ function getViewSize() {
+	return {
+		"w": window['innerWidth'] || document.documentElement.clientWidth,
+		"h": window['innerHeight'] || document.documentElement.clientHeight
+	}
+}
+function setContainerSize() {
+	size = getViewSize();
+    $(".map").width(size["w"]);
+	var offheight = 128;
+	
+	$("iframe,.map,.icon,.left,.have").height(size["h"]-offheight);
+    if(size["w"]<1024){
+	$('html,body,.map').width(1024);
+    $('html,body').css('overflowX','auto');
+	}
+	else{
+	$('html,body,.map').width(size["w"]);
+    $('html,body').css('overflowX','hidden');
+
+	}
+}
+ setContainerSize();
+ window.onresize=setContainerSize;
+ $('.icon p').toggle(function(){
+  $('.left').hide();
+  $('.icon').addClass("icon2");
+  $('.mapsh').addClass("mapsh2");
+  $('#div_iframe').css("width","100%");
+},
+function(){
+  $('.left').show();
+  $('.icon').removeClass("icon2");
+  $('.mapsh').removeClass("mapsh2");
+  $('#div_iframe').css("width",($(document).width()-273)+"px");
+}
+)
+
+docment_height = window['innerHeight'] || document.documentElement.clientHeight;
+// 	var main_content = $("#mian_leftNav");
+// 	main_content.css("height",(docment_height - 128)+'px');
+
+</script>
+ <script type="text/javascript">
+var wmstmap=window.frames[0];	
+
+$('#div_iframe').css("width",($(document).width()-278)+"px");
+ function getViewSize() {
+	return {
+		"w": window['innerWidth'] || document.documentElement.clientWidth,
+		"h": window['innerHeight'] || document.documentElement.clientHeight
+	}
+}
+function setContainerSize() {
+	size = getViewSize();
+    $(".map").width(size["w"]);
+	var offheight = 133;
+	
+	$("iframe,.map,.icon,.left,.have").height(size["h"]-offheight);
+    if(size["w"]<1024){
+	$('html,body,.map').width(1024);
+    $('html,body').css('overflowX','auto');
+	}
+	else{
+	$('html,body,.map').width(size["w"]);
+    $('html,body').css('overflowX','hidden');
+    $('html,body').css('overflowY','hidden');
+
+	}
+    var pwidth = $("#div_iframe").parent().width();
+    $("#div_iframe").width(pwidth);
+	docment_height = window['innerHeight'] || document.documentElement.clientHeight;
+// 	var main_content = $("#mian_leftNav");
+// 	main_content.css("height",(docment_height - 128)+'px');
+}
+ setContainerSize();
+
+ $('.icon p').toggle(function(){
+  $('.left').hide();
+  $('.icon').addClass("icon2");
+  $('.mapsh').addClass("mapsh2");
+  $('#div_iframe').css("width","100%");
+ },function(){
+  $('.left').show();
+  $('.icon').removeClass("icon2");
+  $('.mapsh').removeClass("mapsh2");
+  $('#div_iframe').css("width",($(document).width()-273)+"px");
+ })
+
+</script>
+<style type="text/css">
+.searchFeature{cursor: pointer; float: right; margin-right: 20px; color: blue; font-weight: normal;}
+</style>
+<div class="modal-dialog" id="editFeatureModal" style="display: none;" role="document">
+    <div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				onclick="FeatureTool.hide()" aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			<h4 class="modal-title">
+				编辑要素
+				<div style="display: inline-block;" id="featuers">
+					<a href="javascript:FeatureTool.fillPrevFeature();"><img src="${res}/images/left.png" style="height: 16px;" /></a> 
+					<a href="javascript:FeatureTool.fillNextFeature();"><img src="${res}/images/right.png" style="height: 16px;" /></a>
+				</div>
+				<a id="searchin" href="javascript:FeatureTool.showSearch();" class="searchFeature">查询要素 </a>
+			</h4>
+		</div>
+		<div class="modal-container">
+			<div class="modal-body" style="height: 300px;overflow: auto;">
+				<form id="featureForm" method="post" action="#">
+				  <table cellspacing="3" cellpadding="0" border="0">
+				     <tr><td>加载中...</td></tr>
+		          </table>
+				</form>
+	        </div>
+	        <div class="modal-foot">
+	            <div>
+	                <input type="button" value="保 存" onclick="FeatureTool.updateFeatures()" />
+	                <input type="button" value="取 消" onclick="FeatureTool.hide()" />
+	            </div>
+	        </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-dialog" id="searchFeatureModal" style="display: none; width: 460px;" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" onclick="FeatureTool.hideSearch()"aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">要素查询</h4>
+          	
+        </div>
+        <div class="modal-body">
+            <div>
+                <p class="register_info_line">
+	                <input type="text" id="searchName" class="input"/>
+	                <select id="searchType" style="height: 26;line-height: 26px;">
+	                   <option value="1">航段</option>
+	                   <option value="2">船闸</option>
+	                   <option value="3">水位</option>
+	                   <option value="4">视频</option>
+	                   <option value="5">机构</option>
+	                   <option value="6">桥梁</option>
+	                   <option value="7">架空线缆</option>
+	                   <option value="8">架空管道</option>
+	                   <option value="9">过河管道</option>
+	                   <option value="10">过河线缆</option>
+	                   <option value="11">拦河坝</option>
+	                   <option value="12">水闸</option>
+	                   <option value="13">船厂</option>
+	                   <option value="14">取排水口</option>
+	                   <option value="15">抽排水站</option>
+	                   <option value="16">浮码头 </option>
+	                   <option value="17">简易固定码头</option>
+	                   <option value="18">固定码头</option>
+	                   <option value="19">浮船坞</option>
+	                   <option value="20">干船坞</option>
+	                   <option value="21">部门</option>
+	                </select>
+	                <a id="searchBth" href="javascript:FeatureTool.search()" class="blue28" >搜索</a>
+	                <!-- <button type="button">搜索</button> -->
+                </p>
+            </div>
+            <hr />
+            <div id="searchResult" style="height: 240px;overflow: auto;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-dialog" id="myModal" style="display: none;left:25%;" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" onclick="MileageTool.hide()"aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title" id="myModalLabel" > 
+            	<a class="title_modal title_modal_bottom" href="javascript:void(0);" toggle="#div_modal_mileage" >里程定位 </a> &nbsp; &nbsp;&nbsp;
+           	 	<a href="javascript:void(0);" toggle="#div_modal_position" class="title_modal" style="cursor: pointer;">坐标定位 </a>
+            </h4>
+        </div>
+        <div class="modal-body" id="div_modal_mileage">
+            <ul class="serviceBox">
+                <li class="clearfix"><label>选择航道：</label>
+                    <div class="dataBox">
+                    <select class="form-control" id="select_nc">
+                        <option>请选择航道</option>
+                    </select>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label>选择航段：</label>
+                    <div class="dataBox">
+                        <select class="form-control" id="select_ns">
+                        	<option value="-1">请选择航段</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="clearfix"><label>输入里程值：</label>
+                <input class="form-control input_number" id="txt_mileage"  maxlength="4" type="text" /></li>
+                <li class="clearfix"><label>定位：</label>
+                <a class="icon16" href="javascript:MileageTool.position();"><img src="${res}/images/hs/icons_02.png" /></a></li>
+            </ul>
+        </div>
+        
+         <div class="modal-body modal-body-position" style="display: none" id="div_modal_position" >
+            <ul class="serviceBox">
+                <li class="clearfix"><label>定位经度：</label>
+                    <div class="dataBox">
+                      <input class="form-control input_number" id="txt_position_x"  maxlength="20" type="text"/>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label>定位纬度：</label>
+                    <div class="dataBox">
+                        <input class="form-control input_number" id="txt_position_y"  maxlength="20" type="text"/>
+                    </div>
+                </li>
+                
+                <li class="clearfix"><label>定位：</label>
+                <a class="icon16" href="javascript:PositionTool.position();"><img src="${res}/images/hs/icons_02.png" /></a></li>
+            </ul>
+        </div>
+        
+    </div>
+</div>
+
+<div class="modal-dialog" id="addPlottingModal" style="display: none" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">标绘</h4>
+        </div>
+        <div class="modal-body">
+          <table cellspacing="3" cellpadding="0" border="0">
+            <tr>
+              <th>标 题:</th>
+              <td><input class="form-control" id="graphic_title" type="text" value="" maxlength="20" /></td>
+            </tr>
+            <tr>
+              <th>内 容:</th>
+              <td><textarea class="form-control" id="graphic_content" maxlength="300"></textarea></td>
+            </tr>
+            <tr>
+              <td colspan="2"><table cellspacing="5" cellpadding="0" border="0" width="100%"><tr align="center">
+                <td><input type="button" value="保 存" onclick="TopMenu.Plotting.addSave()" /></td>
+                <td><input type="button" value="取 消" onclick="TopMenu.Plotting.addCancel()" /></td>
+              </tr></table></td>
+            </tr>
+          </table>   
+        </div>
+    </div>
+</div>
+
+
+<div class="modal-dialog" id="myBookMarkModal"  style="display: none" role="document">
+    <div class="modal-content" style="width: 370px;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" onclick="BookMarkTool.hide()"aria-label="Close"><span aria-hidden="true">×</span></button>
+              <h4 class="modal-title" id="myModalLabel">视图标签 
+               		<img id="img_bookmarkadd"   style="cursor:pointer" onclick="BookMarkTool.showAddPannel()" width="20px" height="20px" src="${res}/images/i_bookmark_add.png" /> 
+               		<img id="img_bookmarklist" style="cursor:pointer;display: none;"  onclick="BookMarkTool.showListPannel()"  width="20px" height="20px" src="${res}/images/i_bookmark.png" /> 
+              </h4>
+        </div>
+        <div class="modal-body" id="div_bookmarklist">
+            <ul class="bookmarks" id="bookmarks">
+                
+            </ul>
+        </div>
+         <div class="modal-body" id="div_bookmarktitle" style="display: none">
+            <ul class="serviceBox"  >
+                <li class="clearfix"><label>标签名称：</label>
+                <input class="form-control" id="txt_title" maxlength="20" type="text"><input type="button" onclick="BookMarkTool.add()" value="保存"/></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="mapToolBox">
+  		 <img  src="${res}/images/search.png" title="打开工具箱" alt="打开工具箱" id="img_toolbox"  />
+</div>
+
+<div class="modal-dialog"  style="display: none" id="infoModal-table"   role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" onclick="SearchTool.grapicHide('#infoModal-table');" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title" id="myModalLabel">详细信息</h4>
+        </div>
+        <div class="modal-body">
+        <form id="form_beacon">
+		<table class="tableBox w400" id="table-info" cellspacing="0" cellpadding="0" border="1">
+		    <tbody>
+ 
+		    </tbody>
+		</table>    
+		</form>        
+        </div>
+    </div>
+</div>
+
+
+ 
+<script src="${site}/h.js?channel=${channel.path}&id=index"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+
+	<aop:aspectj-autoproxy />
+
+	<!--通知spring使用cglib而不是jdk的来生成代理方法 AOP可以拦截到Controller -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+
+	<!-- 系统服务组件的切面Bean -->
+	<context:component-scan base-package="com.ienc.commons.logger.**" />
+<!-- 	<bean id="serviceAspect" class="com.ienc.common.logger.SystemLogAspect" /> -->
+	<!-- AOP配置 -->
+<!-- 	<aop:config>
+		声明一个切面,并注入切面Bean,相当于@Aspect
+		<aop:aspect id="simpleAspect" ref="serviceAspect">
+			配置一个切入点,相当于@Pointcut
+			<aop:pointcut expression="execution(* com.ienc.commons.logger.Test..*(..))" id="simplePointcut" />
+			配置通知,相当于@Before、@After、@AfterReturn、@Around、@AfterThrowing
+			<aop:before pointcut-ref="simplePointcut" method="before" />
+			<aop:after pointcut-ref="simplePointcut" method="after" />
+			<aop:after-returning pointcut-ref="simplePointcut" method="afterReturn" />
+			<aop:after-throwing pointcut-ref="simplePointcut" method="afterThrow" throwing="ex" />
+		</aop:aspect>
+	</aop:config> -->
+
+
+
+</beans>

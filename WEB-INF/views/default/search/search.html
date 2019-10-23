@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>电子航道图政务服务平台</title>
+<link rel="stylesheet" type="text/css" href="${res}/css/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="${res}/css/skin.css" />
+<link rel="stylesheet" type="text/css" href="${res}/css/gdww.css" />
+<script type="text/javascript" src="${res}/js/jquery-ui.js"></script>
+<script type="text/javascript" src="${res}/js/gdww.js"></script>
+</head>
+<body>
+[#include "../include/header.html"/]
+   <!--内容--> 
+   <div class="l_second clearfix"> 
+
+
+        <div class="l_second_right fr column search">
+            <div class="mod_list portlet"> 
+                <div class="mod_list_tit">搜索结果  </div> 
+                    <div id="ContentPane">
+                    
+                    	<!--没有找到搜索内容-->
+                        <div class="result" id="result">
+                            <span id="correct_box"></span>
+                            <div class="noresult">
+                            	<h4>“<span>${wd}</span>” 找到相关文章${result.page.total}篇</h4>
+                            </div>
+                            <div id="nav_result_container"></div>
+<!--                             <div class="noresult"> -->
+<!--                                 <h4>未找到和“<span>1213213123123123</span>”相关的新闻。</h4> -->
+<!--                                 <p>建议您：</p> -->
+<!--                                 <ul> -->
+<!--                                     <li>简化字词继续查询</li> -->
+<!--                                     <li>检查输入的文字是否有误</li> -->
+<!--                                 </ul> -->
+<!--                             </div> -->
+                        </div>   
+                    
+                    
+                    
+               		[#list result.data as infos]
+							
+						<div class="box-result clearfix" data-sudaclick="blk_result_index_2">
+                            <h3><a href="#" target="_blank">${infos.title}</a><span class="fgray_time">${infos.newsdate?string("yyyy-MM-dd")}</span></h3>
+<!--                             <p class="content">广东省电子航道图<span style="color:#ca4f4f">政务</span>外网公共服务网站公告信息内容列表广东省电子航道图政务外网公共服务网站公告信息内容列表广东省电子航道图政务外网公共服务网站公告信息内容列表广东省电子航道图政务外网公共服务网站公告信息内容列表广东省电子航道图政务外网公共服务网站公告信息内容列</p> -->
+                        </div> 
+ 					[/#list]
+                    
+                                       
+		                                
+                                         
+                        
+                        
+                        
+                        
+                        
+                       <div class="page clearfix">
+						<div class="i_m_bd">
+						    [#if result.page.total>0]
+							    [#if result.page.current>1]
+									<a class="lm_a" href="${site}/search/search.jhtml?tp=${tp}&wd=${wd}&pn=${result.page.current-1}">&lt;&nbsp;&nbsp;上一页</a> 
+								[/#if]
+								[#list result.page.begin..result.page.end as t]
+									 	 [#if result.page.current==t]
+									 	 	<span>&nbsp;&nbsp;</span>
+											<font class="NormalRed">${t}</font>
+										 [#else]
+										 	<span style="width: 5px; display: inline-block;"></span> 
+											<a	class="pagingNormal" href="${site}/search/search.jhtml?tp=${tp}&wd=${wd}&pn=${result.page.current-1}">${t}</a> 
+									 	 [/#if]
+								[/#list]
+								 
+								<span	style="width: 5px; display: inline-block;"></span>
+								 [#if result.page.pageCount > result.page.current]
+									<a class="lm_a" href="${site}/search/search.jhtml?tp=${tp}&wd=${wd}&pn=${result.page.current+1}">下一页&nbsp;&nbsp;&gt;</a> 
+								[/#if]
+							[/#if]
+							 
+						</div>
+					</div>
+					
+					
+					</div> 
+                </div>
+			</div> 
+        </div>
+   
+   
+   
+        <div class="rxd_footer">
+            <div class="footer_botm clearfix">
+                <p class="foot14"><a target="_blank" href="#">版权声明</a>　|　<a target="_blank" href="#">联系我们</a>　|　<a target="_blank" href="#">网站地图</a></p>
+                <p>地址：广州市沿江中路195号　　邮编：510000　　版权所有：广东省航道事务中心　　粤ICP备14027536号</p>
+                <p></p>
+            </div>
+        </div>
+
+
+</body>
+</html>

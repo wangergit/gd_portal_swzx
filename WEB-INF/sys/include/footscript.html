@@ -1,0 +1,92 @@
+	<div class="footer">
+		<div class="footer-inner">
+			<!-- #section:basics/footer -->
+			<div class="footer-content">
+				<span class="bigger-120">
+					<span class="blue bolder">广东省航道事务中心GIS公共服务平台后台管理系统</span>
+					广东省航道事务中心 &copy; 2015-2016
+				</span>
+			</div>
+
+			<!-- /section:basics/footer -->
+		</div>
+	</div>
+
+	<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+		<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+	</a>
+
+
+	<!-- basic scripts -->
+
+	<!--[if !IE]> -->
+	<script type="text/javascript">
+		window.jQuery || document.write("<script src='${site}/assets/js/jquery.js'>"+"<"+"/script>");
+		var contextpath='${site}';
+	</script>
+
+	<!-- <![endif]-->
+
+	<!--[if IE]>
+	<script type="text/javascript">
+	 window.jQuery || document.write("<script src='${site}/assets/js/jquery1x.js'>"+"<"+"/script>");
+	</script>
+	<![endif]-->
+	<script type="text/javascript">
+		if('ontouchstart' in document.documentElement) document.write("<script src='${site}/assets/js/jquery/jquery.mobile.custom.js'>"+"<"+"/script>");
+	</script>
+	<script src="${site}/assets/js/bootstrap.min.js"></script>
+
+	<!-- page specific plugin scripts -->
+    <script src="${site}/assets/js/dataTables/jquery.dataTables.min.js"></script>
+	<script src="${site}/assets/js/dataTables/jquery.dataTables.bootstrap.min.js"></script>
+	<script src="${site}/assets/js/dataTables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+	<script src="${site}/assets/js/dataTables/extensions/ColVis/js/dataTables.colVis.min.js"></script>
+	<script src="${site}/assets/js/jquery/jquery.validate.js"></script>
+	<script src="${site}/assets/js/jquery/jquery.formFill.js"></script>
+	<script src="${site}/assets/js/jquery/jquery-form.js"></script>
+	<script src="${site}/assets/js/jquery/jquery.maskedinput.js"></script>
+	<script src="${site}/assets/js/artDialog/artDialog.min.js"></script>
+	<script src="${site}/assets/js/plugin/spin.js"></script>
+	<script src="${site}/assets/js/plugin/bootbox.js"></script>
+	<script src="${site}/assets/js/jquery/jquery.gritter.js"></script>
+	<script src="${site}/assets/js/jquery/jquery.mask.js"></script>
+	<script src="${site}/assets/js/jquery/jquery.loadmask.js"></script>
+	<script src="${site}/assets/js/common.js"></script>
+
+	<!-- ace scripts -->
+	<script src="${site}/assets/js/ace-elements.min.js"></script>
+	<script src="${site}/assets/js/ace.min.js"></script>
+	
+	<!-- inline scripts related to this page -->
+	<script type="text/javascript">
+		jQuery(function($) {
+		   $('#sidebar2').insertBefore('.page-content');
+		   
+		   $('.navbar-toggle[data-target="#sidebar2"]').insertAfter('#menu-toggler');
+		   
+		   
+		   $(document).on('settings.ace.two_menu', function(e, event_name, event_val) {
+			 if(event_name == 'sidebar_fixed') {
+				 if( $('#sidebar').hasClass('sidebar-fixed') ) {
+					$('#sidebar2').addClass('sidebar-fixed');
+					$('#navbar').addClass('h-navbar');
+				 }
+				 else {
+					$('#sidebar2').removeClass('sidebar-fixed')
+					$('#navbar').removeClass('h-navbar');
+				 }
+			 }
+		   }).triggerHandler('settings.ace.two_menu', ['sidebar_fixed' ,$('#sidebar').hasClass('sidebar-fixed')]);
+		})
+	</script>
+
+	<!-- inline scripts related to this page -->
+
+	<!-- the following scripts are used in demo only for onpage help and you don't need them -->
+	<link rel="stylesheet" href="${site}/assets/css/ace.onpage-help.css" />
+	<script type="text/javascript"> ace.vars['base'] = '..'; </script>
+	<script src="${site}/assets/js/ace/elements.onpage-help.js"></script>
+	<script src="${site}/assets/js/ace/ace.onpage-help.js"></script>
+ 
+	

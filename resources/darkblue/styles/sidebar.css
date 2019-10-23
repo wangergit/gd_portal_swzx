@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* CSS Document */
+#sidebar {
+	position: absolute;
+	width: 200px;
+	height: 100%;
+	overflow: hidden;
+}
+#main {
+	margin: 0 0 0 220px;
+	height: 100%;
+	overflow: auto;
+}
+
+#sidebar.gg-sidebar{
+	background-color: #fff;
+}
+/* 以下仅针对服务资源左边菜单 （只能这么写，写全局的，否则样式加不上去）*/
+#sidebar.server-sidebar,#sidebar.api-sidebar,#sidebar.gg-sidebar{
+	background-color: #424451;
+}
+#sidebar.server-sidebar .list-group-item.active{
+	background:url(../images/current_mark.png) center right no-repeat #337ab7;
+}
+.list-group-item{
+	background-color: #424451;
+	color:#fff!important;
+	border:0 none;
+}
+.list-group-item:first-child,.list-group-item:last-child{
+	border-radius: 0;
+}
+
+a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, button.list-group-item:hover{
+	background-color: #424451;
+	color:#fff;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>电子航道图政务服务平台</title>
+<link rel="icon" href="${res}/images/favicon.ico" type="image/x-icon"/>
+<link rel="stylesheet" type="text/css" href="${res}/css/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="${res}/css/skin.css" />
+<link rel="stylesheet" type="text/css" href="${res}/css/gdww.css" />
+<script type="text/javascript" src="${res}/js/jquery-ui.js"></script>
+<script type="text/javascript" src="${res}/js/gdww.js"></script>
+</head>
+<body>
+	[#include "../include/header.html"/]
+
+	<!--内容-->
+	<div class="l_second clearfix">
+<!-- 		<div class="l_second_left fl column"> -->
+
+<!-- 			<div class="nav_second"> -->
+<!-- 				<div class="nav_name">公告信息</div> -->
+<!-- 				<ul class="nav_ul"> -->
+<!-- 					<li class="checked"><a class="yia" href="#"><span>信息分类一</span></a> -->
+<!-- 						<li><a class="yia" href="#"><span>信息分类二</span></a> -->
+<!-- 							<li><a class="yia" href="#"><span>信息分类三</span></a> -->
+<!-- 								<li><a class="yia" href="#"><span>信息分类四</span></a> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+		<div class="l_second_right fr column">
+			<div class="mod_list portlet">
+				<div class="mod_list_tit">${channel.name}</div>
+				<div id="ContentPane">
+					<ul class="list_mod2" opentype="page">
+					[#list listInfo.data as infos]
+						<li><span class="fl">
+							<a href="${site}/${infos.channel.path}/${infos.id}.jhtml" target="_blank" title="${infos.title}">${infos.title}</a>
+							</span><span class="fr"></span></li>
+ 					[/#list]
+					</ul>
+
+					<div class="page clearfix">
+						<div class="i_m_bd">
+						    [#if listInfo.page.total>0]
+							    [#if listInfo.page.current>1]
+									<a class="lm_a" href="${site}/${channelPath}/${pageName}_${listInfo.page.current-1}.jhtml">&lt;&nbsp;&nbsp;上一页</a> 
+								[/#if]
+								[#list listInfo.page.begin..listInfo.page.end as t]
+									 	 [#if listInfo.page.current==t]
+									 	 	<span>&nbsp;&nbsp;</span>
+											<font class="NormalRed">${t}</font>
+										 [#else]
+										 	<span style="width: 5px; display: inline-block;"></span> 
+											<a	class="pagingNormal" href="${site}/${channelPath}/${pageName}_${t}.jhtml">${t}</a> 
+									 	 [/#if]
+								[/#list]
+								 
+								<span	style="width: 5px; display: inline-block;"></span>
+								 [#if listInfo.page.pageCount > listInfo.page.current]
+									<a class="lm_a" href="${site}/${channelPath}/${pageName}_${listInfo.page.current+1}.jhtml">下一页&nbsp;&nbsp;&gt;</a> 
+								[/#if]
+							[#else]
+								<span>&nbsp;&nbsp;</span>
+								<font class="NormalRed">暂无任何信息.</font>
+							[/#if]
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	[#include "../include/footer.html"/]
+
+</body>
+</html>

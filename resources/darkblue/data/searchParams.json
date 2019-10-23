@@ -1,0 +1,290 @@
+{
+	"qb": {
+		"name": "全部",
+		"layerids": [0,
+		21,
+		12,
+		24,
+		23,
+		40,
+		34,
+		35,
+		43,
+		36,
+		33,
+		54,
+		55],
+		"searchFields": ["中文名称",
+		"中文名称",
+		"中文名称",
+		"中文名称",
+		"中文名称",
+		"中文名称",
+		"中文名称",
+		"中文名称",
+		"中文名称",
+		"中文名称",
+		"中文名称",
+		"中文名称",
+		"中文名称"
+		]		
+	},
+	"hb": {
+		"name": "航标",
+		"form": "#form_beacon",
+		"infowindows": "#infoModal-table",
+		"layerids": [0],
+		"searchFields": ["中文名称"],
+		"fkey": "NOBJNM",
+		"showAttr": {
+			"NOBJNM": "中文名称",
+			"CONDTN": "状态",
+			"LOCTON": "设置位置",
+			"BNKATN": "岸别",
+			"SHPATN": "形状",
+			"COLOUR": "颜色",
+			"COLPAT": "图案",
+			"TOPCOL": "顶标颜色",
+			"TOPSHP": "顶标形状",
+			"LITCOL": "灯色",
+			"LITCHR": "灯质",
+			"SIGPER": "闪光周期",
+			"SIGSEQ": "信号序列",
+			"NINFOM": "备注信息"
+		}
+	},
+	"gghd": {
+		"name": "公共航道",
+		"form": "#form_beacon",
+		"infowindows": "#infoModal-table",
+		"layerids": [21],
+		"searchFields": ["中文名称"],
+		"fkey": "NOBJNM",
+		"showAttr": {
+			"NOBJNM": "中文名称",
+			"NAMIPW": "航道起点名称",
+			"NAMTPW": "航道终点名称",
+			"LENWAW": "航段里程",
+			"SQTECG": "现状技术等级",
+			"DPTECG": "发展规划技术等级",
+			"MANDEP": "航道管理部门",
+			"MNTDEP": "航道维护部门",
+			"NINFOM": "备注信息"
+		}
+	},
+	"hdbm": {
+		"name": "航道部门",
+		"form": "#form_beacon",
+		"infowindows": "#infoModal-table",
+		"layerids": [12],
+		"searchFields": ["中文名称"],
+		"fkey": "NOBJNM",
+		"showAttr": {
+			"NOBJNM": "中文名称",
+			"CATWAD": "航道管理机构类型",
+			"COMADD":"航道管理机构通信地址",
+			"NINFOM": "备注信息"
+		}
+	},
+	"cz": {
+		"name": "船闸",
+		"form": "#form_shiplock",
+		"infowindows": "#infoModal-table",
+		"layerids": [24],
+		"searchFields": ["中文名称"],
+		"fkey": "NOBJNM",
+		"showAttr": {
+			"NOBJNM": "中文名称",
+			"LOBLIN": "线数",
+			"LOBLVL": "船闸级别",
+			"EFLLOB": "船闸有效长度",
+			"EFWLOB": "船闸有效宽度",
+			"LTMDEP": "船闸门槛最小水深",
+			"STATUS": "状况",
+			"NINFOM": "备注信息"
+		}			
+	},
+	"sjj": {
+		"name": "升船机",
+		"form": "#form_shiplock",
+		"infowindows": "#infoModal-table",
+		"layerids": [23],
+		"searchFields": ["中文名称"],
+		"fkey": "NOBJNM",
+		"showAttr": {
+			"NOBJNM": "中文名称",
+			"PATSHL": "升船机形式",
+			"CBLSHL": "升船机厢长",
+			"CBWSHL":"升船机厢宽",
+			"DEPSHL":"升船机水深",
+			"NINFOM": "备注信息"
+		}
+	},
+	"ql": {
+		"name": "桥梁",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [40],
+		"searchFields": ["中文名称"],
+		"fkey": "NOBJNM",
+		"showAttr": {
+			"TOUBRG": "桥梁用途类型",
+			"STPBRG": "桥梁结构形式",
+			"CONDTN":"状态",
+			"BRIWID": "桥面宽度",
+			"BRILEG": "桥梁长度",
+			"NUMSPN":"通航孔个数",
+			"WSNMBRA":"是否设置桥区航标"
+		}
+	},
+	"jkxl": {
+		"name": "架空线缆",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [34],
+		"searchFields": ["中文名称"],
+		"fkey": "NOBJNM",
+		"showAttr": {
+			"NOBJNM": "中文名称",
+			"LENCAB":"线缆长度",
+			"NCWCAB":"线缆通航净宽",
+			"HNWPCAB":"线缆通航净高",
+			"HWSCAB":"线缆最高通航水位",
+			"SADCAB":"线缆安全间距",
+			"AOASHC":"线缆实测弧垂高度",
+			"MASCAB":"线缆设标情况",
+			"CONVIS":"视觉可见",
+			"NINFOM": "备注信息"
+		} 
+	},
+	"jkgd": {
+		"name": "架空管道",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [35],
+		"searchFields": ["中文名称"],
+		"fkey": "NOBJNM",
+		"showAttr": {
+			"NOBJNM": "中文名称",
+			"TYPPIP":"管道类型",
+			"PIPLEN":"架空管道长度",
+			"NCWPIP":"管道通航净宽",
+			"HNWPIP":"管道通航净高",
+			"HWSPIP":"管道最高通航水位",
+			"SADPIP":"管道安全间距",
+			"MASPIP":"管道设标情况",
+			"CONVIS":"视觉可见",
+			"CONDTN":"状态",
+			"NINFOM": "备注信息"
+		}
+	},
+	"sd": {
+		"name": "索道 ",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [43],
+		"searchFields": ["中文名称"],
+		"fkey": "NOBJNM",
+		"showAttr": {
+			"NOBJNM": "中文名称",
+			"CAWCSA": "通航净高",
+			"CAWCAB":"索道最高通航水位",
+			"CAWSHC":"索道实测弧垂高度",
+			"CONDTN":"状态",
+			"NINFOM": "备注信息"
+		}
+	},
+	"ghgd": {
+		"name": "过河管道",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [36],
+		"searchFields": ["中文名称"],
+		"fkey": "NOBJNM",
+		"showAttr": {
+			"NOBJNM": "中文名称",
+			"CATCBL": "管道类型",
+			"PIPLEN": "管道长度",
+			"CBLSAD": "管道安全间距",
+			"DEPPIP": "管道的埋设深度",
+			"DRVAL1": "最小深度值",
+			"DRVAL2": "最大水深",
+			"MASPIP": "管道设标情况",
+			"STATUS": "状况",
+			"NINFOM": "备注信息"
+		}
+	},
+	"ghxl": {
+		"name": "过河线缆",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [33],
+		"searchFields": ["中文名称"],
+		"fkey": "NOBJNM",
+		"showAttr": {
+			"NOBJNM": "中文名称",
+			"CATCBL": "线缆类型",
+			"CBLLEN": "过河线缆长度",
+			"CBLSAD": "过河线缆安全间距",
+			"CBLDEP": "线缆的埋设深度",
+			"MASCBL": "管道设标情况",
+			"STATUS": "状况",
+			"CONDTN": "状态",
+			"NINFOM": "备注信息"
+		}
+		
+	},
+	"fmt": {
+		"name": "浮码头",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [54],
+		"searchFields": ["中文名称"],
+		"fkey": "NOBJNM",
+		"showAttr": {
+			"NOBJNM": "中文名称",
+			"PONUSE": "码头用途",
+			"STATUS": "状况",
+			"CONDTN": "状态",
+			"NINFOM": "备注信息"
+		}
+	},
+	"gdmt": {
+		"name": "固定码头",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [55],
+		"searchFields": ["中文名称"],
+		"fkey": "NOBJNM",
+		"showAttr": {
+			"NOBJNM": "中文名称",
+			"ERCAP": "码头靠泊能力",
+			"TERTYP": "码头形式",
+			"TERUSE": "码头用途",
+			"TEBNUM": "码头泊位个数",
+			"TERDCC": "码头设计吞吐量",
+			"MANDEP": "管理单位",
+			"CONDTN": "状态",
+			"NINFOM": "备注信息"
+		}		
+	},
+	"jymt": {
+		"name": "简易固定码头",
+		"form": "#form_bridge",
+		"infowindows": "#infoModal-table",
+		"layerids": [55],
+		"searchFields": ["中文名称"],
+		"fkey": "NOBJNM",
+		"showAttr": {
+			"NOBJNM": "中文名称",
+			"ERCAP": "码头靠泊能力",
+			"TERTYP": "码头形式",
+			"TERUSE": "码头用途",
+			"TEBNUM": "码头泊位个数",
+			"TERDCC": "码头设计吞吐量",
+			"MANDEP": "管理单位",
+			"CONDTN": "状态",
+			"NINFOM": "备注信息"
+		}
+	}
+}

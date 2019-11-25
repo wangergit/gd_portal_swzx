@@ -54,7 +54,10 @@ var HJLayers = {
 				layer.minScale=clayer.minScale;
 				layer.visibleAtMapScale=false;
 				layer.setScaleRange(layer.minScale,layer.maxScale);
-			}
+            }
+            if(clayer.visibleLayers != undefined){
+				layer.setVisibleLayers(clayer.VisibleLayers);
+            }
 			if (clayer!=undefined&&clayer!=null&&clayer.type != HJLayerType.HJGraphicsLayer&&clayer.type != HJLayerType.AISLayer){
 				layer.id = clayer.name;
                 layer.visible = clayer.visible;
